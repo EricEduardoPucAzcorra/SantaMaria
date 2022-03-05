@@ -1,0 +1,75 @@
+Hola....
+- A continuacion les explico como funciona vue js
+en este caso.....
+- la instalacion de este paquete ya esta hecho, con los comandos correspodientes...
+al clonar el proyecto desde git, solo bastara ejecutar el comando "npm run dev/watch" y todos los componentes 
+y dependencias de laravel Mix se cargaran..
+
+Estructura de carpetas
+
+-Los archivos o componentes vue, se encuentran dentro de la caprta resources/js/compnents.
+su estructura se visualiza en un ejemplo, donde se divide codigo html(template) y codigo javascript(<script>)
+
+ejemplo:
+
+<template>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">Example Component</div>
+
+
+                        //se escribe todo codigo html dentro de un componente padre <div></div> o <template></template>
+
+
+                    <div class="card-body">
+                        Hola esto es vue js
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+    export default {
+
+        //se hace todo metodos, funcionas tal cual como es en vue js
+
+        mounted() {
+            console.log('Component mounted.')
+        }
+    }
+</script>
+
+
+-se puede crear varios componentes iniciando con Mayuscula ejemplo: Usuario.vue
+
+ Vincular componente con archivo js
+
+ - Dentro de la caprtas resources/js/se encuentra archivos js, donde el configurado es proyecto.jse
+ en dicho archivo se asignaran los componentes para poder hacer uso en las vistas blade
+
+
+ window.Vue = require('vue').default;
+ 
+ //agrego componentes
+ Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+ 
+ Nota:  Recordar la estructura de vue js, donde se define el el: '#id', asignar a la vista donde se quiera ejecutar el vue js
+ //codigo vue js
+ const app = new Vue({
+     el: '#vue',
+ });
+
+Al configurar todo esto, en cada cambio que se realize en proyecto.js y componentes vue debe estar corriendo el comando -npm run watch
+para actualizar los cambios
+
+
+
+
+
+
+
+
