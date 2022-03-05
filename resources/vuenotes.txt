@@ -66,7 +66,7 @@ ejemplo:
 Al configurar todo esto, en cada cambio que se realize en proyecto.js y componentes vue debe estar corriendo el comando -npm run watch
 para actualizar los cambios
 
-
+A un no tiene una Base de datos
 
 
 
