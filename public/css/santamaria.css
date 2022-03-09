@@ -1,0 +1,168 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background: rgb(153, 149, 149);
+}
+/*Navegador izquierdo*/
+#sidebar{
+    position:fixed;
+    width: 250px;
+    height:100%;
+    background:#FAC409;
+    left:-250px;
+    transition: all 500ms linear;
+}
+#sidebar.active{
+    left:0;   
+}
+
+#sidebar ul{
+    padding:0;
+}
+#sidebar ul li{
+    color: rgba(230, 230, 230, .9);
+    text-align: left;
+    border-bottom: 1px solid rgba(100, 100, 100, .3);
+    padding: 18px 10px;
+    list-style: none;
+    border-left:4px solid transparent;
+
+}
+#sidebar ul li:hover{
+    background:#FA3A0C;
+    border-left: 4px solid #FFF;
+    cursor: pointer;
+    transition: 0.3ms ease;
+}   
+#sidebar ul li a {
+    position: relative;
+    text-decoration: none;
+    color: #FFF;
+    font-weight:bold;
+}
+#sidebar ul ul{
+    position: static;
+    display:none;
+}
+#sidebar #sidebar-show li{
+    color: rgba(230, 230, 230, .9);
+    text-align: left;
+    padding: 5px 10px;
+    list-style: none;
+    border-left: 1px solid transparent;
+}
+#sidebar #sidebar-show li:hover{
+    width: 100%;
+    border-left:none;
+    padding: 5px 10px;
+    border-left: 1px solid #FFF;
+    background: rgba(255,255,255,.2);
+}
+#sidebar-show.show-submenu{
+    display: block;
+    transition: all 800ms linear;
+}
+#sidebar ul ul li{
+    line-height: 42px;
+    border-bottom: none;
+}
+#sidebar ul ul li a{
+    font-size:17px;
+    padding-left: 80px;
+}
+#sidebar ul li a span{
+    margin-left: 70%;
+    
+}
+
+#sidebar .toggle-btn{
+    position: absolute;
+    left: 280px;
+    top: 20px;
+    cursor:pointer;
+    color: #FFF;
+}
+#sidebar .toggle-btn span{
+    display: block;
+    width: 40px;
+    text-align: center;
+    font-size:30px;
+}
+#sidebar .toggle-btn span:hover{
+    color: #FA3A0C;
+}
+#sidebar .logo {
+    padding:17px 0;
+    top:20px;
+    border-bottom:1px solid rgba(100, 100, 100, .3) ;
+    border-right:1px solid rgba(100, 100, 100, .3);
+}
+.logo img{
+    width:55px;
+    height:55px;
+}
+/* Sidebar-superior*/
+header{
+    background:#FAC409;
+    width: 100%;
+    height:80px;
+    clear:both;
+    content:'';
+    display: table;
+}
+
+#sidebar-superior{
+    width: auto;
+    margin: 0 auto;
+}
+nav{
+    float: right;
+}
+nav ul li{
+    list-style: none;
+    color: aliceblue;
+    margin-left:35px;
+    margin-right:15px;
+    padding:12px 0;
+    float: left;
+    margin-top:15px;
+}
+nav ul li a, nav ul .position-relative a{
+    text-decoration: none;
+    color: #FFF;
+}
+nav ul .position-relative a:hover{
+    color: #FA3A0C;
+}
+nav ul li input{
+    width:250px;
+    height:40px;
+    border-radius:15px;
+    background: rgba(255,255,255,.9);
+    border:none;
+    padding-left:10px;
+    outline: none;
+}
+.icono-usuario{
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    border: 1px solid #FFF;
+}
+
+/*Contenedor */
+#contenedor-sistema{
+    width: 98%;
+    height: 100%;
+    margin:25px;
+    transition: all 500ms linear;
+}
+#contenedor-sistema.active-side{
+    width:auto;
+    height:100%;
+    margin-top:25px;
+    margin-left:275px;
+    
+}
