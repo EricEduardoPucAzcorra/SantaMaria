@@ -29,3 +29,9 @@ Route::post('/objetos_almacen/registrar', [App\Http\Controllers\ObjetoAlmacenCon
 Route::put('/objetos_almacen/actualizar', [App\Http\Controllers\ObjetoAlmacenController::class, 'update']);
 Route::put('/objetos_almacen/activar', [App\Http\Controllers\ObjetoAlmacenController::class, 'activar']);
 Route::put('/objetos_almacen/desactivar', [App\Http\Controllers\ObjetoAlmacenController::class, 'desactivar']);
+
+Route::get('/reservas', function(){
+    $reservas = App\Models\Reserva::all();
+
+    return $reservas;
+});
