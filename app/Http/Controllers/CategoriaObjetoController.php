@@ -6,6 +6,9 @@ use App\Models\Categoria_Objeto;
 
 class CategoriaObjetoController extends Controller
 {
+    public function vista_catObj(){
+        return view('sistema.almacen.categoriasObj');
+    }
     public function select_cat(){
         $cat_select = Categoria_Objeto::where('condicion', '=', '1')
         ->select('categoria_objetos.nombre','categoria_objetos.id_categoria_obj')

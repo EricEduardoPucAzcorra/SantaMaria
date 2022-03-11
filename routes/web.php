@@ -19,6 +19,7 @@ Route::get('index', function () {
 // });
 
 //rutas categorias-objetos
+Route::get('/categoria_objs', [App\Http\Controllers\CategoriaObjetoController::class, 'vista_catObj']);
 Route::get('/categoria_objetos', [App\Http\Controllers\CategoriaObjetoController::class, 'index']);
 Route::post('/categoria_objetos/registrar', [App\Http\Controllers\CategoriaObjetoController::class, 'store']);
 Route::put('/categoria_objetos/actualizar', [App\Http\Controllers\CategoriaObjetoController::class, 'update']);
