@@ -257,10 +257,7 @@
                 }).then(function (response) {
                   //c3rra modal
                   $('#modal_recurso').modal('hide');
-                     this.nombre='';
-                    this.descripcion='';
-                    this.cantidad='';
-                    this.id_categoria_obj='';
+                   
                   //actualizatabla
                   cargar.getRecursos();
                 })
@@ -284,10 +281,7 @@
                   //c3rra modal
                   $('#modal_recurso').modal('hide');
 
-                    this.nombre='';
-                    this.descripcion='';
-                    this.cantidad='';
-                    this.id_categoria_obj='';
+                  
                   //actualizatabla
                   cargar.getRecursos();
                 })

@@ -7,14 +7,14 @@ use Illuminate\Http\Request;
 
 class HabitacionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function index()
     {
         //
+        $habitaciones = Habitacion::all();
+
+        return response()->json([$habitaciones]);
+        
     }
 
     /**

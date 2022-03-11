@@ -5598,11 +5598,7 @@ __webpack_require__.r(__webpack_exports__);
         'id_categoria_obj': this.id_categoria_obj
       }).then(function (response) {
         //c3rra modal
-        $('#modal_recurso').modal('hide');
-        this.nombre = '';
-        this.descripcion = '';
-        this.cantidad = '';
-        this.id_categoria_obj = ''; //actualizatabla
+        $('#modal_recurso').modal('hide'); //actualizatabla
 
         cargar.getRecursos();
       })["catch"](function (error) {
@@ -5622,11 +5618,7 @@ __webpack_require__.r(__webpack_exports__);
         'id_objeto': this.id_objeto
       }).then(function (response) {
         //c3rra modal
-        $('#modal_recurso').modal('hide');
-        this.nombre = '';
-        this.descripcion = '';
-        this.cantidad = '';
-        this.id_categoria_obj = ''; //actualizatabla
+        $('#modal_recurso').modal('hide'); //actualizatabla
 
         cargar.getRecursos();
       })["catch"](function (error) {

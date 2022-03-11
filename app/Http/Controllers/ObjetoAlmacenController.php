@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 
 class ObjetoAlmacenController extends Controller
 {
+    public function vistaAlmacen(){
+        return view('sistema.almacen.almacen');
+    }
     
     public function index(Request $request)
     {
