@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\CategoriaObjetoController;
 use App\Http\Controllers\ObjetoAlmacenController;
+use App\Http\Controllers\UsuarioController;
 
 Route::get('/', function () {
     return view('Bienvenido');
@@ -36,8 +37,16 @@ Route::put('/objetos_almacen/desactivar', [App\Http\Controllers\ObjetoAlmacenCon
 
 //fin session almancen
 
+//enrutamiento de usuario
+Route::get('/usuarios',[App\Http\Controllers\UsuarioController::class,'index']);
+Route::get('/get_usuarios',[App\Http\Controllers\UsuarioController::class,'traerUsuarios']);
+//fin de enrutamiento de usuario
+
 // Route::get('/reservas', function(){
 //     $reservas = App\Models\Reserva::all();
 
 //     return $reservas;
 // });
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

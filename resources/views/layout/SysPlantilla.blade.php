@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="Cache" content="no-cache">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -13,20 +17,13 @@
 
 </head>
 <body>
-    <div id="vue">
-        <div>
-            @include('layout.NavIzquierdo')
-        </div>
-        <div>
-            @include('layout.NavSuperior')
-        </div>
-        <div id="contenedor-sistema">
-            {{-- contenido --}}
-            
+    @include('layout.NavIzquierdo')
+    <section class="home-section">
+        @include('layout.NavSuperior')
+        <div id="vue">
             @yield('contenido')
-
         </div>
-    </div>
+    </section>
 </body>
 
 <script src="{{asset('js/proyecto.js')}}"></script>

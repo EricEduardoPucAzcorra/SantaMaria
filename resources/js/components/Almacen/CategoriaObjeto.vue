@@ -1,73 +1,47 @@
 <template>
-    <div>
-        <div class="ms-panel ms-widget ms-crypto-widget">
-            <div class="ms-panel-header">
-                <h6>Categorias materiales <button type="button" class="btn btn-secondary" v-on:click="activarModal('categoria','registrar')" >
-                    <i class="icon-plus"></i>&nbsp;Nuevo
-                </button></h6>
-                
-            </div>
-            <div class="ms-panel-body p-0">
-            
-                <div class="tab-content">
-                <div  class="tab-pane active show fade in" id="btc">
-                
-                   <div class="table-responsive">
-                <table class="table table-bordered">
-                  <thead>
+    <div class="col-md-12">
+        <div class="m-5">
+            <h6>Categorias materiales</h6>
+            <button type="button" class="btn btn-secondary" v-on:click="activarModal('categoria','registrar')" >
+                <i class="icon-plus"></i>&nbsp;Nuevo
+            </button>
+        </div>
+        <div class="m-5">
+            <table class="table table-hover table-dark">
+                <thead>
                     <tr>
                       <th scope="col">#</th>
                       <th scope="col">Nombre</th>
                       <th scope="col">Descripcion</th>
-                    
                       <th>Estado</th>
                        <th>Acciones</th>
                     </tr>
-                  </thead>
-                  <tbody>
+                </thead>
+                <tbody>
                     <tr v-for="categoria in cat_objetos" :key="categoria.id_categoria_obj">
-                      <td>{{categoria.id_categoria_obj}}</td>
-                      <td>{{categoria.nombre}}</td>
-                      <td>{{categoria.descripcion}}</td>    
-                      <td>
-                          <template v-if="categoria.condicion">
-                            
-                                  Activo
-                              
-                          </template>
-                          <template v-else>
-                              
-                                  Inactivo
-                             
-                          </template>
-                      </td>
-                      <td>
-                          <button  class="btn btn-info" type="button" @click="activarModal('categoria','actualizar', categoria)">Editar</button>
-
-                          <template v-if="categoria.condicion">
-                            
-                                 <button type="button"  @click="desactivar(categoria.id_categoria_obj)" class="btn btn-danger">Desactivar</button>
-                              
-                          </template>
-                          <template v-else>
-                              
-                             <button type="button" @click="activar(categoria.id_categoria_obj)" class="btn btn-success">Activar</button>     
-                             
-                          </template>
-
-                      </td>
+                        <td>{{categoria.id_categoria_obj}}</td>
+                        <td>{{categoria.nombre}}</td>
+                        <td>{{categoria.descripcion}}</td>    
+                        <td>
+                            <template v-if="categoria.condicion">
+                                Activo  
+                            </template>
+                            <template v-else>      
+                                Inactivo 
+                            </template>
+                        </td>
+                        <td>
+                            <button  class="btn btn-info" type="button" @click="activarModal('categoria','actualizar', categoria)">Editar</button>
+                            <template v-if="categoria.condicion">    
+                                <button type="button"  @click="desactivar(categoria.id_categoria_obj)" class="btn btn-danger">Desactivar</button>
+                            </template>
+                            <template v-else>     
+                                <button type="button" @click="activar(categoria.id_categoria_obj)" class="btn btn-success">Activar</button>     
+                            </template>
+                        </td>
                     </tr>
-                   
-                  </tbody>
-                </table>
-              </div>
-             
-                   
-                </div>
-    
-                </div>
-
-            </div>
+                </tbody>
+            </table>
         </div>
 
         <!-- Notes Modal -->

@@ -1,30 +1,73 @@
-<div id="sidebar">
-    <div class="toggle-btn">
-        <span>&#9776;</span>
+<div class="sidebar">
+    <div class="logo-details">
+        <i class="fas fa-search"></i>
+        <span class="logo_name">Sanrta María</span>
     </div>
-    <div class="logo">
-       <div>
-            <img src="assets/img/imgSys/logo.png" alt="">
-            <span>SOFTICPRO</span>
-       </div>
-    </div>
-    {{-- Aqui va el contenido del navegador --}}
-    <ul>
-        <li><a href="">item</a></li>
+    <ul class="nav-links">
         <li>
-            <a class="sidebar-btn">HOME 
-                <span>
-                    <i id="flecha" class="fas fa-caret-down"></i>
-                </span>
+            <a href="">
+                <i class="fas fa-home"></i>
+                <span class="link_name">inicio</span>
             </a>
-            <ul id="sidebar-show">
-                <li><a href="">item 1</a></li>
-                <li><a href="">item 2</a></li>
+            <ul class="sub-menu blank">
+                <li><a href="" class="link_name">Inicio</a></li>
             </ul>
         </li>
-        <li><a href="">COSA 1</a></li>
-        <li><a href="">COSA 2</a></li>
-        <li><a href="">COSA 3</a></li>
+        <li>
+            <a href="{{ url('/usuarios') }}">
+                <i class="fas fa-user"></i>
+                <span class="link_name">Usuarios</span>
+            </a>
+            <ul class="sub-menu blank">
+                <li><a href="{{ url('/usuarios') }}" class="link_name">Usuarios</a></li>
+            </ul>
+        </li>
+        <li>
+            <div class="icon-link">
+                <a href="">
+                    <i class="fas fa-hamburger"></i>
+                    <span class="link_name">Restaurante</span>
+                </a>
+                <i class="fas fa-chevron-down arrow"></i>
+            </div>
+            <ul class="sub-menu">
+                <li><a href="" class="link_name">Restaurante</a></li>
+                <li><a href="">Item 1</a></li>
+                <li><a href="">Item 2</a></li>
+                <li><a href="">Item 3</a></li>
+            </ul>
+        </li>
+        <li>
+            <div class="icon-link">
+                <a href="">
+                    <i class="fas fa-cubes"></i>
+                    <span class="link_name">Almacen</span>
+                </a>
+                <i class="fas fa-chevron-down arrow"></i>
+            </div>
+            <ul class="sub-menu">
+                <li><a href="" class="link_name">Almacen</a></li>
+                <li><a href="{{ url('/almacen') }}">Objetos</a></li>
+                <li><a href="{{ url('/categoria_objs') }}">Categorias</a></li>
+            </ul>
+        </li>
+        <li>
+            <div class="profile-details">
+                <div class="profile-content">
+                    <img src="assets/img/people/people-3.jpg" alt="profile">
+                </div>
+                <div class="name-job">
+                    <div class="profile_name">{{ Auth::user()->name }}</div>
+                    <div class="job">Programmer</div>
+                </div>
+                <a href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                <i class="fas fa-sign-out-alt" ></i></a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
+            </div>
+        </li>
     </ul>
-    {{-- fin del contenido --}}
 </div>
