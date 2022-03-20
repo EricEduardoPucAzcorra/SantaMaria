@@ -19,4 +19,11 @@ class Detalle_Reserva extends Model
         'id_reserva',
         'total',
     ];
+
+    public function reserva()
+    {
+        
+       return $this->belongsTo(Reserva::class, 'id_reserva', 'id_reserva');
+        
+    }
 }

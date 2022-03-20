@@ -13,6 +13,8 @@ class Reserva extends Model
     protected $primaryKey = 'id_reserva';
     public $incrementing = true;
     public $timestamps = true;
+    public $with=['habitaciones'];
+
     protected $fillable = [
         'fecha_entrada',
         'fecha_salida',
@@ -24,4 +26,20 @@ class Reserva extends Model
         'precio',
         'total'
     ];
+
+    //una reserva solo admite varias habitacion
+    public function habitaciones(){
+        return $this->belongsTo(Habitacion::class, 'id_habitacion', 'id_habitacion');
+    }
+
+    public function huespedes(){
+        //una reserva lo realiza un huesped
+      return $this->belongsTo(Huesped::class, 'id_huesped', 'id_huesped');
+    }
+
+    // public function detalle_reserva(){
+
+    //    return $this->belongsTo(Detalle_Reserva::class, 'id_reserva', 'id_reserva');
+        
+    // }
 }

@@ -14,10 +14,15 @@ class Huesped extends Model
     public $incrementing = true;
     public $timestamps = true;
     protected $fillable = [
+        'id_huesped',
         'nombre',
         'apellidos',
         'ine',
         'telefono',
         'correo'
     ];
+
+    public function reservas(){
+        return $this->hasMany(Reserva::class);
+    }
 }

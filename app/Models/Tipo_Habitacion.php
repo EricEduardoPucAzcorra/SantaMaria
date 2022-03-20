@@ -18,5 +18,9 @@ class Tipo_Habitacion extends Model
         'descripcion'
     ];
 
+    public function habitaciones(){
+        return $this->hasMany(Habitaccion::class);
+    }
+
 }
 

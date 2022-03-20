@@ -18,6 +18,14 @@ Route::get('index', function () {
 //     return view('');
 // });
 
+//habitaciones
+Route::get('/habitaciones', [App\Http\Controllers\HabitacionController::class,'index']);
+
+//rutas reservas
+Route::post('/reservars', [App\Http\Controllers\ReservaController::class,'reservar']);
+Route::put('/cambiarestado', [App\Http\Controllers\ReservaController::class, 'updateestadoh']);
+//rutas huespedes
+Route::get('/huespedes', [App\Http\Controllers\HuespedController::class,'index']);
 //rutas categorias-objetos
 Route::get('/categoria_objs', [App\Http\Controllers\CategoriaObjetoController::class, 'vista_catObj']);
 Route::get('/categoria_objetos', [App\Http\Controllers\CategoriaObjetoController::class, 'index']);
@@ -36,8 +44,6 @@ Route::put('/objetos_almacen/desactivar', [App\Http\Controllers\ObjetoAlmacenCon
 
 //fin session almancen
 
-// Route::get('/reservas', function(){
-//     $reservas = App\Models\Reserva::all();
-
-//     return $reservas;
-// });
+Route::get('/reservar', function(){
+  return view('sistema.admin.hotel.reservaciones.reservar');
+});

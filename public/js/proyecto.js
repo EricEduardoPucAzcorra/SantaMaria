@@ -6029,6 +6029,402 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Hotel/Reservar/Reservar.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Hotel/Reservar/Reservar.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      prueba: 'hola mundo cruel',
+      habitaciones: [],
+      huespedes: [],
+      //variables del huespes extenas-visual
+      id_huesped: 0,
+      nombre: '',
+      apellidos: '',
+      ine: '',
+      telefono: '',
+      correo: '',
+      //variables de la reserva
+      fecha_entrada: '',
+      fecha_salida: '',
+      comentario: '',
+      //vaibles internas
+      id_habitacion: 0,
+      cant_habitacion: 1,
+      precio: 0,
+      total: 0
+    };
+  },
+  computed: {},
+  methods: {
+    //traer las habitaciones
+    getHabitaciones: function getHabitaciones() {
+      var i = this;
+      var url = '/habitaciones';
+      axios.get(url).then(function (response) {
+        //console.log(response);
+        i.habitaciones = response.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    //traer huespedes
+    gethuespedes: function gethuespedes() {
+      var i = this;
+      var url = '/huespedes';
+      axios.get(url).then(function (response) {
+        //console.log(response);
+        i.huespedes = response.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    //agregar insersion de huesped
+    agregarHuesped: function agregarHuesped() {
+      //oculta select
+      $('#select').hide(); //boton agregar ocultar
+
+      $('#agregarHuesped').hide();
+      $('#cancelar').show();
+      $('#form').show();
+    },
+    //cancelar insession de huesped
+    cancelar: function cancelar() {
+      $('#agregarHuesped').show();
+      $('#select').show();
+      $('#cancelar').hide();
+      $('#form').hide();
+    },
+    activarModal: function activarModal(modelo, accion) {
+      var data = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+
+      switch (modelo) {
+        case 'reserva':
+          {
+            this.gethuespedes();
+
+            switch (accion) {
+              case 'registro':
+                {
+                  //mostrar modal
+                  $('#modal_reserva').modal('show');
+                  $('#cancelar').hide();
+                  $('#select').show();
+                  $('#form').hide();
+                  $('#agregarHuesped').show();
+                  this.id_habitacion = data['id_habitacion'];
+                  this.precio = data['precio'];
+                  this.total = data['precio'];
+                  this.id_huesped = 0;
+                  this.fecha_entrada = '';
+                  this.fecha_salida = '';
+                  this.comentario = '';
+                  this.nombre = '';
+                  this.apellidos = '';
+                  this.ine = '';
+                  this.telefono = '';
+                  this.correo = '';
+                  break;
+                }
+
+              case 'detalle':
+                {
+                  $('#modal_reserva').modal('show');
+                  break;
+                }
+            }
+          }
+      }
+    },
+    //permite cerar el modal
+    cerrarModal: function cerrarModal() {
+      $('#modal_reserva').modal('hide');
+      this.nombre = '';
+      this.apellidos = '';
+      this.ine = '';
+      this.telefono = '';
+      this.correo = '';
+      this.id_huesped = 0;
+      this.id_habitacion = '';
+      this.cant_habitacion = '';
+      this.precio = '';
+      this.total = '';
+      this.fecha_entrada = '';
+      this.fecha_salida = '';
+      this.comentario = '';
+    },
+    validarCampos: function validarCampos() {},
+    //metodo que permite reallizar la reserva
+    reservar: function reservar() {
+      if (this.id_huesped != 0) {
+        //console.log('ha selecionado una id de huesped');
+        var i = this;
+        var estado = 'ACEPTADO'; //let  url = '/reservars';
+
+        axios.post('/reservars', {
+          'fecha_entrada': this.fecha_entrada,
+          'fecha_salida': this.fecha_salida,
+          'comentario': this.comentario,
+          'id_huesped': this.id_huesped,
+          'id_habitacion': this.id_habitacion,
+          'cant_habitacion': this.cant_habitacion,
+          'estado': estado,
+          'precio': this.precio,
+          'total': this.total
+        }).then(function (response) {
+          //console.log(response.data);
+          //oculta modal
+          $('#modal_reserva').modal('hide'); //deja vacio los campos
+          //cambia el estado de la habitacion
+
+          i.updateestadoH();
+          this.nombre = '';
+          this.apellidos = '';
+          this.ine = '';
+          this.telefono = '';
+          this.correo = '';
+          this.id_huesped = 0;
+          this.id_habitacion = '';
+          this.cant_habitacion = '';
+          this.precio = '';
+          this.total = '';
+          this.fecha_entrada = '';
+          this.fecha_salida = '';
+          this.comentario = '';
+        })["catch"](function (error) {
+          console.log(error);
+        });
+      } else {
+        var i = this;
+        var estado = 'ACEPTADO'; //let  url = '/reservars';
+
+        axios.post('/reservars', {
+          'nombre': this.nombre,
+          'apellidos': this.apellidos,
+          'ine': this.ine,
+          'telefono': this.telefono,
+          'correo': this.correo,
+          'fecha_entrada': this.fecha_entrada,
+          'fecha_salida': this.fecha_salida,
+          'comentario': this.comentario,
+          // 'id_huesped':this.id_huesped,
+          'id_habitacion': this.id_habitacion,
+          'cant_habitacion': this.cant_habitacion,
+          'estado': estado,
+          'precio': this.precio,
+          'total': this.total
+        }).then(function (response) {
+          //console.log(response.data);
+          //oculta modal
+          $('#modal_reserva').modal('hide'); //cambia estado de la habitacion
+
+          i.updateestadoH(); //deja cvacio los campos
+
+          this.nombre = '';
+          this.apellidos = '';
+          this.ine = '';
+          this.telefono = '';
+          this.correo = '';
+          this.id_huesped = 0;
+          this.id_habitacion = '';
+          this.cant_habitacion = '';
+          this.precio = '';
+          this.total = '';
+          this.fecha_entrada = '';
+          this.fecha_salida = '';
+          this.comentario = '';
+          i.gethuespedes();
+        })["catch"](function (error) {
+          console.log(error);
+        }); //console.log('de alta nuevo huesped');
+      }
+    },
+    updateestadoH: function updateestadoH() {
+      var i = this;
+      var est = 'OCUPADO';
+      axios.put('/cambiarestado', {
+        'estado': est,
+        'id_habitacion': this.id_habitacion
+      }).then(function (response) {
+        i.getHabitaciones();
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.getHabitaciones();
+  }
+});
+
+/***/ }),
+
 /***/ "./resources/js/bootstrap.js":
 /*!***********************************!*\
   !*** ./resources/js/bootstrap.js ***!
@@ -28615,6 +29011,45 @@ component.options.__file = "resources/js/components/ExampleComponent.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/Hotel/Reservar/Reservar.vue":
+/*!*************************************************************!*\
+  !*** ./resources/js/components/Hotel/Reservar/Reservar.vue ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Reservar_vue_vue_type_template_id_9388c78e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Reservar.vue?vue&type=template&id=9388c78e& */ "./resources/js/components/Hotel/Reservar/Reservar.vue?vue&type=template&id=9388c78e&");
+/* harmony import */ var _Reservar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Reservar.vue?vue&type=script&lang=js& */ "./resources/js/components/Hotel/Reservar/Reservar.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Reservar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Reservar_vue_vue_type_template_id_9388c78e___WEBPACK_IMPORTED_MODULE_0__.render,
+  _Reservar_vue_vue_type_template_id_9388c78e___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Hotel/Reservar/Reservar.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/Almacen/Almacen.vue?vue&type=script&lang=js&":
 /*!******************************************************************************!*\
   !*** ./resources/js/components/Almacen/Almacen.vue?vue&type=script&lang=js& ***!
@@ -28660,6 +29095,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ExampleComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&");
  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Hotel/Reservar/Reservar.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/components/Hotel/Reservar/Reservar.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Reservar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Reservar.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Hotel/Reservar/Reservar.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Reservar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -28710,6 +29161,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ExampleComponent.vue?vue&type=template&id=299e239e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Hotel/Reservar/Reservar.vue?vue&type=template&id=9388c78e&":
+/*!********************************************************************************************!*\
+  !*** ./resources/js/components/Hotel/Reservar/Reservar.vue?vue&type=template&id=9388c78e& ***!
+  \********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Reservar_vue_vue_type_template_id_9388c78e___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Reservar_vue_vue_type_template_id_9388c78e___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Reservar_vue_vue_type_template_id_9388c78e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Reservar.vue?vue&type=template&id=9388c78e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Hotel/Reservar/Reservar.vue?vue&type=template&id=9388c78e&");
 
 
 /***/ }),
@@ -29568,6 +30036,685 @@ var render = function () {
   ])
 }
 var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Hotel/Reservar/Reservar.vue?vue&type=template&id=9388c78e&":
+/*!***********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Hotel/Reservar/Reservar.vue?vue&type=template&id=9388c78e& ***!
+  \***********************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "row" },
+      _vm._l(_vm.habitaciones, function (habitacion) {
+        return _c(
+          "div",
+          {
+            key: habitacion.id_habitacion,
+            staticClass: "col-xl-3 col-lg-4 col-md-6 col-sm-6",
+          },
+          [
+            _c("div", { staticClass: "ms-card" }, [
+              _c("div", { staticClass: "ms-card-body" }, [
+                _c("div", { staticClass: "new" }, [
+                  _c("h6", { staticClass: "mb-0" }, [
+                    _vm._v(
+                      "Habitacion " +
+                        _vm._s(habitacion.num_habitacion) +
+                        " " +
+                        _vm._s(habitacion.tipo_habitaciones.tipo) +
+                        "  "
+                    ),
+                  ]),
+                  _vm._v(" "),
+                  _c("h6", { staticClass: "ms-text-primary mb-0" }, [
+                    _vm._v("$ " + _vm._s(habitacion.precio)),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "new meta" },
+                  [
+                    _c("p", [_vm._v("Folio: " + _vm._s(habitacion.folio))]),
+                    _vm._v(" "),
+                    habitacion.estado == "DISPONIBLE"
+                      ? [
+                          _c("span", { staticClass: "badge badge-success" }, [
+                            _vm._v("Disponible"),
+                          ]),
+                        ]
+                      : habitacion.estado == "OCUPADO"
+                      ? [
+                          _c("span", { staticClass: "badge badge-danger" }, [
+                            _vm._v("Ocupado"),
+                          ]),
+                        ]
+                      : [
+                          _c("span", { staticClass: "badge badge-warning" }, [
+                            _vm._v("Mantenimiento"),
+                          ]),
+                        ],
+                  ],
+                  2
+                ),
+                _vm._v(" "),
+                _c("p", [
+                  _vm._v(
+                    "Caracteristicas : " +
+                      _vm._s(habitacion.caracteristicas) +
+                      " "
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("p", [
+                  _vm._v(
+                    "Cant. Personas : " + _vm._s(habitacion.num_personas) + " "
+                  ),
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "new mb-0" },
+                  [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn grid-btn mt-0 btn-sm btn-primary",
+                        attrs: { type: "button" },
+                      },
+                      [_vm._v("Detalles")]
+                    ),
+                    _vm._v(" "),
+                    habitacion.estado == "DISPONIBLE"
+                      ? [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn grid-btn mt-0 btn-sm btn-info",
+                              attrs: { type: "button" },
+                              on: {
+                                click: function ($event) {
+                                  return _vm.activarModal(
+                                    "reserva",
+                                    "registro",
+                                    habitacion
+                                  )
+                                },
+                              },
+                            },
+                            [_vm._v("Reservar")]
+                          ),
+                        ]
+                      : habitacion.estado == "OCUPADO"
+                      ? [_c("p", [_vm._v("OCUPADO HOY")])]
+                      : _vm._e(),
+                  ],
+                  2
+                ),
+              ]),
+            ]),
+          ]
+        )
+      }),
+      0
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        staticStyle: { display: "none" },
+        attrs: {
+          id: "modal_reserva",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "reminder-modal",
+        },
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal-dialog modal-dialog-centered",
+            attrs: { role: "document" },
+          },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _c("div", { staticClass: "modal-header bg-secondary" }, [
+                _c("h5", { staticClass: "modal-title has-icon text-white" }, [
+                  _vm._v("Reservar la habitacion"),
+                ]),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "close",
+                    attrs: {
+                      type: "button",
+                      "data-dismiss": "modal",
+                      "aria-label": "Close",
+                    },
+                    on: {
+                      click: function ($event) {
+                        return _vm.cerrarModal()
+                      },
+                    },
+                  },
+                  [_vm._v("x\n            ")]
+                ),
+              ]),
+              _vm._v(" "),
+              _c("form", [
+                _c("div", { staticClass: "modal-body" }, [
+                  _c(
+                    "div",
+                    { staticClass: "ms-form-group", attrs: { hidden: "" } },
+                    [
+                      _c("label", { attrs: { hidden: "" } }, [
+                        _vm._v("habitacione"),
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.id_habitacion,
+                            expression: "id_habitacion",
+                          },
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          placeholder: "Nombre del articulo",
+                        },
+                        domProps: { value: _vm.id_habitacion },
+                        on: {
+                          input: function ($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.id_habitacion = $event.target.value
+                          },
+                        },
+                      }),
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "ms-form-group", attrs: { hidden: "" } },
+                    [
+                      _c("label", { attrs: { hidden: "" } }, [
+                        _vm._v("cantperso"),
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.cant_habitacion,
+                            expression: "cant_habitacion",
+                          },
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          placeholder: "Nombre del articulo",
+                        },
+                        domProps: { value: _vm.cant_habitacion },
+                        on: {
+                          input: function ($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.cant_habitacion = $event.target.value
+                          },
+                        },
+                      }),
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "ms-form-group", attrs: { hidden: "" } },
+                    [
+                      _c("label", { attrs: { hidden: "" } }, [
+                        _vm._v("Precio"),
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.precio,
+                            expression: "precio",
+                          },
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          placeholder: "Nombre del articulo",
+                        },
+                        domProps: { value: _vm.precio },
+                        on: {
+                          input: function ($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.precio = $event.target.value
+                          },
+                        },
+                      }),
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "ms-form-group", attrs: { hidden: "" } },
+                    [
+                      _c("label", { attrs: { hidden: "" } }, [_vm._v("Total")]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.total,
+                            expression: "total",
+                          },
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          placeholder: "Nombre del articulo",
+                          hidden: "",
+                        },
+                        domProps: { value: _vm.total },
+                        on: {
+                          input: function ($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.total = $event.target.value
+                          },
+                        },
+                      }),
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "ms-form-group" }, [
+                    _c("label", [_vm._v("Huesped")]),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.id_huesped,
+                            expression: "id_huesped",
+                          },
+                        ],
+                        staticClass: "form-control",
+                        attrs: { name: "", id: "select" },
+                        on: {
+                          change: function ($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function (o) {
+                                return o.selected
+                              })
+                              .map(function (o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.id_huesped = $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          },
+                        },
+                      },
+                      [
+                        _c("option", { attrs: { value: "0", disabled: "" } }, [
+                          _vm._v("Selecione  un huesped"),
+                        ]),
+                        _vm._v(" "),
+                        _vm._l(_vm.huespedes, function (huesped) {
+                          return _c(
+                            "option",
+                            {
+                              key: huesped.id_huesped,
+                              domProps: { value: huesped.id_huesped },
+                            },
+                            [
+                              _vm._v(
+                                _vm._s(huesped.nombre) +
+                                  " " +
+                                  _vm._s(huesped.apellidos)
+                              ),
+                            ]
+                          )
+                        }),
+                      ],
+                      2
+                    ),
+                    _vm._v(" "),
+                    _c("div", { attrs: { id: "form" } }, [
+                      _c("div", { staticClass: "ms-form-group" }, [
+                        _c("label", [_vm._v("Nombre")]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.nombre,
+                              expression: "nombre",
+                            },
+                          ],
+                          staticClass: "form-control",
+                          attrs: { type: "text", name: "", id: "" },
+                          domProps: { value: _vm.nombre },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.nombre = $event.target.value
+                            },
+                          },
+                        }),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "ms-form-group" }, [
+                        _c("label", [_vm._v("apellidos")]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.apellidos,
+                              expression: "apellidos",
+                            },
+                          ],
+                          staticClass: "form-control",
+                          attrs: { type: "text", name: "", id: "" },
+                          domProps: { value: _vm.apellidos },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.apellidos = $event.target.value
+                            },
+                          },
+                        }),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "ms-form-group" }, [
+                        _c("label", [_vm._v("ine")]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.ine,
+                              expression: "ine",
+                            },
+                          ],
+                          staticClass: "form-control",
+                          attrs: { type: "text", name: "", id: "" },
+                          domProps: { value: _vm.ine },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.ine = $event.target.value
+                            },
+                          },
+                        }),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "ms-form-group" }, [
+                        _c("label", [_vm._v("Telefono")]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.telefono,
+                              expression: "telefono",
+                            },
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            name: "",
+                            id: "",
+                            maxlength: "10",
+                          },
+                          domProps: { value: _vm.telefono },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.telefono = $event.target.value
+                            },
+                          },
+                        }),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "ms-form-group" }, [
+                        _c("label", [_vm._v("Correo")]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.correo,
+                              expression: "correo",
+                            },
+                          ],
+                          staticClass: "form-control",
+                          attrs: { type: "email", name: "", id: "" },
+                          domProps: { value: _vm.correo },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.correo = $event.target.value
+                            },
+                          },
+                        }),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      {
+                        attrs: { href: "#", id: "agregarHuesped" },
+                        on: {
+                          click: function ($event) {
+                            return _vm.agregarHuesped()
+                          },
+                        },
+                      },
+                      [_vm._v("Nuevo huesped")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      {
+                        attrs: { href: "#", id: "cancelar" },
+                        on: {
+                          click: function ($event) {
+                            return _vm.cancelar()
+                          },
+                        },
+                      },
+                      [_vm._v("Cancelar")]
+                    ),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "ms-form-group" }, [
+                    _c("label", [_vm._v("Entrada")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.fecha_entrada,
+                          expression: "fecha_entrada",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "text", name: "", id: "" },
+                      domProps: { value: _vm.fecha_entrada },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.fecha_entrada = $event.target.value
+                        },
+                      },
+                    }),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "ms-form-group" }, [
+                    _c("label", [_vm._v("Salida")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.fecha_salida,
+                          expression: "fecha_salida",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "text", name: "", id: "" },
+                      domProps: { value: _vm.fecha_salida },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.fecha_salida = $event.target.value
+                        },
+                      },
+                    }),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "ms-form-group" }, [
+                    _c("label", [_vm._v("Comentario")]),
+                    _vm._v(" "),
+                    _c("textarea", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.comentario,
+                          expression: "comentario",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: { name: "", id: "", cols: "3", rows: "3" },
+                      domProps: { value: _vm.comentario },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.comentario = $event.target.value
+                        },
+                      },
+                    }),
+                  ]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "badge badge-danger" }, [
+                    _vm._v("Total a pagar: $ " + _vm._s(_vm.total)),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "modal-footer" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-light",
+                      attrs: { type: "button" },
+                      on: {
+                        click: function ($event) {
+                          return _vm.cerrarModal()
+                        },
+                      },
+                    },
+                    [_vm._v("Cerrar")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-secondary shadow-none",
+                      attrs: { type: "button" },
+                      on: {
+                        click: function ($event) {
+                          return _vm.reservar()
+                        },
+                      },
+                    },
+                    [_vm._v("Reservar")]
+                  ),
+                ]),
+              ]),
+            ]),
+          ]
+        ),
+      ]
+    ),
+  ])
+}
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "ms-panel-header" }, [
+      _c("h6", [_vm._v("Realizar reservas\n           ")]),
+    ])
+  },
+]
 render._withStripped = true
 
 
@@ -41823,7 +42970,8 @@ window.Vue = (__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js
 
 Vue.component('example-component', (__webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]));
 Vue.component('almacen-component', (__webpack_require__(/*! ./components/Almacen/Almacen.vue */ "./resources/js/components/Almacen/Almacen.vue")["default"]));
-Vue.component('categorias_objeto-component', (__webpack_require__(/*! ./components/Almacen/CategoriaObjeto.vue */ "./resources/js/components/Almacen/CategoriaObjeto.vue")["default"])); //codigo vue js
+Vue.component('categorias_objeto-component', (__webpack_require__(/*! ./components/Almacen/CategoriaObjeto.vue */ "./resources/js/components/Almacen/CategoriaObjeto.vue")["default"]));
+Vue.component('reservar-component', (__webpack_require__(/*! ./components/Hotel/Reservar/Reservar.vue */ "./resources/js/components/Hotel/Reservar/Reservar.vue")["default"])); //codigo vue js
 
 var app = new Vue({
   el: '#vue'

@@ -7,14 +7,21 @@ use Illuminate\Http\Request;
 
 class HabitacionController extends Controller
 {
-    
+    //retorna registros
     public function index()
     {
         //
         $habitaciones = Habitacion::all();
 
-        return response()->json([$habitaciones]);
+        return $habitaciones;
         
+    }
+
+     public function estado(Request $request)
+    {
+        $habitacion = Habitacion::findOrFail($request->id_habitacion);
+        $habitacion->estado = 'OCUPADO';
+        $habitacion->update();
     }
 
     /**
@@ -24,7 +31,11 @@ class HabitacionController extends Controller
      */
     public function create()
     {
-        //
+       
+
+
+
+
     }
 
     /**
@@ -82,4 +93,7 @@ class HabitacionController extends Controller
     {
         //
     }
+
+     
+
 }

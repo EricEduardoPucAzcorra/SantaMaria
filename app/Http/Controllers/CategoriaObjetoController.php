@@ -9,12 +9,14 @@ class CategoriaObjetoController extends Controller
     public function vista_catObj(){
         return view('sistema.almacen.categoriasObj');
     }
+
     public function select_cat(){
         $cat_select = Categoria_Objeto::where('condicion', '=', '1')
         ->select('categoria_objetos.nombre','categoria_objetos.id_categoria_obj')
         ->orderBy('nombre', 'asc')->get();
         return $cat_select;
     }
+
     public function index(Request $request)
     {
         $criterio = $request->criterio;
@@ -72,7 +74,7 @@ class CategoriaObjetoController extends Controller
 
     public function desactivar(Request $request)
     {
-        //if(!$request->ajax()) return redirect('/');
+        if(!$request->ajax()) return redirect('/');
         $categoria = Categoria_Objeto::findOrFail($request->id_categoria_obj);
         $categoria->condicion = '0';
         $categoria->update();
