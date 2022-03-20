@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\CategoriaObjetoController;
 use App\Http\Controllers\ObjetoAlmacenController;
+use App\Http\Controllers\UsuarioController;
 
 Route::get('/', function () {
     return view('Bienvenido');
@@ -22,6 +23,9 @@ Route::get('index', function () {
 Route::get('/habitaciones', [App\Http\Controllers\HabitacionController::class,'index']);
 
 //rutas reservas
+Route::get('/reservar', function(){
+  return view('sistema.admin.hotel.reservaciones.reservar');
+});
 Route::post('/reservars', [App\Http\Controllers\ReservaController::class,'reservar']);
 Route::put('/cambiarestado', [App\Http\Controllers\ReservaController::class, 'updateestadoh']);
 //rutas huespedes
@@ -44,6 +48,13 @@ Route::put('/objetos_almacen/desactivar', [App\Http\Controllers\ObjetoAlmacenCon
 
 //fin session almancen
 
-Route::get('/reservar', function(){
-  return view('sistema.admin.hotel.reservaciones.reservar');
-});
+//enrutamiento de usuario
+Route::get('/usuarios',[App\Http\Controllers\UsuarioController::class,'index']);
+Route::get('/get_usuarios',[App\Http\Controllers\UsuarioController::class,'traerUsuarios']);
+//fin de enrutamiento de usuario
+
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+

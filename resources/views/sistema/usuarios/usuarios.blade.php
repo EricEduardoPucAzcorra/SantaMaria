@@ -1,9 +1,9 @@
 @extends('layout.SysPlantilla')
-@section('titulo','Almacen')
+@section('titulo','Usuarios')
 @section('contenido')
 
 {{-- componente vue  --}}
-<almacen-component></almacen-component>
+<usuarios-component></usuarios-component>
+
 
 @endsection
-

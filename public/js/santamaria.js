@@ -1,13 +1,12 @@
-//muestra y oculta el sidebar
-const btnToggle = document.querySelector('.toggle-btn');
-btnToggle.addEventListener('click', function () {
-    document.getElementById('sidebar').classList.toggle('active');
-    document.getElementById('contenedor-sistema').classList.toggle('active-side')
-
-});
-//muestra y oculta el submenu -- tambien agrega la clase de la flecha que está en el li 
-const btnSidebar = document.querySelector('.sidebar-btn');
-btnSidebar.addEventListener('click', function() {
-    document.getElementById('sidebar-show').classList.toggle('show-submenu');
-    document.getElementById("flecha").classList.toggle('fa-caret-up');
+let arrow = document.querySelectorAll(".arrow");
+for (var i = 0; i < arrow.length; i++) {
+    arrow[i].addEventListener("click", (e)=>{
+        let arrowParent = e.target.parentElement.parentElement;
+        arrowParent.classList.toggle("showMenu");
+    });
+}
+let sidebar = document.querySelector(".sidebar");
+let sidebarBtn = document.querySelector(".fa-bars");
+sidebarBtn.addEventListener("click", ()=>{
+    sidebar.classList.toggle("close");
 });

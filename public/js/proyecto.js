@@ -5477,32 +5477,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -5645,32 +5619,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -5972,6 +5920,46 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  mounted: function mounted() {
+    console.log('Component mounted.');
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Usuario/Usuarios.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Usuario/Usuarios.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -5984,46 +5972,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      prueba: 'hola mundo cruel',
-      array: []
+      usuarios: [],
+      id: 0,
+      name: '',
+      email: ''
     };
   },
-  computed: {},
   methods: {
-    getObjetos: function getObjetos() {
+    mostrarUsuarios: function mostrarUsuarios() {
       var cap = this;
-      axios.get('/objetos_almacen').then(function (response) {
-        // handle success
-        console.log(response);
+      axios.get('/usuarios').then(function (response) {
         var respuesta = response.data;
-        cap.array = respuesta.objetos.data;
+        cap.usuarios = respuesta.usuarios.data;
       })["catch"](function (error) {
-        // handle error
         console.log(error);
-      });
-    },
-    oprimir: function oprimir() {
-      Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
-      }).then(function (result) {
-        if (result.isConfirmed) {
-          console.log('hecho'); // Swal.fire(
-          // 'Deleted!',
-          // 'Your file has been deleted.',
-          // 'success'
-          // )
-        }
       });
     }
   },
   mounted: function mounted() {
-    this.getObjetos();
+    this.mostrarUsuarios();
   }
 });
 
@@ -29011,10 +28978,17 @@ component.options.__file = "resources/js/components/ExampleComponent.vue"
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "./resources/js/components/Hotel/Reservar/Reservar.vue":
 /*!*************************************************************!*\
   !*** ./resources/js/components/Hotel/Reservar/Reservar.vue ***!
   \*************************************************************/
+=======
+/***/ "./resources/js/components/Usuario/Usuarios.vue":
+/*!******************************************************!*\
+  !*** ./resources/js/components/Usuario/Usuarios.vue ***!
+  \******************************************************/
+>>>>>>> 067cf95edad2ba858e90dd329aba64a0a3af173b
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -29022,9 +28996,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+<<<<<<< HEAD
 /* harmony import */ var _Reservar_vue_vue_type_template_id_9388c78e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Reservar.vue?vue&type=template&id=9388c78e& */ "./resources/js/components/Hotel/Reservar/Reservar.vue?vue&type=template&id=9388c78e&");
 /* harmony import */ var _Reservar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Reservar.vue?vue&type=script&lang=js& */ "./resources/js/components/Hotel/Reservar/Reservar.vue?vue&type=script&lang=js&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+=======
+/* harmony import */ var _Usuarios_vue_vue_type_template_id_26c6af5e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Usuarios.vue?vue&type=template&id=26c6af5e& */ "./resources/js/components/Usuario/Usuarios.vue?vue&type=template&id=26c6af5e&");
+/* harmony import */ var _Usuarios_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Usuarios.vue?vue&type=script&lang=js& */ "./resources/js/components/Usuario/Usuarios.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+>>>>>>> 067cf95edad2ba858e90dd329aba64a0a3af173b
 
 
 
@@ -29033,9 +29013,15 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 ;
 var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+<<<<<<< HEAD
   _Reservar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _Reservar_vue_vue_type_template_id_9388c78e___WEBPACK_IMPORTED_MODULE_0__.render,
   _Reservar_vue_vue_type_template_id_9388c78e___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+=======
+  _Usuarios_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Usuarios_vue_vue_type_template_id_26c6af5e___WEBPACK_IMPORTED_MODULE_0__.render,
+  _Usuarios_vue_vue_type_template_id_26c6af5e___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+>>>>>>> 067cf95edad2ba858e90dd329aba64a0a3af173b
   false,
   null,
   null,
@@ -29045,7 +29031,11 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
 
 /* hot reload */
 if (false) { var api; }
+<<<<<<< HEAD
 component.options.__file = "resources/js/components/Hotel/Reservar/Reservar.vue"
+=======
+component.options.__file = "resources/js/components/Usuario/Usuarios.vue"
+>>>>>>> 067cf95edad2ba858e90dd329aba64a0a3af173b
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
 
 /***/ }),
@@ -29098,10 +29088,17 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "./resources/js/components/Hotel/Reservar/Reservar.vue?vue&type=script&lang=js&":
 /*!**************************************************************************************!*\
   !*** ./resources/js/components/Hotel/Reservar/Reservar.vue?vue&type=script&lang=js& ***!
   \**************************************************************************************/
+=======
+/***/ "./resources/js/components/Usuario/Usuarios.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/Usuario/Usuarios.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************/
+>>>>>>> 067cf95edad2ba858e90dd329aba64a0a3af173b
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -29109,8 +29106,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+<<<<<<< HEAD
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Reservar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Reservar.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Hotel/Reservar/Reservar.vue?vue&type=script&lang=js&");
  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Reservar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+=======
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Usuarios_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Usuarios.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Usuario/Usuarios.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Usuarios_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+>>>>>>> 067cf95edad2ba858e90dd329aba64a0a3af173b
 
 /***/ }),
 
@@ -29165,19 +29167,33 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "./resources/js/components/Hotel/Reservar/Reservar.vue?vue&type=template&id=9388c78e&":
 /*!********************************************************************************************!*\
   !*** ./resources/js/components/Hotel/Reservar/Reservar.vue?vue&type=template&id=9388c78e& ***!
   \********************************************************************************************/
+=======
+/***/ "./resources/js/components/Usuario/Usuarios.vue?vue&type=template&id=26c6af5e&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/components/Usuario/Usuarios.vue?vue&type=template&id=26c6af5e& ***!
+  \*************************************************************************************/
+>>>>>>> 067cf95edad2ba858e90dd329aba64a0a3af173b
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+<<<<<<< HEAD
 /* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Reservar_vue_vue_type_template_id_9388c78e___WEBPACK_IMPORTED_MODULE_0__.render),
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Reservar_vue_vue_type_template_id_9388c78e___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Reservar_vue_vue_type_template_id_9388c78e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Reservar.vue?vue&type=template&id=9388c78e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Hotel/Reservar/Reservar.vue?vue&type=template&id=9388c78e&");
+=======
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Usuarios_vue_vue_type_template_id_26c6af5e___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Usuarios_vue_vue_type_template_id_26c6af5e___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Usuarios_vue_vue_type_template_id_26c6af5e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Usuarios.vue?vue&type=template&id=26c6af5e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Usuario/Usuarios.vue?vue&type=template&id=26c6af5e&");
+>>>>>>> 067cf95edad2ba858e90dd329aba64a0a3af173b
 
 
 /***/ }),
@@ -29198,108 +29214,85 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "ms-panel ms-widget ms-crypto-widget" }, [
-      _c("div", { staticClass: "ms-panel-header" }, [
-        _c("h6", [
-          _vm._v("Recursos materiales "),
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-secondary",
-              attrs: { type: "button" },
-              on: {
-                click: function ($event) {
-                  return _vm.activarModal("recurso", "registrar")
-                },
-              },
-            },
-            [
-              _c("i", { staticClass: "icon-plus" }),
-              _vm._v(" Nuevo\n                "),
-            ]
-          ),
-        ]),
-      ]),
+  return _c("div", { staticClass: "col-md-12" }, [
+    _c("div", { staticClass: "m-5" }, [
+      _c("h3", [_vm._v("Recursos materiales")]),
       _vm._v(" "),
-      _c("div", { staticClass: "ms-panel-body p-0" }, [
-        _c("div", { staticClass: "tab-content" }, [
-          _c(
-            "div",
-            {
-              staticClass: "tab-pane active show fade in",
-              attrs: { id: "btc" },
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-secondary",
+          attrs: { type: "button" },
+          on: {
+            click: function ($event) {
+              return _vm.activarModal("recurso", "registrar")
             },
-            [
-              _c("div", { staticClass: "table-responsive" }, [
-                _c("table", { staticClass: "table table-bordered" }, [
-                  _vm._m(0),
-                  _vm._v(" "),
-                  _c(
-                    "tbody",
-                    _vm._l(_vm.objetos_almacen, function (recurso) {
-                      return _c("tr", { key: recurso.id_objeto }, [
-                        _c("td", [_vm._v(_vm._s(recurso.id_objeto))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(recurso.nombre))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(recurso.descripcion))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(recurso.cantidad))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(recurso.stock))]),
-                        _vm._v(" "),
-                        _c("td", { attrs: { hidden: "" } }, [
-                          _vm._v(_vm._s(recurso.id_categoria_obj)),
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(recurso.nombre_categoria))]),
-                        _vm._v(" "),
-                        _c(
-                          "td",
-                          [
-                            recurso.condicion
-                              ? [
-                                  _vm._v(
-                                    "\n                            \n                                  Activo\n                              \n                          "
-                                  ),
-                                ]
-                              : [
-                                  _vm._v(
-                                    "\n                              \n                                  Inactivo\n                             \n                          "
-                                  ),
-                                ],
-                          ],
-                          2
-                        ),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c(
-                            "button",
-                            {
-                              attrs: { type: "button" },
-                              on: {
-                                click: function ($event) {
-                                  return _vm.activarModal(
-                                    "recurso",
-                                    "actualizar",
-                                    recurso
-                                  )
-                                },
-                              },
-                            },
-                            [_vm._v("Editar")]
-                          ),
-                        ]),
-                      ])
-                    }),
-                    0
-                  ),
-                ]),
+          },
+        },
+        [_c("i", { staticClass: "icon-plus" }), _vm._v("Nuevo\n    ")]
+      ),
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "m-5" }, [
+      _c("table", { staticClass: "table table-hover table-dark" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "tbody",
+          _vm._l(_vm.objetos_almacen, function (recurso) {
+            return _c("tr", { key: recurso.id_objeto }, [
+              _c("td", [_vm._v(_vm._s(recurso.id_objeto))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(recurso.nombre))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(recurso.descripcion))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(recurso.cantidad))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(recurso.stock))]),
+              _vm._v(" "),
+              _c("td", { attrs: { hidden: "" } }, [
+                _vm._v(_vm._s(recurso.id_categoria_obj)),
               ]),
-            ]
-          ),
-        ]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(recurso.nombre_categoria))]),
+              _vm._v(" "),
+              _c(
+                "td",
+                [
+                  recurso.condicion
+                    ? [_vm._v("\n              Activo\n            ")]
+                    : [
+                        _vm._v(
+                          "                              \n              Inactivo\n            "
+                        ),
+                      ],
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _c("td", [
+                _c(
+                  "button",
+                  {
+                    attrs: { type: "button" },
+                    on: {
+                      click: function ($event) {
+                        return _vm.activarModal(
+                          "recurso",
+                          "actualizar",
+                          recurso
+                        )
+                      },
+                    },
+                  },
+                  [_vm._v("Editar")]
+                ),
+              ]),
+            ])
+          }),
+          0
+        ),
       ]),
     ]),
     _vm._v(" "),
@@ -29501,6 +29494,10 @@ var render = function () {
                       2
                     ),
                   ]),
+                  _vm._v(" "),
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _vm._m(2),
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "modal-footer" }, [
@@ -29583,6 +29580,55 @@ var staticRenderFns = [
       ]),
     ])
   },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "ms-form-group" }, [
+      _c("span", { staticClass: "ms-option-name fs-14" }, [_vm._v("Estado")]),
+      _vm._v(" "),
+      _c("label", { staticClass: "ms-switch float-right" }, [
+        _c("input", { attrs: { type: "checkbox" } }),
+        _vm._v(" "),
+        _c("span", { staticClass: "ms-switch-slider round" }),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("div", { staticClass: "ms-form-group" }, [
+          _c("input", {
+            staticClass: "form-control datepicker",
+            attrs: { type: "text", name: "reminder-date", value: "" },
+          }),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("div", { staticClass: "ms-form-group" }, [
+          _c(
+            "select",
+            { staticClass: "form-control", attrs: { name: "reminder-time" } },
+            [
+              _c("option", { attrs: { value: "" } }, [_vm._v("12:00 pm")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "" } }, [_vm._v("1:00 pm")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "" } }, [_vm._v("2:00 pm")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "" } }, [_vm._v("3:00 pm")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "" } }, [_vm._v("4:00 pm")]),
+            ]
+          ),
+        ]),
+      ]),
+    ])
+  },
 ]
 render._withStripped = true
 
@@ -29606,139 +29652,118 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "ms-panel ms-widget ms-crypto-widget" }, [
-      _c("div", { staticClass: "ms-panel-header" }, [
-        _c("h6", [
-          _vm._v("Categorias materiales "),
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-secondary",
-              attrs: { type: "button" },
-              on: {
-                click: function ($event) {
-                  return _vm.activarModal("categoria", "registrar")
-                },
-              },
-            },
-            [
-              _c("i", { staticClass: "icon-plus" }),
-              _vm._v(" Nuevo\n            "),
-            ]
-          ),
-        ]),
-      ]),
+  return _c("div", { staticClass: "col-md-12" }, [
+    _c("div", { staticClass: "m-5" }, [
+      _c("h6", [_vm._v("Categorias materiales")]),
       _vm._v(" "),
-      _c("div", { staticClass: "ms-panel-body p-0" }, [
-        _c("div", { staticClass: "tab-content" }, [
-          _c(
-            "div",
-            {
-              staticClass: "tab-pane active show fade in",
-              attrs: { id: "btc" },
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-secondary",
+          attrs: { type: "button" },
+          on: {
+            click: function ($event) {
+              return _vm.activarModal("categoria", "registrar")
             },
-            [
-              _c("div", { staticClass: "table-responsive" }, [
-                _c("table", { staticClass: "table table-bordered" }, [
-                  _vm._m(0),
-                  _vm._v(" "),
+          },
+        },
+        [_c("i", { staticClass: "icon-plus" }), _vm._v(" Nuevo\n        ")]
+      ),
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "m-5" }, [
+      _c("table", { staticClass: "table table-hover table-dark" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "tbody",
+          _vm._l(_vm.cat_objetos, function (categoria) {
+            return _c("tr", { key: categoria.id_categoria_obj }, [
+              _c("td", [_vm._v(_vm._s(categoria.id_categoria_obj))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(categoria.nombre))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(categoria.descripcion))]),
+              _vm._v(" "),
+              _c(
+                "td",
+                [
+                  categoria.condicion
+                    ? [
+                        _vm._v(
+                          "\n                            Activo  \n                        "
+                        ),
+                      ]
+                    : [
+                        _vm._v(
+                          "      \n                            Inactivo \n                        "
+                        ),
+                      ],
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _c(
+                "td",
+                [
                   _c(
-                    "tbody",
-                    _vm._l(_vm.cat_objetos, function (categoria) {
-                      return _c("tr", { key: categoria.id_categoria_obj }, [
-                        _c("td", [_vm._v(_vm._s(categoria.id_categoria_obj))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(categoria.nombre))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(categoria.descripcion))]),
-                        _vm._v(" "),
-                        _c(
-                          "td",
-                          [
-                            categoria.condicion
-                              ? [
-                                  _vm._v(
-                                    "\n                        \n                              Activo\n                          \n                      "
-                                  ),
-                                ]
-                              : [
-                                  _vm._v(
-                                    "\n                          \n                              Inactivo\n                         \n                      "
-                                  ),
-                                ],
-                          ],
-                          2
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "td",
-                          [
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-info",
-                                attrs: { type: "button" },
-                                on: {
-                                  click: function ($event) {
-                                    return _vm.activarModal(
-                                      "categoria",
-                                      "actualizar",
-                                      categoria
-                                    )
-                                  },
-                                },
-                              },
-                              [_vm._v("Editar")]
-                            ),
-                            _vm._v(" "),
-                            categoria.condicion
-                              ? [
-                                  _c(
-                                    "button",
-                                    {
-                                      staticClass: "btn btn-danger",
-                                      attrs: { type: "button" },
-                                      on: {
-                                        click: function ($event) {
-                                          return _vm.desactivar(
-                                            categoria.id_categoria_obj
-                                          )
-                                        },
-                                      },
-                                    },
-                                    [_vm._v("Desactivar")]
-                                  ),
-                                ]
-                              : [
-                                  _c(
-                                    "button",
-                                    {
-                                      staticClass: "btn btn-success",
-                                      attrs: { type: "button" },
-                                      on: {
-                                        click: function ($event) {
-                                          return _vm.activar(
-                                            categoria.id_categoria_obj
-                                          )
-                                        },
-                                      },
-                                    },
-                                    [_vm._v("Activar")]
-                                  ),
-                                ],
-                          ],
-                          2
-                        ),
-                      ])
-                    }),
-                    0
+                    "button",
+                    {
+                      staticClass: "btn btn-info",
+                      attrs: { type: "button" },
+                      on: {
+                        click: function ($event) {
+                          return _vm.activarModal(
+                            "categoria",
+                            "actualizar",
+                            categoria
+                          )
+                        },
+                      },
+                    },
+                    [_vm._v("Editar")]
                   ),
-                ]),
-              ]),
-            ]
-          ),
-        ]),
+                  _vm._v(" "),
+                  categoria.condicion
+                    ? [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-danger",
+                            attrs: { type: "button" },
+                            on: {
+                              click: function ($event) {
+                                return _vm.desactivar(
+                                  categoria.id_categoria_obj
+                                )
+                              },
+                            },
+                          },
+                          [_vm._v("Desactivar")]
+                        ),
+                      ]
+                    : [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-success",
+                            attrs: { type: "button" },
+                            on: {
+                              click: function ($event) {
+                                return _vm.activar(categoria.id_categoria_obj)
+                              },
+                            },
+                          },
+                          [_vm._v("Activar")]
+                        ),
+                      ],
+                ],
+                2
+              ),
+            ])
+          }),
+          0
+        ),
       ]),
     ]),
     _vm._v(" "),
@@ -29990,52 +30015,112 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "row justify-content-center" }, [
-      _c("div", { staticClass: "col-md-8" }, [
-        _c("div", { staticClass: "card" }, [
-          _c("div", { staticClass: "card-header" }, [
-            _vm._v("Example Component"),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "card-body" }, [
-            _vm._v(
-              "\n                    Hola esto es vue js " +
-                _vm._s(_vm.prueba) +
-                " "
-            ),
-            _c(
-              "button",
-              {
-                on: {
-                  click: function ($event) {
-                    return _vm.oprimir()
-                  },
-                },
-              },
-              [_vm._v("Mensaje")]
-            ),
-          ]),
-          _vm._v(" "),
-          _c("div", [
-            _c(
-              "table",
-              _vm._l(_vm.array, function (objeto) {
-                return _c("tr", { key: objeto.id_objeto }, [
-                  _c("td", [_vm._v(_vm._s(objeto.nombre))]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(objeto.descripcion))]),
-                ])
-              }),
-              0
-            ),
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "container" }, [
+      _c("div", { staticClass: "row justify-content-center" }, [
+        _c("div", { staticClass: "col-md-8" }, [
+          _c("div", { staticClass: "card" }, [
+            _c("div", { staticClass: "card-header" }, [
+              _vm._v("Example Component"),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-body" }, [
+              _vm._v(
+                "\n                    I'm an example component.\n                "
+              ),
+            ]),
           ]),
         ]),
+      ]),
+    ])
+  },
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Usuario/Usuarios.vue?vue&type=template&id=26c6af5e&":
+/*!****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Usuario/Usuarios.vue?vue&type=template&id=26c6af5e& ***!
+  \****************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "col-md-12" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "m-5" }, [
+      _c("table", { staticClass: "table table-hover table-dark" }, [
+        _vm._m(1),
+        _vm._v(" "),
+        _c(
+          "tbody",
+          _vm._l(_vm.usuarios, function (usuario) {
+            return _c("tr", { key: usuario.id }, [
+              _c("td", [_vm._v(_vm._s(usuario.id))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(usuario.name))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(usuario.email))]),
+              _vm._v(" "),
+              _c("td"),
+            ])
+          }),
+          0
+        ),
       ]),
     ]),
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "m-5" }, [
+      _c("h3", [_vm._v("Usuarios")]),
+      _vm._v(" "),
+      _c(
+        "button",
+        { staticClass: "btn btn-secondary", attrs: { type: "button" } },
+        [_c("i", { staticClass: "icon-plus" }), _vm._v("Nuevo\n        ")]
+      ),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("ID")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Nombre")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Correo electrónico")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Acciones")]),
+      ]),
+    ])
+  },
+]
 render._withStripped = true
 
 
@@ -42971,7 +43056,11 @@ window.Vue = (__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js
 Vue.component('example-component', (__webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]));
 Vue.component('almacen-component', (__webpack_require__(/*! ./components/Almacen/Almacen.vue */ "./resources/js/components/Almacen/Almacen.vue")["default"]));
 Vue.component('categorias_objeto-component', (__webpack_require__(/*! ./components/Almacen/CategoriaObjeto.vue */ "./resources/js/components/Almacen/CategoriaObjeto.vue")["default"]));
+<<<<<<< HEAD
 Vue.component('reservar-component', (__webpack_require__(/*! ./components/Hotel/Reservar/Reservar.vue */ "./resources/js/components/Hotel/Reservar/Reservar.vue")["default"])); //codigo vue js
+=======
+Vue.component('usuarios-component', (__webpack_require__(/*! ./components/Usuario/Usuarios.vue */ "./resources/js/components/Usuario/Usuarios.vue")["default"])); //codigo vue js
+>>>>>>> 067cf95edad2ba858e90dd329aba64a0a3af173b
 
 var app = new Vue({
   el: '#vue'
