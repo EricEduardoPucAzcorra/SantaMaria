@@ -30627,7 +30627,12 @@ var render = function () {
                         },
                       ],
                       staticClass: "form-control",
-                      attrs: { type: "text", name: "", id: "" },
+                      attrs: {
+                        type: "date",
+                        name: "",
+                        value: "<?php echo date('Y-m-d'); ?>",
+                        id: "",
+                      },
                       domProps: { value: _vm.fecha_entrada },
                       on: {
                         input: function ($event) {
@@ -30653,7 +30658,7 @@ var render = function () {
                         },
                       ],
                       staticClass: "form-control",
-                      attrs: { type: "text", name: "", id: "" },
+                      attrs: { type: "date", name: "", id: "" },
                       domProps: { value: _vm.fecha_salida },
                       on: {
                         input: function ($event) {

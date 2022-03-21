@@ -125,12 +125,12 @@
 
                   <div class="ms-form-group">
                     <label>Entrada</label>
-                    <input type="text" name="" id="" class="form-control" v-model="fecha_entrada">
+                    <input type="date" name="" value="<?php echo date('Y-m-d'); ?>" id="" class="form-control" v-model="fecha_entrada">
                   </div>
 
                   <div class="ms-form-group">
                     <label>Salida</label>
-                      <input type="text" name="" id="" class="form-control" v-model="fecha_salida">
+                      <input type="date" name="" id="" class="form-control" v-model="fecha_salida">
                   </div>
 
                    <div class="ms-form-group">

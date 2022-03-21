@@ -24,29 +24,21 @@ class HabitacionController extends Controller
         $habitacion->update();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-       
-
-
-
-
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(Request $request)
     {
         //
+        $habitacion = new Habitacion();
+        $habitacion->folio = $request['folio'];
+        $habitacion->num_habitacion = $request['num_habitacion'];
+        $habitacion->precio = $request['precio'];
+        $habitacion->caracteristicas = $request['caracteristicas'];
+        $habitacion->num_piso = $request['num_piso'];
+        $habitacion->num_personas = $request['num_personas'];
+        $habitacion->estado = 'DISPONIBLE';
+        $habitacion->id_tipo = $request['id_tipo'];
+        $habitacion->save();
+
     }
 
     /**

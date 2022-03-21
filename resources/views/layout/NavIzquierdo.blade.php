@@ -52,6 +52,21 @@
             </ul>
         </li>
         <li>
+            <div class="icon-link">
+                <a href="">
+                    <i class="fas fa-cubes"></i>
+                    <span class="link_name">Hotel</span>
+                </a>
+                <i class="fas fa-chevron-down arrow"></i>
+            </div>
+            <ul class="sub-menu">
+                <li><a href="" class="link_name">Almacen</a></li>
+                <li><a href="{{ url('/reservar') }}">Reservar</a></li>
+                <li><a href="{{ url('/categoria_objs') }}">Habitaciones</a></li>
+                <li><a href="{{ url('/categoria_objs') }}">Detalles reservas</a></li>
+            </ul>
+        </li>
+        <li>
             <div class="profile-details">
                 <div class="profile-content">
                     <img src="assets/img/people/people-3.jpg" alt="profile">
