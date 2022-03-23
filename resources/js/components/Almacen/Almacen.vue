@@ -38,7 +38,7 @@
               </template>
             </td>
             <td>
-              <button  type="button" @click="activarModal('recurso','actualizar', recurso)">Editar</button>
+              <button class="btn btn-info btn-sm" type="button" @click="activarModal('recurso','actualizar', recurso)">Editar</button>
             </td>
           </tr>
         </tbody>
@@ -76,29 +76,7 @@
                 </select>
               </div>
 
-                <div class="ms-form-group"> <span class="ms-option-name fs-14">Estado</span>
-                  <label class="ms-switch float-right">
-                    <input type="checkbox"> <span class="ms-switch-slider round"></span>
-                  </label>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="ms-form-group">
-                      <input type="text" class="form-control datepicker" name="reminder-date" value="" />
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="ms-form-group">
-                      <select class="form-control" name="reminder-time">
-                        <option value="">12:00 pm</option>
-                        <option value="">1:00 pm</option>
-                        <option value="">2:00 pm</option>
-                        <option value="">3:00 pm</option>
-                        <option value="">4:00 pm</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
+              
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-light" @click="cerrarmodal()">Cerrar</button>

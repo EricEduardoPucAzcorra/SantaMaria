@@ -1,11 +1,11 @@
 @extends('layout.SysPlantilla')
-@section('titulo','Habitaciones')
+@section('titulo','Detalles')
 @section('style')
     <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
 @endsection
 @section('contenido')
 
-<habitaciones-component></habitaciones-component>
+   <livewire:detalle-reserva/>
 
 @endsection
 

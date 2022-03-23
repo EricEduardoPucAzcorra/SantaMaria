@@ -125,9 +125,10 @@
 
                   <div class="ms-form-group">
                     <label>Entrada</label>
-                    <input type="date" name="" value="<?php echo date('Y-m-d'); ?>" id="" class="form-control" v-model="fecha_entrada">
+                    <input type="date" name="" value="" id="fecha_entrada" class="form-control" v-model="fecha_entrada">
                   </div>
 
+                  
                   <div class="ms-form-group">
                     <label>Salida</label>
                       <input type="date" name="" id="" class="form-control" v-model="fecha_salida">
@@ -156,7 +157,8 @@
 </template>
 
 <script>
-
+    
+    import moment from "moment";
 
     export default {
         data(){
@@ -179,7 +181,8 @@
                id_habitacion:0,
                cant_habitacion:1,
                precio:0,
-               total:0
+               total:0,
+              
 
             }
         },
@@ -189,6 +192,12 @@
         },
 
         methods: {
+          // obtener_fecha_hoy(){
+
+          // var  data = moment(new Date()).format('YYYY-MM-D');
+          // console.info(data);//2021-03-12
+
+          // },
           //traer las habitaciones
             getHabitaciones(){
             var i = this;
@@ -235,6 +244,8 @@
           },
        
           activarModal(modelo, accion, data=[]){
+              
+               //var fecha_actual= moment().add(10, 'days').calendar();    
                switch (modelo) {
                    case 'reserva':{
                       this.gethuespedes(); 
@@ -250,7 +261,8 @@
                                this.precio =data['precio'];
                                this.total = data['precio'];
                                this.id_huesped=0;
-                               this.fecha_entrada='';
+                              //  this.fecha_actual = moment(new Date()).format('D/MM/YYYY');
+                              this.fecha_entrada= ''; 
                               this.fecha_salida='';
                               this.comentario='';
                               this.nombre='';
@@ -262,8 +274,7 @@
                            }
                            case 'detalle':{
                                 $('#modal_reserva').modal('show');
-                               
-
+                             
                                break;
                            }
 
@@ -402,7 +413,7 @@
                 
         mounted() {
            this.getHabitaciones();
-           
+          //  this.obtener_fecha_hoy();
         }
     }
-</script>
+</script> 

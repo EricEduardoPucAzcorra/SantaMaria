@@ -20,11 +20,19 @@ Route::get('index', function () {
 // });
 
 //habitaciones
+Route::get('/h_habitaciones', [App\Http\Controllers\HabitacionController::class,'vista_habitaciones'])->name('h_habitaciones');
 Route::get('/habitaciones', [App\Http\Controllers\HabitacionController::class,'index']);
-
+Route::post('/habitacion/registrar',[App\Http\Controllers\HabitacionController::class,'store']);
+Route::put('/habitacion/actualizar',[App\Http\Controllers\HabitacionController::class,'update']);
+//Rutas de tipo de habitaciones
+ROute::get('/tipos_habitaciones', [App\Http\Controllers\TipoHabitacionController::class,'index']);
 //rutas reservas
 Route::get('/reservar', function(){
   return view('sistema.admin.hotel.reservaciones.reservar');
+});
+//rutas detalles_reserva
+Route::get('detalle_reservas', function(){
+  return view('sistema.admin.hotel.reservaciones.detalle_reservas');
 });
 Route::post('/reservars', [App\Http\Controllers\ReservaController::class,'reservar']);
 Route::put('/cambiarestado', [App\Http\Controllers\ReservaController::class, 'updateestadoh']);
@@ -45,7 +53,6 @@ Route::post('/objetos_almacen/registrar', [App\Http\Controllers\ObjetoAlmacenCon
 Route::put('/objetos_almacen/actualizar', [App\Http\Controllers\ObjetoAlmacenController::class, 'update']);
 Route::put('/objetos_almacen/activar', [App\Http\Controllers\ObjetoAlmacenController::class, 'activar']);
 Route::put('/objetos_almacen/desactivar', [App\Http\Controllers\ObjetoAlmacenController::class, 'desactivar']);
-
 //fin session almancen
 
 //enrutamiento de usuario

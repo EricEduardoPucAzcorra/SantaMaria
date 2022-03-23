@@ -26,4 +26,8 @@ class Detalle_Reserva extends Model
        return $this->belongsTo(Reserva::class, 'id_reserva', 'id_reserva');
         
     }
+
+    public function habitacion(){
+        return $this->belongsTo(Habitacion::class, 'id_habitacion', 'id_habitacion');
+    }
 }

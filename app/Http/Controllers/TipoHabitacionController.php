@@ -14,7 +14,9 @@ class TipoHabitacionController extends Controller
      */
     public function index()
     {
-        //
+        $tipos = Tipo_Habitacion::all();
+
+        return $tipos;
     }
 
     /**

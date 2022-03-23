@@ -62,8 +62,8 @@
             <ul class="sub-menu">
                 <li><a href="" class="link_name">Almacen</a></li>
                 <li><a href="{{ url('/reservar') }}">Reservar</a></li>
-                <li><a href="{{ url('/categoria_objs') }}">Habitaciones</a></li>
-                <li><a href="{{ url('/categoria_objs') }}">Detalles reservas</a></li>
+                <li><a href="{{ url('/h_habitaciones') }}">Habitaciones</a></li>
+                <li><a href="{{ url('/detalle_reservas') }}">Detalles reservas</a></li>
             </ul>
         </li>
         <li>

@@ -7,12 +7,13 @@ use Illuminate\Http\Request;
 
 class HabitacionController extends Controller
 {
+    public function vista_habitaciones(){
+        return view('sistema.admin.hotel.habitaciones.habitaciones');
+    }
     //retorna registros
-    public function index()
+    public function index(Request $request)
     {
-        //
         $habitaciones = Habitacion::all();
-
         return $habitaciones;
         
     }
@@ -41,51 +42,17 @@ class HabitacionController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Habitacion  $habitacion
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Habitacion $habitacion)
+    public function update(Request $request)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Habitacion  $habitacion
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Habitacion $habitacion)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Habitacion  $habitacion
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Habitacion $habitacion)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Habitacion  $habitacion
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Habitacion $habitacion)
-    {
-        //
-    }
-
-     
-
+        $habitacion = Habitacion::findOrFail($request->id_habitacion);
+        $habitacion->folio = $request['folio'];
+        $habitacion->num_habitacion = $request['num_habitacion'];
+        $habitacion->precio = $request['precio'];
+        $habitacion->caracteristicas = $request['caracteristicas'];
+        $habitacion->num_piso = $request['num_piso'];
+        $habitacion->num_personas = $request['num_personas'];
+        $habitacion->estado = $request['estado'];
+        $habitacion->id_tipo = $request['id_tipo'];
+        $habitacion->update();
+    }    
 }
