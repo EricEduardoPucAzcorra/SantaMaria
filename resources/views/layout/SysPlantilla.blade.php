@@ -22,6 +22,7 @@
     <section class="home-section">
         @include('layout.NavSuperior')
         <div id="vue">
+            {{-- {{Auth::User()->id_usuario}} --}}
             @yield('contenido')
         </div>
     </section>

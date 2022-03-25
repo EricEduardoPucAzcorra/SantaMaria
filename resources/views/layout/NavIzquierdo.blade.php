@@ -72,16 +72,16 @@
                     <img src="assets/img/people/people-3.jpg" alt="profile">
                 </div>
                 <div class="name-job">
-                    <div class="profile_name">{{ Auth::user()->name }}</div>
-                    <div class="job">Programmer</div>
+                    <div class="profile_name">{{Auth::User()->usuario}}</div>
+                    <div class="job">{{Auth::User()->rol->nombre}}</div>
                 </div>
-                <a href="{{ route('logout') }}"
+                <a href="{{ route('salir') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                 <i class="fas fa-sign-out-alt" ></i></a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                <form id="logout-form" action="{{ route('salir') }}" method="POST" class="d-none">
                     @csrf
-                </form>
+                </form> 
             </div>
         </li>
     </ul>

@@ -6,20 +6,19 @@ use App\Http\Controllers\CategoriaObjetoController;
 use App\Http\Controllers\ObjetoAlmacenController;
 use App\Http\Controllers\UsuarioController;
 
-Route::get('/', function () {
-    return view('Bienvenido');
-});
 
-Route::get('index', function () {
-    return view('index');
-});
 
-///seccion almacen
-// Route::get('/almacen', function(){
-//     return view('');
-// });
+//rutas del login
+Route::get('/', [App\Http\Controllers\Auth\LoginController::class, 'vistalogin']);
+Route::post('/login', [App\Http\Controllers\Auth\LoginController::class, 'login'])->name('login');
+//ruta cerrar session
+Route::post('/salir', [App\Http\Controllers\Auth\LoginController::class, 'salir'])->name('salir');
+//ruta de vista principal
+Route::get('/inicio', function () {
+    return view('sistema.principal');
+})->name('inicio');
 
-//habitaciones
+//rutas de habitaciones
 Route::get('/h_habitaciones', [App\Http\Controllers\HabitacionController::class,'vista_habitaciones'])->name('h_habitaciones');
 Route::get('/habitaciones', [App\Http\Controllers\HabitacionController::class,'index']);
 Route::post('/habitacion/registrar',[App\Http\Controllers\HabitacionController::class,'store']);
@@ -29,7 +28,7 @@ ROute::get('/tipos_habitaciones', [App\Http\Controllers\TipoHabitacionController
 //rutas reservas
 Route::get('/reservar', function(){
   return view('sistema.admin.hotel.reservaciones.reservar');
-});
+})->name('reservar');
 //rutas detalles_reserva
 Route::get('detalle_reservas', function(){
   return view('sistema.admin.hotel.reservaciones.detalle_reservas');
@@ -47,7 +46,7 @@ Route::put('/categoria_objetos/activar', [App\Http\Controllers\CategoriaObjetoCo
 Route::put('/categoria_objetos/desactivar', [App\Http\Controllers\CategoriaObjetoController::class, 'desactivar']);
 Route::get('/select_cat', [App\Http\Controllers\CategoriaObjetoController::class, 'select_cat']);
 //rutas objetos
-Route::get('/almacen',[App\Http\Controllers\ObjetoAlmacenController::class, 'vistaAlmacen']);
+Route::get('/almacen',[App\Http\Controllers\ObjetoAlmacenController::class, 'vistaAlmacen'])->name('almacen');
 Route::get('/objetos_almacen', [App\Http\Controllers\ObjetoAlmacenController::class, 'index']);
 Route::post('/objetos_almacen/registrar', [App\Http\Controllers\ObjetoAlmacenController::class, 'store']);
 Route::put('/objetos_almacen/actualizar', [App\Http\Controllers\ObjetoAlmacenController::class, 'update']);
@@ -60,8 +59,7 @@ Route::get('/usuarios',[App\Http\Controllers\UsuarioController::class,'index']);
 Route::get('/get_usuarios',[App\Http\Controllers\UsuarioController::class,'traerUsuarios']);
 //fin de enrutamiento de usuario
 
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
+// Route::get('users', function() {
+//     //
+//   return App\Models\User::all();
+// });
