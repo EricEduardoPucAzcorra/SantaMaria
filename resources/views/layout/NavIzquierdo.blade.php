@@ -1,7 +1,7 @@
 <div class="sidebar">
     <div class="logo-details">
         <i class="fas fa-search"></i>
-        <span class="logo_name">Sanrta María</span>
+        <span class="logo_name">Santa María</span>
     </div>
     <ul class="nav-links">
         <li>
@@ -32,9 +32,9 @@
             </div>
             <ul class="sub-menu">
                 <li><a href="" class="link_name">Restaurante</a></li>
-                <li><a href="">Item 1</a></li>
-                <li><a href="">Item 2</a></li>
-                <li><a href="">Item 3</a></li>
+                <li><a href="">Categorias</a></li>
+                <li><a href="">Productos</a></li>
+                <li><a href="">Comandas historial</a></li>
             </ul>
         </li>
         <li>

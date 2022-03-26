@@ -17,7 +17,7 @@ return new class extends Migration
             $table->increments('id_reserva');
             $table->date('fecha_entrada');
             $table->date('fecha_salida');
-            $table->string('comentario');
+            $table->string('comentario')->nullable();
             ////relaciones  con habitacion "analizar"
             $table->integer('id_habitacion')->unsigned();
             $table->foreign('id_habitacion')->references('id_habitacion')->on('habitaciones');  

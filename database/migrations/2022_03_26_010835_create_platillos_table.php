@@ -14,7 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('platillos', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id_plato');
+            $table->string('folio',7)->unique();
+            $table->string('nombre')->unique();
+            $table->string('descripcion');
+            $table->integer('id_categoriaP')->unsigned();
+            $table->foreign('id_categoriaP')->references('id_categoriaP')->on('categoria_platillos');
+            $table->float('precio');
+            $table->boolean('estado')->default(1);
             $table->timestamps();
         });
     }

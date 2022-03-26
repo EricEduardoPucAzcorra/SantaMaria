@@ -13,13 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('huespedes', function (Blueprint $table) {
-            $table->increments('id_huesped');
-            $table->string('nombre');
-            $table->string('apellidos');
-            $table->string('ine')->nullable();
-            $table->string('telefono')->unique();
-            $table->string('correo')->nullable();
+        Schema::create('categoria_bebidas', function (Blueprint $table) {
+            $table->increments('id_categoriaB');
+            $table->string('nombre')->unique();
+            $table->string('descripcion')->nullable();
+            $table->boolean('estado')->default(1);
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('huespedes');
+        Schema::dropIfExists('categoria_bebidas');
     }
 };
