@@ -6714,8 +6714,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -53126,11 +53124,9 @@ var render = function () {
           "tbody",
           _vm._l(_vm.usuarios_sis, function (usuario) {
             return _c("tr", { key: usuario.id }, [
-              _c("td", [_vm._v(_vm._s(usuario.id))]),
+              _c("td", [_vm._v(_vm._s(usuario.id_usuario))]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(usuario.name))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(usuario.email))]),
+              _c("td", [_vm._v(_vm._s(usuario.usuario))]),
               _vm._v(" "),
               _c("td"),
             ])
@@ -53165,8 +53161,6 @@ var staticRenderFns = [
         _c("th", [_vm._v("ID")]),
         _vm._v(" "),
         _c("th", [_vm._v("Nombre")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Correo electrónico")]),
         _vm._v(" "),
         _c("th", [_vm._v("Acciones")]),
       ]),
@@ -65446,7 +65440,12 @@ Vue.component('reservar-component', (__webpack_require__(/*! ./components/Hotel/
 Vue.component('usuarios-component', (__webpack_require__(/*! ./components/Usuario/Usuarios.vue */ "./resources/js/components/Usuario/Usuarios.vue")["default"])); //codigo vue js
 
 var app = new Vue({
-  el: '#vue'
+  el: '#vue',
+  data: {
+    menu: 0,
+    prueba: 'hola mundo'
+  },
+  methods: {}
 });
 })();
 

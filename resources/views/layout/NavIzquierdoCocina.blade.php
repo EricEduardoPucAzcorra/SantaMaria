@@ -13,7 +13,7 @@
                 <li v-on:click="menu=0"><a href="#" class="link_name" >Inicio</a></li>
             </ul>
         </li>
-        <li v-on:click="menu=1">
+        <!-- <li v-on:click="menu=1">
             <a href="#">
                 <i class="fas fa-user"></i>
                 <span class="link_name">Usuarios</span>
@@ -65,7 +65,7 @@
                 <li v-on:click="menu=8"><a href="#">Habitaciones</a></li>
                 <li v-on:click="menu=9"><a href="#">Detalles reservas</a></li>
             </ul>
-        </li>
+        </li> -->
         <li>
             <div class="profile-details">
                 <div class="profile-content">

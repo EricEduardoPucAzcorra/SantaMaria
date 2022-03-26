@@ -12,15 +12,13 @@
                     <tr>
                         <th>ID</th>
                         <th>Nombre</th>
-                        <th>Correo electrónico</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-for="usuario in usuarios_sis" :key="usuario.id">
-                        <td>{{usuario.id}}</td>
-                        <td>{{usuario.name}}</td>
-                        <td>{{usuario.email}}</td>
+                        <td>{{usuario.id_usuario}}</td>
+                        <td>{{usuario.usuario}}</td>
                         <td></td>
                     </tr>
                 </tbody>

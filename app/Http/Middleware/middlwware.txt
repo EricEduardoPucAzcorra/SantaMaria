@@ -1,0 +1,2 @@
+- creo middlewares con comando php artisan make:middleware Cocina
+- registros los middlewares en Arvhivo kernal

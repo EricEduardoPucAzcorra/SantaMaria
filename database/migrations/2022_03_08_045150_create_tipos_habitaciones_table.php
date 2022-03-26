@@ -19,6 +19,12 @@ return new class extends Migration
             $table->string('descripcion');
             $table->timestamps();
         });
+
+         //registros de roles estaticos
+        DB::table('tipos_habitaciones')->insert(array('id_tipo'=>'1', 'tipo'=>'Simple', 'descripcion'=>'Null'));
+        DB::table('tipos_habitaciones')->insert(array('id_tipo'=>'2', 'tipo'=>'Estandar', 'descripcion'=>'Null'));
+        DB::table('tipos_habitaciones')->insert(array('id_tipo'=>'3', 'tipo'=>'Con vista', 'descripcion'=>'Null'));
+        DB::table('tipos_habitaciones')->insert(array('id_tipo'=>'4', 'tipo'=>'Familiar', 'descripcion'=>'Null'));
     }
 
     /**

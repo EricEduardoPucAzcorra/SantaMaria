@@ -18,15 +18,47 @@
     @livewireStyles
 </head>
 <body>
-    @include('layout.NavIzquierdo')
-    <section class="home-section">
-        @include('layout.NavSuperior')
-        <div id="vue">
-            {{-- {{Auth::User()->id_usuario}} --}}
-            @yield('contenido')
-        </div>
-    </section>
+    <div id="vue">
+         {{-- valido usuario  si esta autenticado--}}
+            @if (Auth::check())
+                {{-- autenticado como Administrador --}}
+                @if(Auth::user()->id_rol==1)
 
+                {{--incluyo el navegador superior administrativo--}}
+                
+                    @include('layout.NavIzquierdo')
+
+                 {{-- autenticado como Recepcionista--}}
+                @elseif(Auth::user()->id_rol==2)
+
+                    @include('layout.NavIzquierdoRecepcionista')
+
+                 {{-- autenticado como Mesero --}}
+                @elseif(Auth::user()->id_rol==3)
+                
+                    @include('layout.NavIzquierdoMesero')
+
+                {{-- autenticado como Cocina --}}
+                @elseif(Auth::user()->id_rol==4)
+
+                    @include('layout.NavIzquierdoCocina')
+
+                @else
+
+                @endif
+
+            @endif
+
+
+        <section class="home-section">
+            
+             @include('layout.NavSuperior')
+
+            <div >   
+                @yield('contenido')
+            </div>
+        </section>
+    </div>
     @livewireScripts
 </body>
 

@@ -14,5 +14,13 @@
  //codigo vue js
  const app = new Vue({
      el: '#vue',
+     data:{
+        menu:0,
+        prueba:'hola mundo'
+     },
+     methods:{
+
+     }
+
  });
  
