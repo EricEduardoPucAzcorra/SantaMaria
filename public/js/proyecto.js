@@ -6282,6 +6282,60 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -6443,7 +6497,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
-    return {
+    return _defineProperty({
       prueba: 'hola mundo cruel',
       habitaciones: [],
       huespedes: [],
@@ -6462,8 +6516,14 @@ __webpack_require__.r(__webpack_exports__);
       id_habitacion: 0,
       cant_habitacion: 1,
       precio: 0,
-      total: 0
-    };
+      total: 0,
+      //datos de la habitacion
+      folio: '',
+      num_habitacion: '',
+      caracteristicas: '',
+      num_personas: '',
+      estado: ''
+    }, "precio", '');
   },
   computed: {},
   methods: {
@@ -6545,7 +6605,13 @@ __webpack_require__.r(__webpack_exports__);
 
               case 'detalle':
                 {
-                  $('#modal_reserva').modal('show');
+                  $('#modal_detalle').modal('show');
+                  this.folio = data['folio'];
+                  this.num_habitacion = data['num_habitacion'];
+                  this.caracteristicas = data['caracteristicas'];
+                  this.num_personas = data['num_personas'];
+                  this.estado = data['estado'];
+                  this.precio = data['precio'];
                   break;
                 }
             }
@@ -6568,6 +6634,9 @@ __webpack_require__.r(__webpack_exports__);
       this.fecha_entrada = '';
       this.fecha_salida = '';
       this.comentario = '';
+    },
+    cerrarModalDetalle: function cerrarModalDetalle() {
+      $('#modal_detalle').modal('hide');
     },
     validarCampos: function validarCampos() {},
     //metodo que permite reallizar la reserva
@@ -6670,6 +6739,365 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.getHabitaciones(); //  this.obtener_fecha_hoy();
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Mesa/Mesa.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Mesa/Mesa.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      hola: 'hola mundo',
+      mesas: []
+    };
+  },
+  computed: {},
+  methods: {
+    getMesas: function getMesas() {
+      var i = this;
+      var url = '/mesas';
+      axios.get(url).then(function (response) {
+        //console.log(response);
+        i.mesas = response.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    mensaje: function mensaje() {
+      alert('Bienvenido');
+    }
+  },
+  mounted: function mounted() {
+    this.getMesas();
+    console.log('Component mounted.');
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Restaurante/Comanda.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Restaurante/Comanda.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      //arrays
+      comidas: [],
+      refrescos: [],
+      //carrito
+      carrito: [],
+      //history datas comandas
+      historial: [],
+      //identificador del plato
+      id_plato: 0,
+      //cantidades
+      cantidades: [1, 1, 1, 1, 1, 1],
+      //variable para campturar el valor de la multiplicacion de cantidad y precio
+      //para obtener el iva
+      auxSubtotal: 0
+    };
+  },
+  computed: {
+    //metodo para calcular el total de cantidad de productos
+    totalProducto: function totalProducto() {
+      var _this = this;
+
+      //recibe un parametro id , para recibir parametros es la sig manera
+      return function (id_plato) {
+        //va a cacular los precios y el total
+        var total = 0; //esta variable obtiene los valores del array ventas, esecificamente el precio 
+        //y lo multiplica por el valor que sera asginado en el input array cantidades
+
+        total = _this.historial[id_plato].precio * _this.cantidades[id_plato]; //ACTUALIZO EL TOTAL PARA HACER EL CAMBIO EN EL ARRAY
+        //sera igual al total multiplicado
+
+        _this.historial[id_plato].total = total; //actualizo la cantidad 
+        //sera igual al valor que viene del input
+
+        _this.historial[id_plato].cantidad = _this.cantidades[id_plato]; //retorna los datos 
+        //el tofixed permite mandar datos
+
+        return total.toFixed(1);
+      };
+    },
+    //metodo para calcular el subototal
+    subTotal: function subTotal() {
+      var total = 0; //recorre el array ventas 
+
+      for (var i = this.historial.length - 1; i >= 0; i--) {
+        //suma los valor de la ventaas almacenados en el campo total
+        total = total + this.historial[i].total;
+      } //la variable auxiliar captura el valor total que ejecuta este computed
+
+
+      this.auxSubtotal = total.toFixed(1); //al salir retorna los datos en decimal
+
+      return total.toFixed(1);
+    } // noArticulos(){
+    //     let acum=0;
+    //     //conteo en el campo cantidad
+    //     for (var i = this.ventas.length - 1; i >= 0; i--) {
+    //         //captura el conteo
+    //         acum=acum + this.ventas[i].cantidad;	
+    //     }
+    //     //envia vista
+    //     return acum;
+    // }
+
+  },
+  methods: {
+    getComidas: function getComidas() {
+      var i = this;
+      var url = '/comidas';
+      axios.get(url).then(function (response) {
+        //console.log(response);
+        i.comidas = response.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    getRefrescos: function getRefrescos() {
+      var i = this;
+      var url = '/refrescos';
+      axios.get(url).then(function (response) {
+        //console.log(response);
+        i.refrescos = response.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    insertProducto: function insertProducto(id) {
+      //capturo id
+      this.id_plato = id; //array que insertara con push
+
+      var listproductos = {};
+      var i = this;
+      var id_p = 0;
+      var encontrado = false;
+      axios.get('/insertproduct', {
+        params: {
+          'id_plato': this.id_plato
+        }
+      }).then(function (json) {
+        //en el carrito capturo los datos
+        i.carrito = json.data; // array list dproductos
+
+        listproductos = {
+          id_plato: json.data.id_plato,
+          nombre: json.data.nombre,
+          precio: json.data.precio,
+          cantidad: 1,
+          total: json.data.precio
+        }; //verifico si existe la consulta
+
+        if (i.carrito) {
+          //enviamelo a la vista con push
+          //en una variable de historial almaceno los productos a comandar
+          id_p = i.carrito.id_plato;
+          var k;
+
+          for (k in i.historial) {
+            if (i.historial[k].id_plato == id_p) {
+              encontrado = true;
+              alert('Ya esta insertado');
+            }
+          }
+
+          if (!encontrado) {
+            i.historial.push(listproductos);
+          }
+        } //console.log(response);
+
+      })["catch"](function (error) {
+        // handle error
+        console.log(error);
+      });
+    },
+    eliminarhistorial: function eliminarhistorial(index) {
+      this.historial.splice(index, 1);
+    },
+    createcomand: function createcomand() {
+      var i = this;
+      var array = this.historial;
+      var url = '/create_comanda';
+      axios.post(url, this.historial).then(function (response) {
+        console.log(response);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.getComidas();
+    this.getRefrescos();
+    console.log('Component mounted.');
   }
 });
 
@@ -50840,6 +51268,84 @@ component.options.__file = "resources/js/components/Hotel/Reservar/Reservar.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/Mesa/Mesa.vue":
+/*!***********************************************!*\
+  !*** ./resources/js/components/Mesa/Mesa.vue ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Mesa_vue_vue_type_template_id_57074f34___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Mesa.vue?vue&type=template&id=57074f34& */ "./resources/js/components/Mesa/Mesa.vue?vue&type=template&id=57074f34&");
+/* harmony import */ var _Mesa_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Mesa.vue?vue&type=script&lang=js& */ "./resources/js/components/Mesa/Mesa.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Mesa_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Mesa_vue_vue_type_template_id_57074f34___WEBPACK_IMPORTED_MODULE_0__.render,
+  _Mesa_vue_vue_type_template_id_57074f34___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Mesa/Mesa.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Restaurante/Comanda.vue":
+/*!*********************************************************!*\
+  !*** ./resources/js/components/Restaurante/Comanda.vue ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Comanda_vue_vue_type_template_id_7dc0ffe9___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Comanda.vue?vue&type=template&id=7dc0ffe9& */ "./resources/js/components/Restaurante/Comanda.vue?vue&type=template&id=7dc0ffe9&");
+/* harmony import */ var _Comanda_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Comanda.vue?vue&type=script&lang=js& */ "./resources/js/components/Restaurante/Comanda.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Comanda_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Comanda_vue_vue_type_template_id_7dc0ffe9___WEBPACK_IMPORTED_MODULE_0__.render,
+  _Comanda_vue_vue_type_template_id_7dc0ffe9___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Restaurante/Comanda.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/Usuario/Usuarios.vue":
 /*!******************************************************!*\
   !*** ./resources/js/components/Usuario/Usuarios.vue ***!
@@ -50959,6 +51465,38 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Mesa/Mesa.vue?vue&type=script&lang=js&":
+/*!************************************************************************!*\
+  !*** ./resources/js/components/Mesa/Mesa.vue?vue&type=script&lang=js& ***!
+  \************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Mesa_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Mesa.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Mesa/Mesa.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Mesa_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Restaurante/Comanda.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/components/Restaurante/Comanda.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Comanda_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Comanda.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Restaurante/Comanda.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Comanda_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/components/Usuario/Usuarios.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************!*\
   !*** ./resources/js/components/Usuario/Usuarios.vue?vue&type=script&lang=js& ***!
@@ -51056,6 +51594,40 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Reservar_vue_vue_type_template_id_9388c78e___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Reservar_vue_vue_type_template_id_9388c78e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Reservar.vue?vue&type=template&id=9388c78e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Hotel/Reservar/Reservar.vue?vue&type=template&id=9388c78e&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Mesa/Mesa.vue?vue&type=template&id=57074f34&":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/Mesa/Mesa.vue?vue&type=template&id=57074f34& ***!
+  \******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Mesa_vue_vue_type_template_id_57074f34___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Mesa_vue_vue_type_template_id_57074f34___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Mesa_vue_vue_type_template_id_57074f34___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Mesa.vue?vue&type=template&id=57074f34& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Mesa/Mesa.vue?vue&type=template&id=57074f34&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Restaurante/Comanda.vue?vue&type=template&id=7dc0ffe9&":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/components/Restaurante/Comanda.vue?vue&type=template&id=7dc0ffe9& ***!
+  \****************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Comanda_vue_vue_type_template_id_7dc0ffe9___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Comanda_vue_vue_type_template_id_7dc0ffe9___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Comanda_vue_vue_type_template_id_7dc0ffe9___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Comanda.vue?vue&type=template&id=7dc0ffe9& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Restaurante/Comanda.vue?vue&type=template&id=7dc0ffe9&");
 
 
 /***/ }),
@@ -52511,6 +53083,15 @@ var render = function () {
                       {
                         staticClass: "btn grid-btn mt-0 btn-sm btn-primary",
                         attrs: { type: "button" },
+                        on: {
+                          click: function ($event) {
+                            return _vm.activarModal(
+                              "reserva",
+                              "detalle",
+                              habitacion
+                            )
+                          },
+                        },
                       },
                       [_vm._v("Detalles")]
                     ),
@@ -53079,6 +53660,232 @@ var render = function () {
         ),
       ]
     ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        staticStyle: { display: "none" },
+        attrs: {
+          id: "modal_detalle",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "reminder-modal",
+        },
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal-dialog modal-dialog-centered",
+            attrs: { role: "document" },
+          },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _c("div", { staticClass: "modal-header bg-secondary" }, [
+                _c("h5", { staticClass: "modal-title has-icon text-white" }, [
+                  _vm._v("Detalles de  la habitacion"),
+                ]),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "close",
+                    attrs: {
+                      type: "button",
+                      "data-dismiss": "modal",
+                      "aria-label": "Close",
+                    },
+                    on: {
+                      click: function ($event) {
+                        return _vm.cerrarModalDetalle()
+                      },
+                    },
+                  },
+                  [_vm._v("x\n            ")]
+                ),
+              ]),
+              _vm._v(" "),
+              _c("form", [
+                _c("div", { staticClass: "modal-body" }, [
+                  _c("div", { staticClass: "ms-form-group" }, [
+                    _c("label", [_vm._v("Folio")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.folio,
+                          expression: "folio",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "text",
+                        placeholder: "Nombre del articulo",
+                        disabled: "",
+                      },
+                      domProps: { value: _vm.folio },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.folio = $event.target.value
+                        },
+                      },
+                    }),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "ms-form-group" }, [
+                    _c("label", [_vm._v("Num habitacion")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.num_habitacion,
+                          expression: "num_habitacion",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "text",
+                        placeholder: "Nombre del articulo",
+                        disabled: "",
+                      },
+                      domProps: { value: _vm.num_habitacion },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.num_habitacion = $event.target.value
+                        },
+                      },
+                    }),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "ms-form-group" }, [
+                    _c("label", [_vm._v("Caracteristicas")]),
+                    _vm._v(" "),
+                    _c("textarea", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.caracteristicas,
+                          expression: "caracteristicas",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        name: "",
+                        id: "",
+                        cols: "3",
+                        rows: "3",
+                        disabled: "",
+                      },
+                      domProps: { value: _vm.caracteristicas },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.caracteristicas = $event.target.value
+                        },
+                      },
+                    }),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "ms-form-group" }, [
+                    _c("label", [_vm._v("Num personas")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.num_personas,
+                          expression: "num_personas",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "text",
+                        placeholder: "Nombre del articulo",
+                        disabled: "",
+                      },
+                      domProps: { value: _vm.num_personas },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.num_personas = $event.target.value
+                        },
+                      },
+                    }),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "ms-form-group" }, [
+                    _c("label", [_vm._v("Estado")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.estado,
+                          expression: "estado",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "text",
+                        placeholder: "Nombre del articulo",
+                        disabled: "",
+                      },
+                      domProps: { value: _vm.estado },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.estado = $event.target.value
+                        },
+                      },
+                    }),
+                  ]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "badge badge-danger" }, [
+                    _vm._v("Precio $ " + _vm._s(_vm.precio)),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "modal-footer" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-light",
+                      attrs: { type: "button" },
+                      on: {
+                        click: function ($event) {
+                          return _vm.cerrarModalDetalle()
+                        },
+                      },
+                    },
+                    [_vm._v("Cerrar")]
+                  ),
+                ]),
+              ]),
+            ]),
+          ]
+        ),
+      ]
+    ),
   ])
 }
 var staticRenderFns = [
@@ -53088,6 +53895,444 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "ms-panel-header" }, [
       _c("h6", [_vm._v("Realizar reservas\n           ")]),
+    ])
+  },
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Mesa/Mesa.vue?vue&type=template&id=57074f34&":
+/*!*********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Mesa/Mesa.vue?vue&type=template&id=57074f34& ***!
+  \*********************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row justify-content-center" }, [
+      _c("div", { staticClass: "col-md-8" }, [
+        _c("div", { staticClass: "card" }, [
+          _c("div", { staticClass: "card-header" }, [
+            _vm._v("Example Component"),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _vm._v(
+              "\n                        " +
+                _vm._s(_vm.mesas) +
+                "\n\n                        "
+            ),
+            _c(
+              "button",
+              {
+                on: {
+                  click: function ($event) {
+                    return _vm.mensaje()
+                  },
+                },
+              },
+              [_vm._v("Mensaje")]
+            ),
+          ]),
+        ]),
+      ]),
+    ]),
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Restaurante/Comanda.vue?vue&type=template&id=7dc0ffe9&":
+/*!*******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Restaurante/Comanda.vue?vue&type=template&id=7dc0ffe9& ***!
+  \*******************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "col-xl-12 col-md-12" }, [
+      _c("div", { staticClass: "ms-panel" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "ms-panel-body" }, [
+          _c(
+            "form",
+            { staticClass: "needs-validation", attrs: { novalidate: "" } },
+            [
+              _c(
+                "div",
+                {
+                  staticClass: "form-row",
+                  staticStyle: {
+                    display: "flex",
+                    "margin-top": "5%",
+                    "border-color": "red",
+                  },
+                },
+                [
+                  _c("div", { staticClass: "col-md-4 mb-3" }, [
+                    _c("label", { attrs: { for: "validationCustom03" } }, [
+                      _vm._v("Eligir producto"),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-group" }, [
+                      _c("div", { staticClass: "col-xl-10 col-md-10" }, [
+                        _c(
+                          "div",
+                          { staticClass: "needs-validation clearfix" },
+                          [
+                            _c(
+                              "table",
+                              { staticClass: "table  thead-default" },
+                              [
+                                _vm._m(1),
+                                _vm._v(" "),
+                                _c(
+                                  "tbody",
+                                  _vm._l(_vm.comidas, function (comida) {
+                                    return _c("tr", { key: comida.id_plato }, [
+                                      _c("td", { attrs: { hidden: "" } }, [
+                                        _vm._v(_vm._s(comida.id_plato)),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v(_vm._s(comida.nombre))]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v(_vm._s(comida.precio))]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _c(
+                                          "button",
+                                          {
+                                            staticClass:
+                                              "btn btn-success btn-sm btn-sm",
+                                            attrs: { type: "button" },
+                                            on: {
+                                              click: function ($event) {
+                                                return _vm.insertProducto(
+                                                  comida.id_plato
+                                                )
+                                              },
+                                            },
+                                          },
+                                          [_vm._v("+")]
+                                        ),
+                                      ]),
+                                    ])
+                                  }),
+                                  0
+                                ),
+                              ]
+                            ),
+                          ]
+                        ),
+                      ]),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "col-md-4 mb-3",
+                      staticStyle: { "border-color": "red" },
+                    },
+                    [
+                      _c("label", { attrs: { for: "validationCustom03" } }, [
+                        _vm._v("Eligir producto"),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "input-group" }, [
+                        _c("div", { staticClass: "col-xl-10 col-md-10" }, [
+                          _c(
+                            "div",
+                            { staticClass: "needs-validation clearfix" },
+                            [
+                              _c(
+                                "table",
+                                { staticClass: "table  table-default" },
+                                [
+                                  _vm._m(2),
+                                  _vm._v(" "),
+                                  _c(
+                                    "tbody",
+                                    _vm._l(_vm.refrescos, function (refresco) {
+                                      return _c(
+                                        "tr",
+                                        { key: refresco.id_plato },
+                                        [
+                                          _c("td", { attrs: { hidden: "" } }, [
+                                            _vm._v(_vm._s(refresco.id_plato)),
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("td", [
+                                            _vm._v(_vm._s(refresco.nombre)),
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("td", [
+                                            _vm._v(_vm._s(refresco.precio)),
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("td", [
+                                            _c(
+                                              "button",
+                                              {
+                                                staticClass:
+                                                  "btn btn-success btn-sm btn-sm",
+                                                attrs: { type: "button" },
+                                                on: {
+                                                  click: function ($event) {
+                                                    return _vm.insertProducto(
+                                                      refresco.id_plato
+                                                    )
+                                                  },
+                                                },
+                                              },
+                                              [_vm._v("+")]
+                                            ),
+                                          ]),
+                                        ]
+                                      )
+                                    }),
+                                    0
+                                  ),
+                                ]
+                              ),
+                            ]
+                          ),
+                        ]),
+                      ]),
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "col-md-4 mb-3",
+                      staticStyle: { "border-color": "red" },
+                    },
+                    [
+                      _c("label", { attrs: { for: "validationCustom03" } }, [
+                        _vm._v("Eligir producto"),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "input-group" }, [
+                        _c("div", { staticClass: "col-xl-10 col-md-10" }, [
+                          _c("div", { staticClass: "table-responsive" }, [
+                            _c(
+                              "table",
+                              { staticClass: "table  table-default" },
+                              [
+                                _vm._m(3),
+                                _vm._v(" "),
+                                _c(
+                                  "tbody",
+                                  _vm._l(
+                                    _vm.historial,
+                                    function (producto, index) {
+                                      return _c(
+                                        "tr",
+                                        { key: producto.id_plato },
+                                        [
+                                          _c("td", [
+                                            _vm._v(_vm._s(producto.nombre)),
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("td", [
+                                            _vm._v(_vm._s(producto.precio)),
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("td", [
+                                            _c("input", {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model.number",
+                                                  value: _vm.cantidades[index],
+                                                  expression:
+                                                    "cantidades[index]",
+                                                  modifiers: { number: true },
+                                                },
+                                              ],
+                                              staticClass: "form-control",
+                                              attrs: {
+                                                type: "number",
+                                                name: "",
+                                                placeholder: "Cantidad",
+                                              },
+                                              domProps: {
+                                                value: _vm.cantidades[index],
+                                              },
+                                              on: {
+                                                input: function ($event) {
+                                                  if ($event.target.composing) {
+                                                    return
+                                                  }
+                                                  _vm.$set(
+                                                    _vm.cantidades,
+                                                    index,
+                                                    _vm._n($event.target.value)
+                                                  )
+                                                },
+                                                blur: function ($event) {
+                                                  return _vm.$forceUpdate()
+                                                },
+                                              },
+                                            }),
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("td", [
+                                            _c(
+                                              "button",
+                                              {
+                                                staticClass:
+                                                  "btn btn-success btn-sm btn-sm",
+                                                attrs: { type: "button" },
+                                                on: {
+                                                  click: function ($event) {
+                                                    return _vm.eliminarhistorial(
+                                                      index
+                                                    )
+                                                  },
+                                                },
+                                              },
+                                              [_vm._v("+")]
+                                            ),
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("td", [
+                                            _vm._v(
+                                              _vm._s(_vm.totalProducto(index))
+                                            ),
+                                          ]),
+                                        ]
+                                      )
+                                    }
+                                  ),
+                                  0
+                                ),
+                              ]
+                            ),
+                            _vm._v(
+                              "\r\n                                \r\n                            \r\n\r\n                            Total: " +
+                                _vm._s(_vm.subTotal) +
+                                "\r\n\r\n                            "
+                            ),
+                            _c("br"),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-success",
+                                attrs: { type: "button" },
+                                on: {
+                                  click: function ($event) {
+                                    return _vm.createcomand()
+                                  },
+                                },
+                              },
+                              [_vm._v("Realizar comanda")]
+                            ),
+                          ]),
+                        ]),
+                      ]),
+                    ]
+                  ),
+                ]
+              ),
+            ]
+          ),
+        ]),
+      ]),
+    ]),
+  ])
+}
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "ms-panel-header",
+        staticStyle: { display: "flex", "margin-top": "5%" },
+      },
+      [
+        _c("h6", [_vm._v("Comanda")]),
+        _vm._v(" "),
+        _c("h6", { staticStyle: { "margin-left": "10px" } }, [
+          _vm._v("Realiza : "),
+          _c("i", { staticClass: "fa-solid fa-user" }),
+        ]),
+        _vm._v(" "),
+        _c("h6", { staticStyle: { "margin-left": "10px" } }, [
+          _vm._v("Fecha:"),
+        ]),
+        _vm._v(" "),
+        _c("input", { attrs: { type: "text" } }),
+      ]
+    )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("th", [_vm._v("Nombre")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Precio")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Opciones")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("th", [_vm._v("Nombre")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Precio")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Opciones")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("th", [_vm._v("Nombre")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Precio")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Cantidad")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Opciones")]),
     ])
   },
 ]
@@ -65437,13 +66682,16 @@ Vue.component('almacen-component', (__webpack_require__(/*! ./components/Almacen
 Vue.component('categorias_objeto-component', (__webpack_require__(/*! ./components/Almacen/CategoriaObjeto.vue */ "./resources/js/components/Almacen/CategoriaObjeto.vue")["default"]));
 Vue.component('habitaciones-component', (__webpack_require__(/*! ./components/Hotel/Habitaciones/Habitacion.vue */ "./resources/js/components/Hotel/Habitaciones/Habitacion.vue")["default"]));
 Vue.component('reservar-component', (__webpack_require__(/*! ./components/Hotel/Reservar/Reservar.vue */ "./resources/js/components/Hotel/Reservar/Reservar.vue")["default"]));
-Vue.component('usuarios-component', (__webpack_require__(/*! ./components/Usuario/Usuarios.vue */ "./resources/js/components/Usuario/Usuarios.vue")["default"])); //codigo vue js
+Vue.component('usuarios-component', (__webpack_require__(/*! ./components/Usuario/Usuarios.vue */ "./resources/js/components/Usuario/Usuarios.vue")["default"]));
+Vue.component('mesa-component', (__webpack_require__(/*! ./components/Mesa/Mesa.vue */ "./resources/js/components/Mesa/Mesa.vue")["default"]));
+Vue.component('comanda-component', (__webpack_require__(/*! ./components/Restaurante/Comanda.vue */ "./resources/js/components/Restaurante/Comanda.vue")["default"])); //codigo vue js
 
 var app = new Vue({
   el: '#vue',
   data: {
     menu: 0,
-    prueba: 'hola mundo'
+    prueba: 'hola mundo',
+    comanda: 0
   },
   methods: {}
 });

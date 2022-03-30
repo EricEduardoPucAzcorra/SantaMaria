@@ -17,7 +17,7 @@
 	</template>
 
 	<template v-if="menu==2">
-		
+		@include('sistema.admin.restaurante.mesas.mesas')
 	</template>
 
 	<template v-if="menu==3">
@@ -57,15 +57,19 @@
 	<template v-if="menu==7">
 			@include('sistema.admin.hotel.reservaciones.reservar')
 	</template>
-	 
-	 {{-- autenticado como Mesero--}}
-	 @elseif(Auth::user()->id_rol==3)   
+
+	{{-- autenticado como Mesero--}}
+	@elseif(Auth::user()->id_rol==3)   
 
 
     <template v-if="menu==0">
-		principal
+		  @include('SistemaComanda.comandas.comandas')
 	</template>
 
+	<template v-if="menu==1">
+		hello word
+	</template>
+	 
 	 {{-- autenticado como Cocina--}}
 	 @elseif(Auth::user()->id_rol==4)   
 

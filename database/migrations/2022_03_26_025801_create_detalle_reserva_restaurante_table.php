@@ -19,6 +19,8 @@ return new class extends Migration
             $table->foreign('id_usuario')->references('id_usuario')->on('users');
              $table->integer('id_mesa')->unsigned();
             $table->foreign('id_mesa')->references('id_mesa')->on('mesas');
+            $table->integer('id_reservaR')->unsigned();
+            $table->foreign('id_reservaR')->references('id_reservaR')->on('reservaciones_restaurante');
             $table->timestamps();
         });
     }

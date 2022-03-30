@@ -35,7 +35,7 @@
                       <p>Caracteristicas : {{habitacion.caracteristicas}} </p>
                       <p>Cant. Personas : {{habitacion.num_personas}} </p>
                       <div class="new mb-0">
-                        <button type="button" class="btn grid-btn mt-0 btn-sm btn-primary">Detalles</button>
+                        <button type="button" class="btn grid-btn mt-0 btn-sm btn-primary" @click="activarModal('reserva','detalle', habitacion)">Detalles</button>
                         <template v-if="habitacion.estado=='DISPONIBLE'">
 
                         <button type="button" class="btn grid-btn mt-0 btn-sm btn-info" @click="activarModal('reserva','registro', habitacion)">Reservar</button>
@@ -152,6 +152,58 @@
           </div> 
             
         </div>  
+
+         <div class="modal fade"  style="display: none;" id="modal_detalle" tabindex="-1" role="dialog" aria-labelledby="reminder-modal">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header bg-secondary">
+                <h5 class="modal-title has-icon text-white" >Detalles de  la habitacion</h5>
+                <!-- <h5 class="modal-title has-icon text-white">ACTUALIZAR RECURSO</h5> -->
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="cerrarModalDetalle()">x
+                </button>
+              </div>
+              <form>
+                <div class="modal-body">
+
+                      <div class="ms-form-group" >
+                      <label >Folio</label>
+                      <input type="text" placeholder="Nombre del articulo"  class="form-control" v-model="folio" disabled>
+                     </div>
+
+                      <div class="ms-form-group" >
+                      <label >Num habitacion</label>
+                      <input type="text" placeholder="Nombre del articulo"  class="form-control" v-model="num_habitacion" disabled>
+                     </div>
+
+                     <div class="ms-form-group" >
+                      <label >Caracteristicas</label>
+                      <textarea name="" id="" cols="3" rows="3" class="form-control" v-model="caracteristicas" disabled></textarea>
+                     
+                     </div>
+
+                     <div class="ms-form-group">
+                      <label >Num personas</label>
+                      <input type="text" placeholder="Nombre del articulo"  class="form-control" v-model="num_personas" disabled >
+                     </div>
+
+                     <div class="ms-form-group" >
+                      <label >Estado</label>
+                      <input type="text" placeholder="Nombre del articulo"  class="form-control" v-model="estado" disabled >
+                     </div>
+
+                      <span class="badge badge-danger">Precio $ {{precio}}</span>
+
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-light"  @click="cerrarModalDetalle()" >Cerrar</button>
+                 
+                 
+                </div>
+              </form>
+            </div>
+          </div> 
+            
+        </div>  
         
     </div>
 </template>
@@ -182,7 +234,13 @@
                cant_habitacion:1,
                precio:0,
                total:0,
-              
+               //datos de la habitacion
+               folio:'',
+               num_habitacion:'',
+               caracteristicas:'',
+               num_personas:'',
+               estado:'',
+               precio:''              
 
             }
         },
@@ -273,8 +331,13 @@
                                break;
                            }
                            case 'detalle':{
-                                $('#modal_reserva').modal('show');
-                             
+                                $('#modal_detalle').modal('show');
+                                  this.folio=data['folio'];
+                                  this.num_habitacion=data['num_habitacion'];
+                                  this.caracteristicas=data['caracteristicas'];
+                                  this.num_personas=data['num_personas'];
+                                  this.estado=data['estado'];
+                                 this.precio=data['precio'];
                                break;
                            }
 
@@ -299,6 +362,9 @@
               this.fecha_entrada='';
               this.fecha_salida='';
               this.comentario='';
+            },
+            cerrarModalDetalle(){
+              $('#modal_detalle').modal('hide');
             },
             validarCampos(){
 

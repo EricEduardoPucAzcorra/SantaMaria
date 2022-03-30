@@ -32,7 +32,7 @@
             </div>
             <ul class="sub-menu">
                 <li ><a href="" class="link_name">Restaurante</a></li>
-                <li  v-on:click="menu=2"><a href="">Categorias</a></li>
+                <li  v-on:click="menu=2"><a href="#">Categorias</a></li>
                 <li  v-on:click="menu=3"><a href="">Productos</a></li>
                 <li  v-on:click="menu=4"><a href="">Comandas historial</a></li>
             </ul>

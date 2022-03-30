@@ -52,7 +52,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/usuarios',[App\Http\Controllers\UsuarioController::class,'index']);
     Route::get('/get_usuarios',[App\Http\Controllers\UsuarioController::class,'traerUsuarios']);
     //fin de enrutamiento de usuario
-    //ruta cerrar session
+
+    //rutas del modulo Mesa
+    Route::get('/mesas',[App\Http\COntrollers\MesaController::class,'index']);
+    //ruta cerrar sessions
+
     Route::post('/salir', [App\Http\Controllers\Auth\LoginController::class, 'salir'])->name('salir');
     });
     //grupo de rutas middleware de rol Recepcionista
@@ -65,7 +69,12 @@ Route::middleware(['auth'])->group(function () {
     });
     //grupo de rutas middleware de rol Mesero
     Route::middleware(['Mesero'])->group(function () {
-    //
+     //rutas de comanda
+      Route::get('/comidas', [App\Http\Controllers\ComandaController::class,'platillos']);
+      Route::get('/refrescos', [App\Http\Controllers\ComandaController::class,'refrescos']);
+      Route::get('/insertproduct',[App\Http\Controllers\ComandaController::class,'insertProducto']);
+      //insert comand
+      Route::post('create_comanda',[App\Http\Controllers\ComandaController::class,'createComandAndDetalis']);
     });
     //grupo de rutas middleware de rol Cocina
     Route::middleware(['Cocina'])->group(function () {
