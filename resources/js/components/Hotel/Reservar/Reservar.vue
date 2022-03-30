@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
 
     <div class="container">
         <div class="ms-panel-header">
@@ -62,93 +63,124 @@
                 <h5 class="modal-title has-icon text-white" >Reservar la habitacion</h5>
                 <!-- <h5 class="modal-title has-icon text-white">ACTUALIZAR RECURSO</h5> -->
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="cerrarModal()">x
-                </button>
-              </div>
-              <form>
-                <div class="modal-body">
-             
-                  <div class="ms-form-group" hidden="">
-                    <label hidden="">habitacione</label>
-                    <input type="text" placeholder="Nombre del articulo"  class="form-control" v-model="id_habitacion" >
-                  </div>
-
-                   <div class="ms-form-group" hidden="">
-                    <label hidden="">cantperso</label>
-                    <input type="text" placeholder="Nombre del articulo"  class="form-control" v-model="cant_habitacion" >
-                  </div>
-
-                  <div class="ms-form-group" hidden="">
-                    <label hidden="">Precio</label>
-                    <input type="text" placeholder="Nombre del articulo"  class="form-control" v-model="precio" >
-                  </div>
-
-                  <div class="ms-form-group" hidden="">
-                    <label hidden="">Total</label>
-                    <input type="text" placeholder="Nombre del articulo" hidden="" class="form-control" v-model="total" >
-                  </div>
-
-                  <div class="ms-form-group">
-                    <label>Huesped</label>
-                    <select name=""  class="form-control" id="select" v-model="id_huesped">
-                      <option value="0" disabled>Selecione  un huesped</option>
-                      <option v-bind:value="huesped.id_huesped" v-for="huesped in huespedes" :key="huesped.id_huesped">{{huesped.nombre}} {{huesped.apellidos}}</option>
-                  
-                    </select> 
-                  
-                  <div id="form" >
-                      <div class="ms-form-group">
-                      <label>Nombre</label>
-                      <input type="text" name="" id="" class="form-control" v-model="nombre">
-                      </div>
-                      <div class="ms-form-group">
-                        <label>apellidos</label>
-                          <input type="text" name="" id="" class="form-control" v-model="apellidos">
-                      </div>
-
-                      <div class="ms-form-group">
-                        <label>ine</label>
-                       <input type="text" name="" id="" class="form-control" v-model="ine">
-                      </div>
-                      <div class="ms-form-group">
-                        <label>Telefono</label>
-                       <input type="text" name="" id="" class="form-control" maxlength="10" v-model="telefono">
-                      </div>
-                      <div class="ms-form-group">
-                        <label>Correo</label>
-                       <input type="email" name="" id="" class="form-control" v-model="correo">
-                      </div>
-                  </div>
-
-                    <a href="#" id="agregarHuesped" @click="agregarHuesped()">Nuevo huesped</a>
-                    <a href="#" id="cancelar" @click="cancelar()">Cancelar</a>
-                  </div>
-
-                  <div class="ms-form-group">
-                    <label>Entrada</label>
-                    <input type="date" name="" value="" id="fecha_entrada" class="form-control" v-model="fecha_entrada">
-                  </div>
-
-                  
-                  <div class="ms-form-group">
-                    <label>Salida</label>
-                      <input type="date" name="" id="" class="form-control" v-model="fecha_salida">
-                  </div>
-
-                   <div class="ms-form-group">
-                    <label>Comentario</label>
-                     <textarea name="" id="" cols="3" rows="3" class="form-control" v-model="comentario"></textarea>
-                  </div>
-                  
-                    <span class="badge badge-danger">Total a pagar: $ {{total}}</span>
-
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-light"  @click="cerrarModal()" >Cerrar</button>
-                  <button type="button" class="btn btn-secondary shadow-none" @click="reservar()">Reservar</button>
-                  <!-- <button type="button" class="btn btn-secondary shadow-none"  data-dismiss="modal">Actualizar</button> -->
-                </div>
-              </form>
+=======
+  <div class="container">
+    <div class="m-5">
+      <h3>Realizar reservación</h3>          
+    </div>
+    <div class="row m-5">
+      <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6" v-for="habitacion in habitaciones" :key="habitacion.id_habitacion">
+        <div class="ms-card">         
+          <div class="ms-card-body">
+            <div class="new">
+              <h6 class="mb-0">Habitacion {{habitacion.num_habitacion}} {{habitacion.tipo_habitaciones.tipo}}</h6>
+              <h6 class="ms-text-primary mb-0">$ {{habitacion.precio}}</h6>
             </div>
+            <div class="new meta">
+              <p>Folio: {{habitacion.folio}}</p>
+              <template v-if="habitacion.estado=='DISPONIBLE'">
+                  <span class="badge badge-success">Disponible</span>
+              </template>
+              <template v-else-if="habitacion.estado=='OCUPADO'">
+                <span class="badge badge-danger">Ocupado</span>
+              </template>
+              <template v-else>
+                <span class="badge badge-warning">Mantenimiento</span>
+              </template>
+            </div>
+            <p>Caracteristicas : {{habitacion.caracteristicas}} </p>
+            <p>Cant. Personas : {{habitacion.num_personas}} </p>
+            <div class="new mb-0">
+              <button type="button" class="btn grid-btn mt-0 btn-sm btn-info">Detalles</button>
+              <template v-if="habitacion.estado=='DISPONIBLE'">
+                <button type="button" class="btn grid-btn mt-0 btn-sm color-primario" @click="activarModal('reserva','registro', habitacion)">
+                  Reservar
+>>>>>>> 43616d0fae97d2611f72b22b92b30fdc9377eac4
+                </button>
+              </template>
+              <template v-else-if="habitacion.estado=='OCUPADO'">
+                <p>OCUPADO HOY</p>
+              </template>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>   
+    <!-- } modal reservar -->
+    <div class="modal fade"  style="display: none;" id="modal_reserva" tabindex="-1" role="dialog" aria-labelledby="reminder-modal">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header color-secundario">
+            <h5 class="modal-title has-icon text-white" >Reservar la habitacion</h5>
+            <!-- <h5 class="modal-title has-icon text-white">ACTUALIZAR RECURSO</h5> -->
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="cerrarModal()">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+          <form>
+            <div class="modal-body"> 
+              <div class="ms-form-group" hidden="">
+                <label hidden="">habitacione</label>
+                <input type="text" placeholder="Nombre del articulo"  class="form-control" v-model="id_habitacion" >
+              </div>
+              <div class="ms-form-group" hidden="">
+                <label hidden="">cantperso</label>
+                <input type="text" placeholder="Nombre del articulo"  class="form-control" v-model="cant_habitacion" >
+              </div>
+              <div class="ms-form-group" hidden="">
+                <label hidden="">Precio</label>
+                <input type="text" placeholder="Nombre del articulo"  class="form-control" v-model="precio" >
+              </div>
+              <div class="ms-form-group" hidden="">
+                <label hidden="">Total</label>
+                <input type="text" placeholder="Nombre del articulo" hidden="" class="form-control" v-model="total" >
+              </div>
+              <div class="ms-form-group">
+                <label>Huesped</label>
+                <select name=""  class="form-control" id="select" v-model="id_huesped">
+                  <option value="0" disabled>Selecione  un huesped</option>
+                  <option v-bind:value="huesped.id_huesped" v-for="huesped in huespedes" :key="huesped.id_huesped">{{huesped.nombre}} {{huesped.apellidos}}</option>
+                </select> 
+                <div id="form" >
+                  <div class="ms-form-group">
+                    <label>Nombre</label>
+                    <input type="text" name="" id="" class="form-control" v-model="nombre">
+                  </div>
+                  <div class="ms-form-group">
+                    <label>apellidos</label>
+                    <input type="text" name="" id="" class="form-control" v-model="apellidos">
+                  </div>
+                  <div class="ms-form-group">
+                    <label>ine</label>
+                    <input type="text" name="" id="" class="form-control" v-model="ine">
+                  </div>
+                  <div class="ms-form-group">
+                    <label>Telefono</label>
+                    <input type="text" name="" id="" class="form-control" maxlength="10" v-model="telefono">
+                  </div>
+                  <div class="ms-form-group">
+                    <label>Correo</label>
+                    <input type="email" name="" id="" class="form-control" v-model="correo">
+                  </div>
+                </div>
+                <a href="#" id="agregarHuesped" @click="agregarHuesped()">Nuevo huesped</a>
+                <a href="#" id="cancelar" @click="cancelar()">Cancelar</a>
+              </div>
+              <div class="ms-form-group">
+                <label>Entrada</label>
+                <input type="date" name="" value="" id="fecha_entrada" class="form-control" v-model="fecha_entrada">
+              </div>    
+              <div class="ms-form-group">
+                <label>Salida</label>
+                <input type="date" name="" id="" class="form-control" v-model="fecha_salida">
+              </div>
+              <div class="ms-form-group">
+                <label>Comentario</label>
+                <textarea name="" id="" cols="3" rows="3" class="form-control" v-model="comentario"></textarea>
+              </div>    
+              <span class="badge badge-danger">Total a pagar: $ {{total}}</span>
+            </div>
+<<<<<<< HEAD
           </div> 
             
         </div>  
@@ -206,6 +238,18 @@
         </div>  
         
     </div>
+=======
+            <div class="modal-footer">
+              <button type="button" class="btn btn-light"  @click="cerrarModal()" >Cerrar</button>
+              <button type="button" class="btn color-primario shadow-none" @click="reservar()">Reservar</button>
+              <!-- <button type="button" class="btn btn-secondary shadow-none"  data-dismiss="modal">Actualizar</button> -->
+            </div>
+          </form>
+        </div>
+      </div>       
+    </div>      
+  </div>
+>>>>>>> 43616d0fae97d2611f72b22b92b30fdc9377eac4
 </template>
 
 <script>

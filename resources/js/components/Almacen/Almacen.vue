@@ -2,13 +2,13 @@
   <div class="col-md-12">
     <div class="m-5">
       <h3>Recursos materiales</h3>
-      <button type="button" class="btn btn-secondary" v-on:click="activarModal('recurso','registrar')" >
-        <i class="icon-plus"></i>Nuevo
+      <button type="button" class="btn color-primario" v-on:click="activarModal('recurso','registrar')" >
+        <i class="fas fa-plus"></i> Nuevo
       </button>
     </div>
     <div class="m-5">
-      <table class="table table-hover table-dark">
-        <thead>
+      <table class="table table-hover">
+        <thead class="encabezado-tabla">
           <tr>
             <th scope="col">#</th>
             <th scope="col">Nombre</th>
@@ -20,7 +20,7 @@
             <th>Acciones</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody class="contenido-tabla">
           <tr v-for="recurso in objetos_almacen" :key="recurso.id_objeto">
             <td>{{recurso.id_objeto}}</td>
             <td>{{recurso.nombre}}</td>
@@ -38,7 +38,9 @@
               </template>
             </td>
             <td>
-              <button class="btn btn-info btn-sm" type="button" @click="activarModal('recurso','actualizar', recurso)">Editar</button>
+              <button class="btn btn-outline-success" type="button" @click="activarModal('recurso','actualizar', recurso)">
+                <i class="fas fa-pen"></i> Editar
+              </button>
             </td>
           </tr>
         </tbody>
@@ -48,10 +50,11 @@
     <div class="modal fade"  style="display: none;" id="modal_recurso" tabindex="-1" role="dialog" aria-labelledby="reminder-modal">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-          <div class="modal-header bg-secondary">
-            <h5 class="modal-title has-icon text-white" v-if="bandera==true">REGISTRAR RECURSO</h5>
-            <h5 class="modal-title has-icon text-white" v-if="bandera==false">ACTUALIZAR RECURSO</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="cerrarmodal()"><span aria-hidden="true">&times;</span>
+          <div class="modal-header color-secundario">
+            <h5 class="modal-title" v-if="bandera==true">REGISTRAR RECURSO</h5>
+            <h5 class="modal-title" v-if="bandera==false">ACTUALIZAR RECURSO</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="cerrarmodal()">
+              <span aria-hidden="true"><i class="fas fa-times"></i></span>
             </button>
           </div>
           <form>
@@ -80,8 +83,8 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-light" @click="cerrarmodal()">Cerrar</button>
-              <button type="button" class="btn btn-secondary shadow-none" v-if="bandera==true" @click="registrarRecurso()" >Registrar</button>
-              <button type="button" class="btn btn-secondary shadow-none" v-if="bandera==false" @click="actualizarRecurso()" data-dismiss="modal">Actualizar</button>
+              <button type="button" class="btn color-primario shadow-none" v-if="bandera==true" @click="registrarRecurso()" >Registrar</button>
+              <button type="button" class="btn color-primario shadow-none" v-if="bandera==false" @click="actualizarRecurso()" data-dismiss="modal">Actualizar</button>
             </div>
           </form>
         </div>

@@ -7,11 +7,10 @@ use Illuminate\Http\Request;
 
 class RolController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function mostrarRoles(){
+        $roles = Rol::all();
+        return $roles;
+    }
     public function index()
     {
         //

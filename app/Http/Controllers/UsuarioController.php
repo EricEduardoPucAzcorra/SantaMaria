@@ -26,37 +26,29 @@ class UsuarioController extends Controller
     public function store(Request $request)
     {
         //
+        $usuario = new User();
+        $usuario->usuario=$request['usuario'];
+        $usuario->condicion=1;
+        $usuario->id_rol=$request['id_rol'];
+
+        $usuario->password=Hash::make($request['password']);
+        $usuario->save();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //
+        $usuario = User::findOrFail($request->id_user);
+        $usuario->usuario=$request['usuario'];
+        $usuario->condicion=$request['codicion'];
+        $usuario->id_rol=$request['id_rol'];
+        $usuario->update();
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+ 
     public function destroy($id)
     {
         //
