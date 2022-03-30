@@ -1,14 +1,14 @@
 <template>
     <div class="col-md-12">
         <div class="m-5">
-            <h6>Categorias materiales</h6>
-            <button type="button" class="btn btn-secondary" v-on:click="activarModal('categoria','registrar')" >
-                <i class="icon-plus"></i>&nbsp;Nuevo
+            <h3>Categorias objetos</h3>
+            <button type="button" class="btn color-primario" v-on:click="activarModal('categoria','registrar')" >
+                <i class="fas fa-plus"></i> Nuevo
             </button>
         </div>
         <div class="m-5">
-            <table class="table table-hover table-dark">
-                <thead>
+            <table class="table table-hover">
+                <thead class="encabezado-tabla">
                     <tr>
                       <th scope="col">#</th>
                       <th scope="col">Nombre</th>
@@ -17,7 +17,7 @@
                        <th>Acciones</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="contenido-tabla">
                     <tr v-for="categoria in cat_objetos" :key="categoria.id_categoria_obj">
                         <td>{{categoria.id_categoria_obj}}</td>
                         <td>{{categoria.nombre}}</td>
@@ -31,12 +31,18 @@
                             </template>
                         </td>
                         <td>
-                            <button  class="btn btn-info" type="button" @click="activarModal('categoria','actualizar', categoria)">Editar</button>
+                            <button  class="btn btn-sm btn-outline-success" type="button" @click="activarModal('categoria','actualizar', categoria)">
+                                <i class="fas fa-pen"></i> Editar
+                            </button>
                             <template v-if="categoria.condicion">    
-                                <button type="button"  @click="desactivar(categoria.id_categoria_obj)" class="btn btn-danger">Desactivar</button>
+                                <button type="button"  @click="desactivar(categoria.id_categoria_obj)" class="btn btn-outline-light">
+                                    <i class="fas fa-arrow-down"></i> Desactivar
+                                </button>
                             </template>
                             <template v-else>     
-                                <button type="button" @click="activar(categoria.id_categoria_obj)" class="btn btn-success">Activar</button>     
+                                <button type="button" @click="activar(categoria.id_categoria_obj)" class="btn btn-outline-warning">
+                                   <i class="fas fa-arrow-up"></i> Activar
+                                </button>     
                             </template>
                         </td>
                     </tr>
@@ -46,12 +52,13 @@
 
         <!-- Notes Modal -->
          <div class="modal fade"  style="display: none;" id="modal_categoria" tabindex="-1" role="dialog" aria-labelledby="reminder-modal">
-        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-dialog" role="document">
           <div class="modal-content">
-            <div class="modal-header bg-secondary">
-              <h5 class="modal-title has-icon text-white" v-if="bandera==true">REGISTRAR CATEGORIA</h5>
-              <h5 class="modal-title has-icon text-white" v-if="bandera==false">ACTUALIZAR CATEGORIA</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="cerrarmodal()"><span aria-hidden="true">&times;</span>
+            <div class="modal-header color-secundario">
+              <h5 class="modal-title" v-if="bandera==true">REGISTRAR CATEGORIA</h5>
+              <h5 class="modal-title" v-if="bandera==false">ACTUALIZAR CATEGORIA</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="cerrarmodal()">
+                  <span aria-hidden="true"><i class="fas fa-times"></i></span>
               </button>
             </div>
             <form>
@@ -78,8 +85,8 @@
 
               <div class="modal-footer">
                 <button type="button" class="btn btn-light" @click="cerrarmodal()">Cerrar</button>
-                <button type="button" class="btn btn-secondary shadow-none" v-if="bandera==true" @click="registrarCategoria()" >Registrar</button>
-                 <button type="button" class="btn btn-secondary shadow-none" v-if="bandera==false" @click="actualizarCategoria()" data-dismiss="modal">Actualizar</button>
+                <button type="button" class="btn color-primario shadow-none" v-if="bandera==true" @click="registrarCategoria()" >Registrar</button>
+                 <button type="button" class="btn color-primario shadow-none" v-if="bandera==false" @click="actualizarCategoria()" data-dismiss="modal">Actualizar</button>
               </div>
             </form>
           </div>
@@ -240,12 +247,12 @@
                  let url = '/categoria_objetos/activar';
 
                 Swal.fire({
-                title: 'Quieres activar la categoria',
+                title: '¿Quieres activar la categoria?',
                 text: "",
                 icon: 'success',
                 showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
+                confirmButtonColor: '#f31809',
+                cancelButtonColor: '#6c757d',
                 confirmButtonText: 'Activar',
                 cancelButtonText: 'Cancelar'
                 }).then((result) => {
@@ -258,11 +265,12 @@
                         'id_categoria_obj' : id
                     }).then(function (json) {
                         cargar.getCategoriasObjetos();
-                        Swal.fire(
-                        'Se activo',
-                        'El articulo fue activada con exito',
-                        'success'
-                        )
+                        Swal.fire({
+                        title:'Se activó',
+                        text:"La categoria fue activada con exito",
+                        icon:'success',
+                        confirmButtonColor:'#f31809'
+                        })
                     });  
                 }
                 });
@@ -273,12 +281,12 @@
                  let url = '/categoria_objetos/desactivar';
 
                 Swal.fire({
-                title: 'Quieres desactivar la categoria',
+                title: '¿Quieres desactivar la categoria?',
                 text: "",
                 icon: 'success',
                 showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
+                confirmButtonColor: '#f31809',
+                cancelButtonColor: '#6c757d',
                 confirmButtonText: 'Desactivar',
                 cancelButtonText: 'Cancelar'
                 }).then((result) => {
@@ -291,11 +299,12 @@
                         'id_categoria_obj' : id
                     }).then(function (json) {
                         cargar.getCategoriasObjetos();
-                        Swal.fire(
-                        'Se desactivo',
-                        'la categoria fue desactivada',
-                        'success'
-                        )
+                        Swal.fire({
+                        title:"Se desactivó",
+                        text:"la categoria fue desactivada",
+                        icon:'success',
+                        confirmButtonColor:'#f31809'
+                        })
                     });  
                 }
                 });

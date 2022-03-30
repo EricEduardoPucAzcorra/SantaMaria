@@ -13,15 +13,6 @@
                 <li v-on:click="menu=0"><a href="#" class="link_name" >Inicio</a></li>
             </ul>
         </li>
-        <li v-on:click="menu=1">
-            <a href="#">
-                <i class="fas fa-user"></i>
-                <span class="link_name">Usuarios</span>
-            </a>
-            <ul class="sub-menu blank">
-                <li v-on:click="menu=1"><a href="#" class="link_name">Usuarios</a></li>
-            </ul>
-        </li>
         <li>
             <div class="icon-link">
                 <a href="">
@@ -40,6 +31,30 @@
         <li>
             <div class="icon-link">
                 <a href="">
+                    <i class="fas fa-hotel"></i>
+                    <span class="link_name">Hotel</span>
+                </a>
+                <i class="fas fa-chevron-down arrow"></i>
+            </div>
+            <ul class="sub-menu">
+                <li><a href="" class="link_name">Hotel</a></li>
+                <li v-on:click="menu=7"><a href="#">Reservar</a></li>
+                <li v-on:click="menu=8"><a href="#">Habitaciones</a></li>
+                <li v-on:click="menu=9"><a href="#">Detalles reservas</a></li>
+            </ul>
+        </li>
+        <li v-on:click="menu=1">
+            <a href="#">
+                <i class="fas fa-user"></i>
+                <span class="link_name">Usuarios</span>
+            </a>
+            <ul class="sub-menu blank">
+                <li v-on:click="menu=1"><a href="#" class="link_name">Usuarios</a></li>
+            </ul>
+        </li>
+        <li>
+            <div class="icon-link">
+                <a href="">
                     <i class="fas fa-cubes"></i>
                     <span class="link_name">Almacen</span>
                 </a>
@@ -49,21 +64,6 @@
                 <li  ><a href="#" class="link_name">Almacen</a></li>
                 <li v-on:click="menu=5"><a href="#">Objetos</a></li>
                 <li v-on:click="menu=6"><a href="#">Categorias</a></li>
-            </ul>
-        </li>
-        <li>
-            <div class="icon-link">
-                <a href="">
-                    <i class="fas fa-cubes"></i>
-                    <span class="link_name">Hotel</span>
-                </a>
-                <i class="fas fa-chevron-down arrow"></i>
-            </div>
-            <ul class="sub-menu">
-                <li><a href="" class="link_name">Almacen</a></li>
-                <li v-on:click="menu=7"><a href="#">Reservar</a></li>
-                <li v-on:click="menu=8"><a href="#">Habitaciones</a></li>
-                <li v-on:click="menu=9"><a href="#">Detalles reservas</a></li>
             </ul>
         </li>
         <li>

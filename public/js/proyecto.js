@@ -5455,6 +5455,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -5688,6 +5691,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -5811,12 +5821,12 @@ __webpack_require__.r(__webpack_exports__);
       var cargar = this;
       var url = '/categoria_objetos/activar';
       Swal.fire({
-        title: 'Quieres activar la categoria',
+        title: '¿Quieres activar la categoria?',
         text: "",
         icon: 'success',
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
+        confirmButtonColor: '#f31809',
+        cancelButtonColor: '#6c757d',
         confirmButtonText: 'Activar',
         cancelButtonText: 'Cancelar'
       }).then(function (result) {
@@ -5829,7 +5839,12 @@ __webpack_require__.r(__webpack_exports__);
             'id_categoria_obj': id
           }).then(function (json) {
             cargar.getCategoriasObjetos();
-            Swal.fire('Se activo', 'El articulo fue activada con exito', 'success');
+            Swal.fire({
+              title: 'Se activó',
+              text: "La categoria fue activada con exito",
+              icon: 'success',
+              confirmButtonColor: '#f31809'
+            });
           });
         }
       });
@@ -5840,12 +5855,12 @@ __webpack_require__.r(__webpack_exports__);
       var cargar = this;
       var url = '/categoria_objetos/desactivar';
       Swal.fire({
-        title: 'Quieres desactivar la categoria',
+        title: '¿Quieres desactivar la categoria?',
         text: "",
         icon: 'success',
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
+        confirmButtonColor: '#f31809',
+        cancelButtonColor: '#6c757d',
         confirmButtonText: 'Desactivar',
         cancelButtonText: 'Cancelar'
       }).then(function (result) {
@@ -5858,7 +5873,12 @@ __webpack_require__.r(__webpack_exports__);
             'id_categoria_obj': id
           }).then(function (json) {
             cargar.getCategoriasObjetos();
-            Swal.fire('Se desactivo', 'la categoria fue desactivada', 'success');
+            Swal.fire({
+              title: "Se desactivó",
+              text: "la categoria fue desactivada",
+              icon: 'success',
+              confirmButtonColor: '#f31809'
+            });
           });
         }
       });
@@ -5917,6 +5937,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
+//
 //
 //
 //
@@ -6410,36 +6433,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -6714,13 +6707,65 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      id: 0,
-      name: '',
-      email: '',
-      usuarios_sis: []
+      id_usuario: 0,
+      usuario: '',
+      password: '',
+      bandera: false,
+      usuarios_sis: [],
+      mostrarError: 0,
+      errormensaje: [],
+      rols: []
     };
   },
   methods: {
@@ -6729,10 +6774,112 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/get_usuarios').then(function (response) {
         _this.usuarios_sis = response.data;
+        console.log();
       })["catch"](function (e) {
         // Podemos mostrar los errores en la consola
         console.log(e);
       });
+    },
+    getRoles: function getRoles() {
+      var cap = this;
+      axios.get('/get_roles').then(function (response) {
+        var respuesta = response.data;
+        cap.rols = respuesta;
+      })["catch"](function (error) {
+        // handle error
+        console.log(error);
+      });
+    },
+    activarModal: function activarModal(modelo, accion) {
+      var data = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+
+      switch (modelo) {
+        case 'usuario':
+          {
+            switch (accion) {
+              case 'registrar':
+                {
+                  //mostrar modal
+                  $('#modal_usuario').modal('show');
+                  this.usuario = '';
+                  this.password = '';
+                  this.bandera = true;
+                  break;
+                }
+
+              case 'actualizar':
+                {
+                  $('#modal_usuario').modal('show');
+                  this.bandera = false; //         // this.id_categoria = data['id_categoria_obj'];
+                  //         // this.nombre = data['nombre'];
+                  //         // this.descripcion = data['descripcion'];
+
+                  break;
+                }
+            }
+          }
+      }
+    },
+    validarinput: function validarinput() {
+      //
+      this.mostrarError = 0;
+      this.errormensaje = []; //
+
+      if (!this.usuario) this.errormensaje.push("El nombre es requerido"); //
+
+      if (this.errormensaje.length) this.mostrarError = 1; //
+
+      return this.mostrarError;
+    },
+    cerrarmodal: function cerrarmodal() {
+      $('#modal_usuario').modal('hide');
+      this.usuario = '';
+      this.contraseña = '';
+      this.errormensaje = 0;
+    },
+    registrarUsuario: function registrarUsuario() {
+      if (this.validarinput()) {
+        return;
+      } //
+
+
+      var cargar = this;
+      var url = '/usuarios/registrar'; //
+
+      axios.post(url, {
+        'usuario': this.usuario,
+        'password': this.password,
+        'id_usuario': this.id_usuario
+      }).then(function (response) {
+        $('#modal-usuario').modal('hide'); //
+
+        cargar.mostrarUsuarios();
+      })["catch"](function (error) {
+        console.log(error);
+      });
+      this.errormensaje = 0;
+    },
+    actualizarUsuario: function actualizarUsuario() {
+      if (this.validarinput()) {
+        return;
+      } //
+
+
+      var cargar = this;
+      var url = '/usuario/actualizar'; //
+
+      axios.put(url, {
+        'usuario': this.usuario,
+        'password': this.password,
+        'id_usuario': this.id_usuario
+      }).then(function (response) {
+        $('#modal-usuario').modal('hide'); //
+
+        cargar.mostrarUsuarios();
+      })["catch"](function (error) {
+        console.log(error);
+      });
+      this.errormensaje = 0;
     }
   },
   mounted: function mounted() {
@@ -51100,7 +51247,7 @@ var render = function () {
       _c(
         "button",
         {
-          staticClass: "btn btn-secondary",
+          staticClass: "btn color-primario",
           attrs: { type: "button" },
           on: {
             click: function ($event) {
@@ -51108,16 +51255,17 @@ var render = function () {
             },
           },
         },
-        [_c("i", { staticClass: "icon-plus" }), _vm._v("Nuevo\n    ")]
+        [_c("i", { staticClass: "fas fa-plus" }), _vm._v(" Nuevo\n    ")]
       ),
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "m-5" }, [
-      _c("table", { staticClass: "table table-hover table-dark" }, [
+      _c("table", { staticClass: "table table-hover" }, [
         _vm._m(0),
         _vm._v(" "),
         _c(
           "tbody",
+          { staticClass: "contenido-tabla" },
           _vm._l(_vm.objetos_almacen, function (recurso) {
             return _c("tr", { key: recurso.id_objeto }, [
               _c("td", [_vm._v(_vm._s(recurso.id_objeto))]),
@@ -51154,7 +51302,7 @@ var render = function () {
                 _c(
                   "button",
                   {
-                    staticClass: "btn btn-info btn-sm",
+                    staticClass: "btn btn-outline-success",
                     attrs: { type: "button" },
                     on: {
                       click: function ($event) {
@@ -51166,7 +51314,10 @@ var render = function () {
                       },
                     },
                   },
-                  [_vm._v("Editar")]
+                  [
+                    _c("i", { staticClass: "fas fa-pen" }),
+                    _vm._v(" Editar\n            "),
+                  ]
                 ),
               ]),
             ])
@@ -51197,21 +51348,17 @@ var render = function () {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _c("div", { staticClass: "modal-header bg-secondary" }, [
+              _c("div", { staticClass: "modal-header color-secundario" }, [
                 _vm.bandera == true
-                  ? _c(
-                      "h5",
-                      { staticClass: "modal-title has-icon text-white" },
-                      [_vm._v("REGISTRAR RECURSO")]
-                    )
+                  ? _c("h5", { staticClass: "modal-title" }, [
+                      _vm._v("REGISTRAR RECURSO"),
+                    ])
                   : _vm._e(),
                 _vm._v(" "),
                 _vm.bandera == false
-                  ? _c(
-                      "h5",
-                      { staticClass: "modal-title has-icon text-white" },
-                      [_vm._v("ACTUALIZAR RECURSO")]
-                    )
+                  ? _c("h5", { staticClass: "modal-title" }, [
+                      _vm._v("ACTUALIZAR RECURSO"),
+                    ])
                   : _vm._e(),
                 _vm._v(" "),
                 _c(
@@ -51229,11 +51376,7 @@ var render = function () {
                       },
                     },
                   },
-                  [
-                    _c("span", { attrs: { "aria-hidden": "true" } }, [
-                      _vm._v("×"),
-                    ]),
-                  ]
+                  [_vm._m(1)]
                 ),
               ]),
               _vm._v(" "),
@@ -51395,7 +51538,7 @@ var render = function () {
                     ? _c(
                         "button",
                         {
-                          staticClass: "btn btn-secondary shadow-none",
+                          staticClass: "btn color-primario shadow-none",
                           attrs: { type: "button" },
                           on: {
                             click: function ($event) {
@@ -51411,7 +51554,7 @@ var render = function () {
                     ? _c(
                         "button",
                         {
-                          staticClass: "btn btn-secondary shadow-none",
+                          staticClass: "btn color-primario shadow-none",
                           attrs: { type: "button", "data-dismiss": "modal" },
                           on: {
                             click: function ($event) {
@@ -51436,7 +51579,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("thead", [
+    return _c("thead", { staticClass: "encabezado-tabla" }, [
       _c("tr", [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
         _vm._v(" "),
@@ -51454,6 +51597,14 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Acciones")]),
       ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { attrs: { "aria-hidden": "true" } }, [
+      _c("i", { staticClass: "fas fa-times" }),
     ])
   },
 ]
@@ -51481,12 +51632,12 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "col-md-12" }, [
     _c("div", { staticClass: "m-5" }, [
-      _c("h6", [_vm._v("Categorias materiales")]),
+      _c("h3", [_vm._v("Categorias objetos")]),
       _vm._v(" "),
       _c(
         "button",
         {
-          staticClass: "btn btn-secondary",
+          staticClass: "btn color-primario",
           attrs: { type: "button" },
           on: {
             click: function ($event) {
@@ -51494,16 +51645,17 @@ var render = function () {
             },
           },
         },
-        [_c("i", { staticClass: "icon-plus" }), _vm._v(" Nuevo\n        ")]
+        [_c("i", { staticClass: "fas fa-plus" }), _vm._v(" Nuevo\n        ")]
       ),
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "m-5" }, [
-      _c("table", { staticClass: "table table-hover table-dark" }, [
+      _c("table", { staticClass: "table table-hover" }, [
         _vm._m(0),
         _vm._v(" "),
         _c(
           "tbody",
+          { staticClass: "contenido-tabla" },
           _vm._l(_vm.cat_objetos, function (categoria) {
             return _c("tr", { key: categoria.id_categoria_obj }, [
               _c("td", [_vm._v(_vm._s(categoria.id_categoria_obj))]),
@@ -51536,7 +51688,7 @@ var render = function () {
                   _c(
                     "button",
                     {
-                      staticClass: "btn btn-info",
+                      staticClass: "btn btn-sm btn-outline-success",
                       attrs: { type: "button" },
                       on: {
                         click: function ($event) {
@@ -51548,7 +51700,10 @@ var render = function () {
                         },
                       },
                     },
-                    [_vm._v("Editar")]
+                    [
+                      _c("i", { staticClass: "fas fa-pen" }),
+                      _vm._v(" Editar\n                        "),
+                    ]
                   ),
                   _vm._v(" "),
                   categoria.condicion
@@ -51556,7 +51711,7 @@ var render = function () {
                         _c(
                           "button",
                           {
-                            staticClass: "btn btn-danger",
+                            staticClass: "btn btn-outline-light",
                             attrs: { type: "button" },
                             on: {
                               click: function ($event) {
@@ -51566,14 +51721,17 @@ var render = function () {
                               },
                             },
                           },
-                          [_vm._v("Desactivar")]
+                          [
+                            _c("i", { staticClass: "fas fa-arrow-down" }),
+                            _vm._v(" Desactivar\n                            "),
+                          ]
                         ),
                       ]
                     : [
                         _c(
                           "button",
                           {
-                            staticClass: "btn btn-success",
+                            staticClass: "btn btn-outline-warning",
                             attrs: { type: "button" },
                             on: {
                               click: function ($event) {
@@ -51581,7 +51739,10 @@ var render = function () {
                               },
                             },
                           },
-                          [_vm._v("Activar")]
+                          [
+                            _c("i", { staticClass: "fas fa-arrow-up" }),
+                            _vm._v(" Activar\n                            "),
+                          ]
                         ),
                       ],
                 ],
@@ -51609,27 +51770,20 @@ var render = function () {
       [
         _c(
           "div",
-          {
-            staticClass: "modal-dialog modal-dialog-centered",
-            attrs: { role: "document" },
-          },
+          { staticClass: "modal-dialog", attrs: { role: "document" } },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _c("div", { staticClass: "modal-header bg-secondary" }, [
+              _c("div", { staticClass: "modal-header color-secundario" }, [
                 _vm.bandera == true
-                  ? _c(
-                      "h5",
-                      { staticClass: "modal-title has-icon text-white" },
-                      [_vm._v("REGISTRAR CATEGORIA")]
-                    )
+                  ? _c("h5", { staticClass: "modal-title" }, [
+                      _vm._v("REGISTRAR CATEGORIA"),
+                    ])
                   : _vm._e(),
                 _vm._v(" "),
                 _vm.bandera == false
-                  ? _c(
-                      "h5",
-                      { staticClass: "modal-title has-icon text-white" },
-                      [_vm._v("ACTUALIZAR CATEGORIA")]
-                    )
+                  ? _c("h5", { staticClass: "modal-title" }, [
+                      _vm._v("ACTUALIZAR CATEGORIA"),
+                    ])
                   : _vm._e(),
                 _vm._v(" "),
                 _c(
@@ -51647,11 +51801,7 @@ var render = function () {
                       },
                     },
                   },
-                  [
-                    _c("span", { attrs: { "aria-hidden": "true" } }, [
-                      _vm._v("×"),
-                    ]),
-                  ]
+                  [_vm._m(1)]
                 ),
               ]),
               _vm._v(" "),
@@ -51764,7 +51914,7 @@ var render = function () {
                     ? _c(
                         "button",
                         {
-                          staticClass: "btn btn-secondary shadow-none",
+                          staticClass: "btn color-primario shadow-none",
                           attrs: { type: "button" },
                           on: {
                             click: function ($event) {
@@ -51780,7 +51930,7 @@ var render = function () {
                     ? _c(
                         "button",
                         {
-                          staticClass: "btn btn-secondary shadow-none",
+                          staticClass: "btn color-primario shadow-none",
                           attrs: { type: "button", "data-dismiss": "modal" },
                           on: {
                             click: function ($event) {
@@ -51805,7 +51955,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("thead", [
+    return _c("thead", { staticClass: "encabezado-tabla" }, [
       _c("tr", [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
         _vm._v(" "),
@@ -51817,6 +51967,14 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Acciones")]),
       ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { attrs: { "aria-hidden": "true" } }, [
+      _c("i", { staticClass: "fas fa-times" }),
     ])
   },
 ]
@@ -51892,12 +52050,12 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "col-md-12" }, [
     _c("div", { staticClass: "m-5" }, [
-      _c("h6", [_vm._v("Habitaciones")]),
+      _c("h3", [_vm._v("Habitaciones")]),
       _vm._v(" "),
       _c(
         "button",
         {
-          staticClass: "btn btn-secondary",
+          staticClass: "btn color-primario",
           attrs: { type: "button" },
           on: {
             click: function ($event) {
@@ -51905,16 +52063,17 @@ var render = function () {
             },
           },
         },
-        [_c("i", { staticClass: "icon-plus" }), _vm._v(" Nuevo\n        ")]
+        [_c("i", { staticClass: "fas fa-plus" }), _vm._v(" Nuevo\n        ")]
       ),
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "m-5" }, [
-      _c("table", { staticClass: "table table-hover table-dark" }, [
+      _c("table", { staticClass: "table table-hover" }, [
         _vm._m(0),
         _vm._v(" "),
         _c(
           "tbody",
+          { staticClass: "contenido-tabla" },
           _vm._l(_vm.habitaciones, function (habitacion) {
             return _c("tr", { key: habitacion.id_habitacion }, [
               _c("td", [_vm._v(_vm._s(habitacion.id_habitacion))]),
@@ -51939,7 +52098,7 @@ var render = function () {
                 _c(
                   "button",
                   {
-                    staticClass: "btn btn-info btn-sm",
+                    staticClass: "btn btn-outline-success",
                     on: {
                       click: function ($event) {
                         return _vm.activarModal(
@@ -51950,7 +52109,10 @@ var render = function () {
                       },
                     },
                   },
-                  [_vm._v("Actualizar")]
+                  [
+                    _c("i", { staticClass: "fas fa-pen" }),
+                    _vm._v(" Editar\n                        "),
+                  ]
                 ),
               ]),
             ])
@@ -51981,21 +52143,17 @@ var render = function () {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _c("div", { staticClass: "modal-header bg-secondary" }, [
+              _c("div", { staticClass: "modal-header color-secundario" }, [
                 _vm.bandera == true
-                  ? _c(
-                      "h5",
-                      { staticClass: "modal-title has-icon text-white" },
-                      [_vm._v("Nueva habitacion")]
-                    )
+                  ? _c("h5", { staticClass: "modal-title" }, [
+                      _vm._v("Nueva habitacion"),
+                    ])
                   : _vm._e(),
                 _vm._v(" "),
                 _vm.bandera == false
-                  ? _c(
-                      "h5",
-                      { staticClass: "modal-title has-icon text-white" },
-                      [_vm._v("Detalles y actualziacion")]
-                    )
+                  ? _c("h5", { staticClass: "modal-title" }, [
+                      _vm._v("Detalles y actualziacion"),
+                    ])
                   : _vm._e(),
                 _vm._v(" "),
                 _c(
@@ -52013,11 +52171,7 @@ var render = function () {
                       },
                     },
                   },
-                  [
-                    _c("span", { attrs: { "aria-hidden": "true" } }, [
-                      _vm._v("×"),
-                    ]),
-                  ]
+                  [_vm._m(1)]
                 ),
               ]),
               _vm._v(" "),
@@ -52341,7 +52495,7 @@ var render = function () {
                     ? _c(
                         "button",
                         {
-                          staticClass: "btn btn-secondary shadow-none",
+                          staticClass: "btn color-primario",
                           attrs: { type: "button" },
                           on: {
                             click: function ($event) {
@@ -52357,7 +52511,7 @@ var render = function () {
                     ? _c(
                         "button",
                         {
-                          staticClass: "btn btn-secondary shadow-none",
+                          staticClass: "btn color-primario",
                           attrs: { type: "button", "data-dismiss": "modal" },
                           on: {
                             click: function ($event) {
@@ -52382,7 +52536,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("thead", [
+    return _c("thead", { staticClass: "encabezado-tabla" }, [
       _c("tr", [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
         _vm._v(" "),
@@ -52404,6 +52558,14 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Acciones")]),
       ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { attrs: { "aria-hidden": "true" } }, [
+      _c("i", { staticClass: "fas fa-times" }),
     ])
   },
 ]
@@ -52434,7 +52596,7 @@ var render = function () {
     _vm._v(" "),
     _c(
       "div",
-      { staticClass: "row" },
+      { staticClass: "row m-5" },
       _vm._l(_vm.habitaciones, function (habitacion) {
         return _c(
           "div",
@@ -52451,8 +52613,7 @@ var render = function () {
                       "Habitacion " +
                         _vm._s(habitacion.num_habitacion) +
                         " " +
-                        _vm._s(habitacion.tipo_habitaciones.tipo) +
-                        "  "
+                        _vm._s(habitacion.tipo_habitaciones.tipo)
                     ),
                   ]),
                   _vm._v(" "),
@@ -52509,7 +52670,7 @@ var render = function () {
                     _c(
                       "button",
                       {
-                        staticClass: "btn grid-btn mt-0 btn-sm btn-primary",
+                        staticClass: "btn grid-btn mt-0 btn-sm btn-info",
                         attrs: { type: "button" },
                       },
                       [_vm._v("Detalles")]
@@ -52520,7 +52681,8 @@ var render = function () {
                           _c(
                             "button",
                             {
-                              staticClass: "btn grid-btn mt-0 btn-sm btn-info",
+                              staticClass:
+                                "btn grid-btn mt-0 btn-sm color-primario",
                               attrs: { type: "button" },
                               on: {
                                 click: function ($event) {
@@ -52532,7 +52694,11 @@ var render = function () {
                                 },
                               },
                             },
-                            [_vm._v("Reservar")]
+                            [
+                              _vm._v(
+                                "\n                Reservar\n              "
+                              ),
+                            ]
                           ),
                         ]
                       : habitacion.estado == "OCUPADO"
@@ -52570,7 +52736,7 @@ var render = function () {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _c("div", { staticClass: "modal-header bg-secondary" }, [
+              _c("div", { staticClass: "modal-header color-secundario" }, [
                 _c("h5", { staticClass: "modal-title has-icon text-white" }, [
                   _vm._v("Reservar la habitacion"),
                 ]),
@@ -52590,7 +52756,7 @@ var render = function () {
                       },
                     },
                   },
-                  [_vm._v("x\n            ")]
+                  [_c("i", { staticClass: "fas fa-times" })]
                 ),
               ]),
               _vm._v(" "),
@@ -53062,7 +53228,7 @@ var render = function () {
                   _c(
                     "button",
                     {
-                      staticClass: "btn btn-secondary shadow-none",
+                      staticClass: "btn color-primario shadow-none",
                       attrs: { type: "button" },
                       on: {
                         click: function ($event) {
@@ -53086,8 +53252,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "ms-panel-header" }, [
-      _c("h6", [_vm._v("Realizar reservas\n           ")]),
+    return _c("div", { staticClass: "m-5" }, [
+      _c("h3", [_vm._v("Realizar reservación")]),
     ])
   },
 ]
@@ -53114,27 +53280,226 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "col-md-12" }, [
-    _vm._m(0),
+    _c("div", { staticClass: "m-5" }, [
+      _c("h3", [_vm._v("Usuarios")]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn color-primario",
+          attrs: { type: "button" },
+          on: {
+            click: function ($event) {
+              return _vm.activarModal("usuario", "registrar")
+            },
+          },
+        },
+        [_c("i", { staticClass: "fas fa-plus" }), _vm._v(" Nuevo\n        ")]
+      ),
+    ]),
     _vm._v(" "),
     _c("div", { staticClass: "m-5" }, [
-      _c("table", { staticClass: "table table-hover table-dark" }, [
-        _vm._m(1),
+      _c("table", { staticClass: "table table-hover" }, [
+        _vm._m(0),
         _vm._v(" "),
         _c(
           "tbody",
+          { staticClass: "contenido-tabla" },
           _vm._l(_vm.usuarios_sis, function (usuario) {
-            return _c("tr", { key: usuario.id }, [
+            return _c("tr", { key: usuario.id_usuario }, [
               _c("td", [_vm._v(_vm._s(usuario.id_usuario))]),
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(usuario.usuario))]),
               _vm._v(" "),
-              _c("td"),
+              _c("td", [_vm._v(_vm._s(usuario.rol.nombre))]),
+              _vm._v(" "),
+              _vm._m(1, true),
             ])
           }),
           0
         ),
       ]),
     ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        staticStyle: { display: "none" },
+        attrs: {
+          id: "modal_usuario",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "reminder-modal",
+        },
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal-dialog modal-centered",
+            attrs: { role: "document" },
+          },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _c("div", { staticClass: "modal-header color-secundario" }, [
+                _vm.bandera == true
+                  ? _c("h5", { staticClass: "modal-title" }, [
+                      _vm._v("REGISTRAR USUARIO"),
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.bandera == false
+                  ? _c("h5", { staticClass: "modal-title" }, [
+                      _vm._v("ACTUALIZAR USUARIO"),
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "close",
+                    attrs: {
+                      type: "button",
+                      "data-dismiss": "modal",
+                      "aria-label": "Close",
+                    },
+                    on: {
+                      click: function ($event) {
+                        return _vm.cerrarmodal()
+                      },
+                    },
+                  },
+                  [_vm._m(2)]
+                ),
+              ]),
+              _vm._v(" "),
+              _c("form", [
+                _c("div", { staticClass: "modal-body" }, [
+                  _c("div", { staticClass: "ms-form-group" }, [
+                    _c("label", [_vm._v("Usuario")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.usuario,
+                          expression: "usuario",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "text", placeholder: "Nombre de usuario" },
+                      domProps: { value: _vm.usuario },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.usuario = $event.target.value
+                        },
+                      },
+                    }),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "ms-form-group" }, [
+                    _c("label", [_vm._v("Contraseña")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.password,
+                          expression: "password",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "password", placeholder: "" },
+                      domProps: { value: _vm.password },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.password = $event.target.value
+                        },
+                      },
+                    }),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.mostrarError,
+                        expression: "mostrarError",
+                      },
+                    ],
+                    staticClass: "form-group row div-error",
+                  },
+                  [
+                    _c(
+                      "div",
+                      { staticClass: "text-center text-error" },
+                      _vm._l(_vm.errormensaje, function (error) {
+                        return _c("div", {
+                          key: error,
+                          domProps: { textContent: _vm._s(error) },
+                        })
+                      }),
+                      0
+                    ),
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "modal-footer" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-light",
+                      attrs: { type: "button" },
+                      on: {
+                        click: function ($event) {
+                          return _vm.cerrarmodal()
+                        },
+                      },
+                    },
+                    [_vm._v("Cerrar")]
+                  ),
+                  _vm._v(" "),
+                  _vm.bandera == true
+                    ? _c(
+                        "button",
+                        {
+                          staticClass: "btn color-primario shadow-none",
+                          attrs: { type: "button" },
+                        },
+                        [_vm._v("Registrar")]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.bandera == false
+                    ? _c(
+                        "button",
+                        {
+                          staticClass: "btn color-primario shadow-none",
+                          attrs: { type: "button", "data-dismiss": "modal" },
+                        },
+                        [_vm._v("Actualizar")]
+                      )
+                    : _vm._e(),
+                ]),
+              ]),
+            ]),
+          ]
+        ),
+      ]
+    ),
   ])
 }
 var staticRenderFns = [
@@ -53142,28 +53507,40 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "m-5" }, [
-      _c("h3", [_vm._v("Usuarios")]),
-      _vm._v(" "),
-      _c(
-        "button",
-        { staticClass: "btn btn-secondary", attrs: { type: "button" } },
-        [_c("i", { staticClass: "icon-plus" }), _vm._v("Nuevo\n        ")]
-      ),
+    return _c("thead", { staticClass: "encabezado-tabla" }, [
+      _c("tr", [
+        _c("th", [_vm._v("ID")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Usuario")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Rol")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Acciones")]),
+      ]),
     ])
   },
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", [_vm._v("ID")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Nombre")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Acciones")]),
+    return _c("td", { staticClass: "col-5" }, [
+      _c("button", { staticClass: "btn btn-outline-info btn-sm" }, [
+        _c("i", { staticClass: "fas fa-eye" }),
+        _vm._v(" Ver\n                        "),
       ]),
+      _vm._v(" "),
+      _c("button", { staticClass: "btn btn-outline-success btn-sm" }, [
+        _c("i", { staticClass: "fas fa-pen" }),
+        _vm._v(" Editar\n                        "),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { attrs: { "aria-hidden": "true" } }, [
+      _c("i", { staticClass: "fas fa-times" }),
     ])
   },
 ]

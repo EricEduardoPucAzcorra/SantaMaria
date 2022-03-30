@@ -51,6 +51,9 @@ Route::middleware(['auth'])->group(function () {
     //Apis-enrutamiento de usuario
     Route::get('/usuarios',[App\Http\Controllers\UsuarioController::class,'index']);
     Route::get('/get_usuarios',[App\Http\Controllers\UsuarioController::class,'traerUsuarios']);
+    Route::get('/get_roles',[App\Http\Controllers\RolController::class,'mostrarRoles']);
+    Route::post('/usuarios/registrar', [App\Http\Controllers\UsuarioAlmacenController::class, 'store']);
+    Route::put('/usuario/actualizar', [App\Http\Controllers\UsuarioAlmacenController::class, 'update']);
     //fin de enrutamiento de usuario
     //ruta cerrar session
     Route::post('/salir', [App\Http\Controllers\Auth\LoginController::class, 'salir'])->name('salir');
