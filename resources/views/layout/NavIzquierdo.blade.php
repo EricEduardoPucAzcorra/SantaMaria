@@ -23,9 +23,13 @@
             </div>
             <ul class="sub-menu">
                 <li ><a href="" class="link_name">Restaurante</a></li>
+                {{-- en este espaciado se inserta las mesas, por lo tanto se le asignara la id 10 --}}
+                <li  v-on:click="menu=10"><a href="#">Mesas</a></li>
+                <li  v-on:click="menu=2"><a href="#">Categorias</a></li>
                 <li  v-on:click="menu=2"><a href="#">Categorias</a></li>
                 <li  v-on:click="menu=3"><a href="">Productos</a></li>
                 <li  v-on:click="menu=4"><a href="">Comandas historial</a></li>
+
             </ul>
         </li>
         <li>

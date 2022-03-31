@@ -1,1 +1,1 @@
-Detalles de la comanda
+<historialcomanda-component></historialcomanda-component>

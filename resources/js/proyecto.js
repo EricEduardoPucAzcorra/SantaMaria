@@ -12,6 +12,7 @@
  Vue.component('usuarios-component',require('./components/Usuario/Usuarios.vue').default);
  Vue.component('mesa-component', require('./components/Mesa/Mesa.vue').default);
  Vue.component('comanda-component', require('./components/Restaurante/Comanda.vue').default);
+ Vue.component('historialcomanda-component', require('./components/Restaurante/HistorialComanda.vue').default);
 
 
  //codigo vue js

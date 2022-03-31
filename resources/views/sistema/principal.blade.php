@@ -48,6 +48,10 @@
 		@include('sistema.admin.hotel.reservaciones.detalle_reservas')
 	</template>
 
+	<template v-if="menu==10">
+		@include('sistema.admin.restaurante.mesas.mesas')
+	</template>
+
 	  {{-- autenticado como Recepcionista--}}
     @elseif(Auth::user()->id_rol==2)
 
@@ -69,6 +73,7 @@
 	<template v-if="menu==1">
 		@include('SistemaComanda.comandas.comandas')
 	</template>
+
 	 
 	 {{-- autenticado como Cocina--}}
 	 @elseif(Auth::user()->id_rol==4)   

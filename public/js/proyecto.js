@@ -6796,32 +6796,252 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      hola: 'hola mundo',
-      mesas: []
+      id_mesa: 0,
+      prueba: 'hola mundo cruel',
+      mesas: [],
+      num_mesa: '',
+      estado: '',
+      bandera: false,
+      selec_selects: [],
+      mostrarError: 0,
+      errormensaje: []
     };
   },
   computed: {},
   methods: {
-    getMesas: function getMesas() {
-      var i = this;
-      var url = '/mesas';
-      axios.get(url).then(function (response) {
-        //console.log(response);
-        i.mesas = response.data;
+    getmesasObjetos: function getmesasObjetos() {
+      var cap = this;
+      axios.get('/getmesas').then(function (response) {
+        var respuesta = response.data;
+        cap.mesas = respuesta;
       })["catch"](function (error) {
+        // handle error
         console.log(error);
       });
     },
-    mensaje: function mensaje() {
-      alert('Bienvenido');
+    activarModal: function activarModal(modelo, accion) {
+      var data = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+
+      switch (modelo) {
+        case 'mesa':
+          {
+            switch (accion) {
+              case 'registrar':
+                {
+                  //mostrar modal
+                  $('#modal_mesa').modal('show');
+                  this.num_mesa = '';
+                  this.estado = '';
+                  this.bandera = true;
+                  break;
+                }
+
+              case 'actualizar':
+                {
+                  $('#modal_mesa').modal('show');
+                  this.bandera = false;
+                  this.id_mesa = data['id_mesa'];
+                  this.num_mesa = data['num_mesa'];
+                  this.estado = data['estado'];
+                  break;
+                }
+            }
+          }
+      }
+    },
+    validarinput: function validarinput() {
+      //iniciañlizo variables
+      this.mostrarError = 0;
+      this.errormensaje = []; //analixo o pcmprbo si tiene valor el campo nombre
+
+      if (!this.num_mesa) this.errormensaje.push("El numero de mesa es requerido"); //muestro error
+
+      if (this.errormensaje.length) this.mostrarError = 1; //retorno el rror 
+
+      return this.mostrarError;
+    },
+    cerrarmodal: function cerrarmodal() {
+      $('#modal_mesa').modal('hide');
+      this.num_mesa = '';
+      this.estado = '';
+      this.errormensaje = 0;
+    },
+    registrarmesa: function registrarmesa() {
+      if (this.validarinput()) {
+        return;
+      }
+
+      var cargar = this;
+      var url = '/mesa/registrar';
+      axios.post(url, {
+        'num_mesa': this.nombre,
+        'estado': this.estado
+      }).then(function (response) {
+        //c3rra modal
+        $('#modal_mesa').modal('hide'); //actualizatabla
+
+        cargar.getmesasObjetos();
+      })["catch"](function (error) {
+        // handle error
+        console.log(error);
+      });
+      this.errormensaje = 0;
+    },
+    actualizarmesa: function actualizarmesa() {
+      if (this.validarinput()) {
+        return;
+      }
+
+      var cargar = this;
+      var url = '/mesa/actualizar';
+      axios.put(url, {
+        'num_mesa': this.num_mesa,
+        'estado': this.estado,
+        'id_mesa': this.id_mesa
+      }).then(function (response) {
+        //c3rra modal
+        $('#modal_mesa').modal('hide'); //actualizatabla
+
+        cargar.getmesasObjetos();
+      })["catch"](function (error) {
+        // handle error
+        console.log(error);
+      });
+      this.errormensaje = 0;
+    },
+    activar: function activar(id) {
+      var _this = this;
+
+      var cargar = this;
+      var url = '/mesa/activar';
+      Swal.fire({
+        title: 'Quieres activar la mesa',
+        text: "",
+        icon: 'success',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Activar',
+        cancelButtonText: 'Cancelar'
+      }).then(function (result) {
+        if (result.isConfirmed) {
+          var me = _this;
+          var estado = 1; //realizo peticion
+
+          axios.put('/mesaetos/activar', {
+            'condicion': estado,
+            'id_mesa': id
+          }).then(function (json) {
+            cargar.getmesasObjetos();
+            Swal.fire('Se activo', 'El articulo fue activada con exito', 'success');
+          });
+        }
+      });
+    },
+    desactivar: function desactivar(id) {
+      var _this2 = this;
+
+      var cargar = this;
+      var url = '/mesaetos/desactivar';
+      Swal.fire({
+        title: 'Quieres desactivar la mesa',
+        text: "",
+        icon: 'success',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Desactivar',
+        cancelButtonText: 'Cancelar'
+      }).then(function (result) {
+        if (result.isConfirmed) {
+          var me = _this2;
+          var estado = 0; //realizo peticion
+
+          axios.put('/mesaetos/desactivar', {
+            'condicion': estado,
+            'id_mesa': id
+          }).then(function (json) {
+            cargar.getmesasObjetos();
+            Swal.fire('Se desactivo', 'la mesa fue desactivada', 'success');
+          });
+        }
+      });
     }
   },
   mounted: function mounted() {
-    this.getMesas();
-    console.log('Component mounted.');
+    this.getmesasObjetos();
   }
 });
 
@@ -7160,6 +7380,88 @@ __webpack_require__.r(__webpack_exports__);
     this.todosProductos();
     this.getMesas();
     console.log('Component mounted.');
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Restaurante/HistorialComanda.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Restaurante/HistorialComanda.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      id_mesa: 0,
+      prueba: 'hola mundo cruel',
+      mesas: [],
+      detalles: [],
+      bandera: false,
+      selec_selects: [],
+      mostrarError: 0,
+      errormensaje: []
+    };
+  },
+  computed: {},
+  methods: {
+    getDetallesComanda: function getDetallesComanda() {
+      var cap = this;
+      axios.get('/detalles_comandas').then(function (response) {
+        var respuesta = response.data;
+        cap.detalles = respuesta;
+      })["catch"](function (error) {
+        // handle error
+        console.log(error);
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.getDetallesComanda();
   }
 });
 
@@ -51562,6 +51864,45 @@ component.options.__file = "resources/js/components/Restaurante/Comanda.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/Restaurante/HistorialComanda.vue":
+/*!******************************************************************!*\
+  !*** ./resources/js/components/Restaurante/HistorialComanda.vue ***!
+  \******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _HistorialComanda_vue_vue_type_template_id_3549c6ae___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./HistorialComanda.vue?vue&type=template&id=3549c6ae& */ "./resources/js/components/Restaurante/HistorialComanda.vue?vue&type=template&id=3549c6ae&");
+/* harmony import */ var _HistorialComanda_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./HistorialComanda.vue?vue&type=script&lang=js& */ "./resources/js/components/Restaurante/HistorialComanda.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _HistorialComanda_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _HistorialComanda_vue_vue_type_template_id_3549c6ae___WEBPACK_IMPORTED_MODULE_0__.render,
+  _HistorialComanda_vue_vue_type_template_id_3549c6ae___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Restaurante/HistorialComanda.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/Usuario/Usuarios.vue":
 /*!******************************************************!*\
   !*** ./resources/js/components/Usuario/Usuarios.vue ***!
@@ -51713,6 +52054,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Restaurante/HistorialComanda.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************!*\
+  !*** ./resources/js/components/Restaurante/HistorialComanda.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_HistorialComanda_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./HistorialComanda.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Restaurante/HistorialComanda.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_HistorialComanda_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/components/Usuario/Usuarios.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************!*\
   !*** ./resources/js/components/Usuario/Usuarios.vue?vue&type=script&lang=js& ***!
@@ -51844,6 +52201,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Comanda_vue_vue_type_template_id_7dc0ffe9___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Comanda_vue_vue_type_template_id_7dc0ffe9___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Comanda.vue?vue&type=template&id=7dc0ffe9& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Restaurante/Comanda.vue?vue&type=template&id=7dc0ffe9&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Restaurante/HistorialComanda.vue?vue&type=template&id=3549c6ae&":
+/*!*************************************************************************************************!*\
+  !*** ./resources/js/components/Restaurante/HistorialComanda.vue?vue&type=template&id=3549c6ae& ***!
+  \*************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_HistorialComanda_vue_vue_type_template_id_3549c6ae___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_HistorialComanda_vue_vue_type_template_id_3549c6ae___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_HistorialComanda_vue_vue_type_template_id_3549c6ae___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./HistorialComanda.vue?vue&type=template&id=3549c6ae& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Restaurante/HistorialComanda.vue?vue&type=template&id=3549c6ae&");
 
 
 /***/ }),
@@ -54151,38 +54525,295 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "row justify-content-center" }, [
-      _c("div", { staticClass: "col-md-8" }, [
-        _c("div", { staticClass: "card" }, [
-          _c("div", { staticClass: "card-header" }, [
-            _vm._v("Example Component"),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "card-body" }, [
-            _vm._v(
-              "\n                        " +
-                _vm._s(_vm.mesas) +
-                "\n\n                        "
-            ),
-            _c(
-              "button",
-              {
-                on: {
-                  click: function ($event) {
-                    return _vm.mensaje()
+  return _c("div", { staticClass: "col-md-12" }, [
+    _c("div", { staticClass: "m-5" }, [
+      _c("h6", [_vm._v("Mesas")]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-secondary",
+          attrs: { type: "button" },
+          on: {
+            click: function ($event) {
+              return _vm.activarModal("mesa", "registrar")
+            },
+          },
+        },
+        [_c("i", { staticClass: "icon-plus" }), _vm._v(" Nuevo\n        ")]
+      ),
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "m-5" }, [
+      _c("table", { staticClass: "table table-hover table-dark" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "tbody",
+          _vm._l(_vm.mesas, function (mesa) {
+            return _c("tr", { key: mesa.id_mesa }, [
+              _c("td", [_vm._v(_vm._s(mesa.id_mesa))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(mesa.num_mesa))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(mesa.estado))]),
+              _vm._v(" "),
+              _c("td", [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-info",
+                    attrs: { type: "button" },
+                    on: {
+                      click: function ($event) {
+                        return _vm.activarModal("mesa", "actualizar", mesa)
+                      },
+                    },
                   },
-                },
-              },
-              [_vm._v("Mensaje")]
-            ),
-          ]),
-        ]),
+                  [_vm._v("Editar")]
+                ),
+              ]),
+            ])
+          }),
+          0
+        ),
       ]),
     ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        staticStyle: { display: "none" },
+        attrs: {
+          id: "modal_mesa",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "reminder-modal",
+        },
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal-dialog modal-dialog-centered",
+            attrs: { role: "document" },
+          },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _c("div", { staticClass: "modal-header bg-secondary" }, [
+                _vm.bandera == true
+                  ? _c(
+                      "h5",
+                      { staticClass: "modal-title has-icon text-white" },
+                      [_vm._v("REGISTRAR mesa")]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.bandera == false
+                  ? _c(
+                      "h5",
+                      { staticClass: "modal-title has-icon text-white" },
+                      [_vm._v("ACTUALIZAR mesa")]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "close",
+                    attrs: {
+                      type: "button",
+                      "data-dismiss": "modal",
+                      "aria-label": "Close",
+                    },
+                    on: {
+                      click: function ($event) {
+                        return _vm.cerrarmodal()
+                      },
+                    },
+                  },
+                  [
+                    _c("span", { attrs: { "aria-hidden": "true" } }, [
+                      _vm._v("×"),
+                    ]),
+                  ]
+                ),
+              ]),
+              _vm._v(" "),
+              _c("form", [
+                _c("div", { staticClass: "modal-body" }, [
+                  _c("div", { staticClass: "ms-form-group" }, [
+                    _c("label", [_vm._v("Mesa")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.num_mesa,
+                          expression: "num_mesa",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "text", placeholder: "Numero de Mesa" },
+                      domProps: { value: _vm.num_mesa },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.num_mesa = $event.target.value
+                        },
+                      },
+                    }),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "ms-form-group" }, [
+                    _c("label", [_vm._v("Estado")]),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.estado,
+                            expression: "estado",
+                          },
+                        ],
+                        staticClass: "form-control",
+                        on: {
+                          change: function ($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function (o) {
+                                return o.selected
+                              })
+                              .map(function (o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.estado = $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          },
+                        },
+                      },
+                      [
+                        _c("option", { attrs: { value: "DISPONIBLE" } }, [
+                          _vm._v("DISPONIBLE"),
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "NO DISPONIBLE" } }, [
+                          _vm._v("NO DISPONIBLE"),
+                        ]),
+                      ]
+                    ),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.mostrarError,
+                          expression: "mostrarError",
+                        },
+                      ],
+                      staticClass: "form-group row div-error",
+                    },
+                    [
+                      _c(
+                        "div",
+                        { staticClass: "text-center text-error" },
+                        _vm._l(_vm.errormensaje, function (error) {
+                          return _c("div", {
+                            key: error,
+                            domProps: { textContent: _vm._s(error) },
+                          })
+                        }),
+                        0
+                      ),
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "modal-footer" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-light",
+                        attrs: { type: "button" },
+                        on: {
+                          click: function ($event) {
+                            return _vm.cerrarmodal()
+                          },
+                        },
+                      },
+                      [_vm._v("Cerrar")]
+                    ),
+                    _vm._v(" "),
+                    _vm.bandera == true
+                      ? _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-secondary shadow-none",
+                            attrs: { type: "button" },
+                            on: {
+                              click: function ($event) {
+                                return _vm.registrarmesa()
+                              },
+                            },
+                          },
+                          [_vm._v("Registrar")]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.bandera == false
+                      ? _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-secondary shadow-none",
+                            attrs: { type: "button", "data-dismiss": "modal" },
+                            on: {
+                              click: function ($event) {
+                                return _vm.actualizarmesa()
+                              },
+                            },
+                          },
+                          [_vm._v("Actualizar")]
+                        )
+                      : _vm._e(),
+                  ]),
+                ]),
+              ]),
+            ]),
+          ]
+        ),
+      ]
+    ),
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Numero de Mesa")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Estado")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Acciones")]),
+      ]),
+    ])
+  },
+]
 render._withStripped = true
 
 
@@ -54634,6 +55265,96 @@ var staticRenderFns = [
       _c("th", [_vm._v("Cantidad")]),
       _vm._v(" "),
       _c("th", [_vm._v("Opciones")]),
+    ])
+  },
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Restaurante/HistorialComanda.vue?vue&type=template&id=3549c6ae&":
+/*!****************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Restaurante/HistorialComanda.vue?vue&type=template&id=3549c6ae& ***!
+  \****************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "col-md-12" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "m-5" }, [
+      _c("table", { staticClass: "table table-hover table-dark" }, [
+        _vm._m(1),
+        _vm._v(" "),
+        _c(
+          "tbody",
+          _vm._l(_vm.detalles, function (detalle) {
+            return _c("tr", { key: detalle.id_comanda }, [
+              _c("td", [_vm._v(_vm._s(detalle.fecha_comanda))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(detalle.estado))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(detalle.descripcion))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(detalle.num_mesa))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(detalle.folio))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(detalle.nombre_producto))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(detalle.cantidad_plato))]),
+              _vm._v(" "),
+              _c("td", [_vm._v("$ " + _vm._s(detalle.total))]),
+            ])
+          }),
+          0
+        ),
+      ]),
+    ]),
+  ])
+}
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "m-5" }, [
+      _c("h6", [_vm._v("Detalles de comandas")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Fecha")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Estado")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Descripcion")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Num mesa")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Folio producto")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Producto")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Cantidad")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Total")]),
+      ]),
     ])
   },
 ]
@@ -67196,7 +67917,8 @@ Vue.component('habitaciones-component', (__webpack_require__(/*! ./components/Ho
 Vue.component('reservar-component', (__webpack_require__(/*! ./components/Hotel/Reservar/Reservar.vue */ "./resources/js/components/Hotel/Reservar/Reservar.vue")["default"]));
 Vue.component('usuarios-component', (__webpack_require__(/*! ./components/Usuario/Usuarios.vue */ "./resources/js/components/Usuario/Usuarios.vue")["default"]));
 Vue.component('mesa-component', (__webpack_require__(/*! ./components/Mesa/Mesa.vue */ "./resources/js/components/Mesa/Mesa.vue")["default"]));
-Vue.component('comanda-component', (__webpack_require__(/*! ./components/Restaurante/Comanda.vue */ "./resources/js/components/Restaurante/Comanda.vue")["default"])); //codigo vue js
+Vue.component('comanda-component', (__webpack_require__(/*! ./components/Restaurante/Comanda.vue */ "./resources/js/components/Restaurante/Comanda.vue")["default"]));
+Vue.component('historialcomanda-component', (__webpack_require__(/*! ./components/Restaurante/HistorialComanda.vue */ "./resources/js/components/Restaurante/HistorialComanda.vue")["default"])); //codigo vue js
 
 var app = new Vue({
   el: '#vue',
