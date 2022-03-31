@@ -77,6 +77,7 @@ class ComandaController extends Controller
 
     public function index()
     {
+        
         $productos = Platillo::all();
 
         return $productos;

@@ -287,7 +287,7 @@ body::-webkit-scrollbar {
     }
 }
 /*CONTENIDO*/
-.table{
+table.table{
     border-collapse: collapse;
     margin: 25px 0;
     font-size: 0.9em;
@@ -297,23 +297,23 @@ body::-webkit-scrollbar {
     overflow: hidden;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
-.table thead tr{
+table.table thead tr{
     background-color: #f39702;
     color: #FFF;
     text-align: left;
 
 }
-.table th,
-.table td{
+table.table th,
+table.table td{
     padding: 12px 15px;
 }
-.table tbody tr{
+table.table tbody tr{
     border-bottom: 1px solid #DDD;
 }
-.table tbody tr:nth-of-type(even){
+table.table tbody tr:nth-of-type(even){
     background-color:#f3f3f3;
 }
-.table tbody tr:last-of-type{
+table.table tbody tr:last-of-type{
     border-bottom: 2px solid #f39702;
 }
 
