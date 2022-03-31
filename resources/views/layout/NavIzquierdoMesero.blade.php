@@ -22,6 +22,8 @@
                 <li v-on:click="menu=1"><a href="#" class="link_name">Realizar comandas</a></li>
             </ul>
         </li>
+
+
         <li>
             <div class="profile-details">
                 <div class="profile-content">

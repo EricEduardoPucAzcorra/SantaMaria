@@ -18,59 +18,42 @@ class MesaController extends Controller
         return $mesas;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    public function index2(){
+       return $mesas = Mesa::all();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(Request $request)
     {
-        //
+        $mesa = new Mesa();
+        $mesa->num_mesa = $request['num_mesa'];
+   
+        $mesa->estado = $request['estado'];
+     
+        $mesa->save();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Mesa  $mesa
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Mesa $mesa)
+
+    public function update(Request $request)
     {
-        //
+        $mesa = Mesa::findOrFail($request->id_mesa);
+        $mesa->num_mesa = $request['num_mesa'];
+        $mesa->estado = $request['estado'];
+        $mesa->update();
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Mesa  $mesa
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Mesa $mesa)
+    public  function activar(Request $request)
     {
-        //
+        //if(!$request->ajax()) return redirect('/');
+        $mesa = Mesa::findOrFail($request->id_mesa);
+        $mesa->update();
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Mesa  $mesa
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Mesa $mesa)
+    public function desactivar(Request $request)
     {
-        //
+        if(!$request->ajax()) return redirect('/');
+        $mesa = Mesa::findOrFail($request->id_mesa);
+        $mesa->update();
     }
 
 }

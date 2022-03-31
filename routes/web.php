@@ -58,6 +58,11 @@ Route::middleware(['auth'])->group(function () {
 
     //rutas del modulo Mesa
     Route::get('/mesas',[App\Http\Controllers\MesaController::class,'index']);
+    Route::get('/getmesas', [App\Http\Controllers\MesaController::class, 'index2']);
+    Route::post('/mesa/registrar', [App\Http\Controllers\MesaController::class, 'store']);
+    Route::put('/mesa/actualizar', [App\Http\Controllers\MesaController::class, 'update']);
+    // Route::put('/mesa/activar', [App\Http\Controllers\MesaController::class, 'activar']);
+    // Route::put('/mesa/desactivar', [App\Http\Controllers\MesaController::class, 'desactivar']);
     //ruta cerrar sessions
 
     Route::post('/salir', [App\Http\Controllers\Auth\LoginController::class, 'salir'])->name('salir');
@@ -75,13 +80,15 @@ Route::middleware(['auth'])->group(function () {
      //rutas de comanda
      //rutas del modulo Mesa
      Route::get('/mesas',[App\Http\Controllers\MesaController::class,'index']);
-    //ruta cerrar sessions
+      //rutas de productos
       Route::get('/productos', [App\Http\Controllers\ComandaController::class,'index']);
       Route::get('/comidas', [App\Http\Controllers\ComandaController::class,'platillos']);
       Route::get('/refrescos', [App\Http\Controllers\ComandaController::class,'refrescos']);
       Route::get('/insertproduct',[App\Http\Controllers\ComandaController::class,'insertProducto']);
-      //insert comand
+     //create comanda
       Route::post('create_comanda',[App\Http\Controllers\ComandaController::class,'createComandAndDetalis']);
+    //   Ruta detalle comandas
+      Route::get('/detalles_comandas', [App\Http\Controllers\DetalleComandaPlatillloController::class,'index']);
     });
     //grupo de rutas middleware de rol Cocina
     Route::middleware(['Cocina'])->group(function () {

@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('detalle_comanda_platillos', function (Blueprint $table) {
             $table->increments('id_detalle_comandaP');
-            $table->integer('id_plato')->unsigned();
-            $table->foreign('id_plato')->references('id_plato')->on('platillos');
+            $table->integer('id_plato');
+            // $table->foreign('id_plato')->references('id_plato')->on('platillos');
             $table->integer('id_comanda')->unsigned();
             $table->foreign('id_comanda')->references('id_comanda')->on('comandas');
             $table->integer('cantidad_plato');
