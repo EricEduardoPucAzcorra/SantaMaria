@@ -63,11 +63,11 @@
 
 
     <template v-if="menu==0">
-		  @include('SistemaComanda.comandas.comandas')
+		 @include('SistemaComanda.comandas.detallesComanda')
 	</template>
 
 	<template v-if="menu==1">
-		hello word
+		@include('SistemaComanda.comandas.comandas')
 	</template>
 	 
 	 {{-- autenticado como Cocina--}}

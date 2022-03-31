@@ -6,7 +6,13 @@
             <div class="ms-panel-header" style="display: flex; margin-top:5%;">
               <h6>Comanda</h6> <h6 style="margin-left: 10px;">Realiza : <i class="fa-solid fa-user"></i></h6>
               <h6 style="margin-left: 10px;">Fecha:</h6>
-              <input type="text" >
+              <div class="ms-form-group">
+                    <label>Mesa</label>
+                    <select class="form-control" v-model="id_mesa">
+                        <option value="0" disabled></option>
+                        <option v-for="mesa in mesas" :key="mesa.id_mesa" v-bind:value="mesa.id_mesa">{{mesa.num_mesa}}</option>
+                    </select>
+             </div>
             </div>
             <div class="ms-panel-body">
               <form class="needs-validation" novalidate>
@@ -103,11 +109,15 @@
                                    </tbody>
                             </table>
                                 
-                            
-
                             Total: {{subTotal}}
 
                             <br>
+
+                            <div class="ms-form-group">
+                                    <label>Comentario</label>
+                                    <input type="text" class="form-control" v-model="descripcion">
+                            </div>
+                            
                             
                             <button  type="button" class="btn btn-success" @click="createcomand()">Realizar comanda</button>
                         </div>
@@ -133,8 +143,10 @@
         data(){
             return{
                 //arrays
+                productos:[],
                 comidas:[],
                 refrescos:[],
+                mesas:[],
                 //carrito
                 carrito:[],
                 //history datas comandas
@@ -146,7 +158,10 @@
                 //variable para campturar el valor de la multiplicacion de cantidad y precio
                 //para obtener el iva
                 auxSubtotal:0,
-
+                //datos de la comanda
+                descripcion:'',
+                id_mesa:0,
+                
             }
         }, 
         computed:{
@@ -203,6 +218,16 @@
             // }
         },
         methods: {
+            todosProductos(){
+                    var i = this;
+                    let  url = '/productos';
+                    axios.get(url).then(function (response) {
+                        //console.log(response);
+                        i.productos = response.data; 
+                    }).catch(function (error) {
+                    console.log(error);
+                    });   
+            },
             getComidas(){
                     var i = this;
                     let  url = '/comidas';
@@ -225,60 +250,67 @@
                     });   
             },
 
+            getMesas(){
+                var i = this;
+                    let  url = '/mesas';
+                    axios.get(url).then(function (response) {
+                        //console.log(response);
+                        i.mesas = response.data; 
+                    }).catch(function (error) {
+                    console.log(error);
+                    });  
+            },
+
             insertProducto(id){
                 //capturo id
-                this.id_plato = id;
+                var id = id;
                 //array que insertara con push
                 let listproductos={};
 
-                let i = this;
+                // let i = this;
 
                 let id_p = 0;
 
-                let encontrado=false;
-                axios.get('/insertproduct',{
-                    params:{
-                        'id_plato':this.id_plato
-                    }
-                })
-                .then(function (json) {
-                    //en el carrito capturo los datos
-                    i.carrito = json.data;
-                    // array list dproductos
-                    listproductos = {
-                        id_plato:json.data.id_plato,
-                        nombre: json.data.nombre,
-                        precio: json.data.precio,
-                        cantidad: 1,
-                        total:json.data.precio
-                    };
-                    //verifico si existe la consulta
-                    if (i.carrito) {
-					//enviamelo a la vista con push
-					//en una variable de historial almaceno los productos a comandar
-                     id_p = i.carrito.id_plato;
-                     
-                     let k;
-                      for(k in i.historial){
-                          if(i.historial[k].id_plato == id_p){
-                              encontrado = true;
-                             
-                              alert('Ya esta insertado');
-                          }
-                      }
-                      
-                      if(!encontrado){
-                          i.historial.push(listproductos);
-                      }
-                            
-                    }
+                //me filtraeras los datos que viene del response
+                var filter = this.productos.filter(function (response) {
+                    if (response.id_plato == id) return response;
+                });       
+                
+                //console.log(filter);
 
-                    //console.log(response);
-                })
-                .catch(function (error) {
-                    // handle error
-                    console.log(error);
-                });
+                //id_p = filter.id_plato;
+
+                //vereifico si el filter es mayor que 0
+                if (filter.length > 0) {
+                    //recorro el filer con el for 
+
+                    //let count = 0;
+
+                    listproductos = {
+                            id_plato: filter[0].id_plato,
+                            nombre: filter[0].nombre,
+                            precio: filter[0].precio,
+                            cantidad_plato:1,
+                          
+                        };
+                        var encontrado = false;
+                        let k;
+                        for(k in this.historial){
+                            if(this.historial[k].id_plato == id){
+                                encontrado = true;
+                                
+                                alert('Ya esta insertado');
+                            }
+                        }
+                        
+                        if(!encontrado){
+                            this.historial.push(listproductos);
+                        }
+                       
+                       //console.log(listproductos);
+                }
+
+
 
 
             },
@@ -286,14 +318,31 @@
                 this.historial.splice(index,1);
             },
 
+
             createcomand(){
                 var i = this;
                 var array = this.historial;
 
+                var comanda = {
+                    'estado':'ACEPTADO',
+                    'descripcion':this.descripcion,
+                    'id_mesa':this.id_mesa
+                };
+
+
+                //console.log(comanda);
+
                 let  url = '/create_comanda';
-                axios.post(url,this.historial).then(function (response) {
-                        console.log(response);
-                      
+                axios.post(url, 
+                    { 
+                       
+                      'producto':array, 
+                      'comandas':comanda 
+                          
+                    }
+                    ).then(function (response) {
+                        //console.log(response);
+                        i.historial = [];
                     }).catch(function (error) {
                         console.log(error);
                 });   
@@ -302,6 +351,8 @@
         mounted() {
             this.getComidas();
             this.getRefrescos();
+            this.todosProductos();
+            this.getMesas();
             console.log('Component mounted.')
         }
     }

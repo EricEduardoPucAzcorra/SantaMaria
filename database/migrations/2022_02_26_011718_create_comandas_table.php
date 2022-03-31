@@ -17,7 +17,7 @@ return new class extends Migration
             $table->increments('id_comanda');
             // $table->string('folio_comanda',30);
             $table->date('fecha_comanda');
-            $table->float('descuento');
+            // $table->float('descuento');
             $table->enum('estado', ['ACEPTADO','CANCELADO']);
             $table->string('descripcion')->nullable();
             $table->integer('id_mesa')->unsigned();

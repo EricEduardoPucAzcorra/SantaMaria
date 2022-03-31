@@ -57,7 +57,7 @@ Route::middleware(['auth'])->group(function () {
     //fin de enrutamiento de usuario
 
     //rutas del modulo Mesa
-    Route::get('/mesas',[App\Http\COntrollers\MesaController::class,'index']);
+    Route::get('/mesas',[App\Http\Controllers\MesaController::class,'index']);
     //ruta cerrar sessions
 
     Route::post('/salir', [App\Http\Controllers\Auth\LoginController::class, 'salir'])->name('salir');
@@ -73,6 +73,10 @@ Route::middleware(['auth'])->group(function () {
     //grupo de rutas middleware de rol Mesero
     Route::middleware(['Mesero'])->group(function () {
      //rutas de comanda
+     //rutas del modulo Mesa
+     Route::get('/mesas',[App\Http\Controllers\MesaController::class,'index']);
+    //ruta cerrar sessions
+      Route::get('/productos', [App\Http\Controllers\ComandaController::class,'index']);
       Route::get('/comidas', [App\Http\Controllers\ComandaController::class,'platillos']);
       Route::get('/refrescos', [App\Http\Controllers\ComandaController::class,'refrescos']);
       Route::get('/insertproduct',[App\Http\Controllers\ComandaController::class,'insertProducto']);

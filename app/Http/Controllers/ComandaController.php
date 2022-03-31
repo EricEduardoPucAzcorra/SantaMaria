@@ -7,6 +7,7 @@ use App\Models\Platillo;
 use Illuminate\Http\Request;
 use App\Models\Detalle_comanda_platilllo;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class ComandaController extends Controller
 {
@@ -34,36 +35,51 @@ class ComandaController extends Controller
         //dd($request->all());
         //for($i = 0; $i<count($request))
 
-        $array = $request->all();
+        $date = Carbon::now();
+
+        $date = $date->format('Y-m-d');
+
+        $comandas = $request['comandas'];
+
+        $array = $request['producto'];
+
+        //dd($array);
 
         $comanda = new Comanda();
-        $comanda->fecha_comanda = '2022-03-20';
-        $comanda->estado = 'ACEPTADO';
-        $comanda->descripcion = 'Null';
-        $comanda->id_mesa = 1;
+        $comanda->fecha_comanda = $date;
+        $comanda->estado = $comandas['estado'];
+        $comanda->descripcion = $comandas['descripcion'];
+        $comanda->id_mesa = $comandas['id_mesa'];
         $comanda->id_usuario = Auth::user()->id_usuario;
         $comanda->save();
+        
 
         for($i = 0; $i<count($array); $i++){
             $d[]=[
                 'id_plato' => $array[$i]['id_plato'],
-
+                'id_comanda' => $comanda->id_comanda,
+                'cantidad_plato' => $array[$i]['cantidad_plato'],
+                'importe' => $array[$i]['total'],
+                'subtotal' => $array[$i]['total'],
+                'total'=>$array[$i]['total']
             ];
 
             //dd($d);
             
         }
 
-       //return $d;
+       // return $d;
 
-       Detalle_comanda_platilllo::insert($d);
+         Detalle_comanda_platilllo::insert($d);
 
         //pat intelitens
     }
 
     public function index()
     {
-        //
+        $productos = Platillo::all();
+
+        return $productos;
 
     }
 

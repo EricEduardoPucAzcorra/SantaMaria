@@ -6487,6 +6487,36 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -6938,12 +6968,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       //arrays
+      productos: [],
       comidas: [],
       refrescos: [],
+      mesas: [],
       //carrito
       carrito: [],
       //history datas comandas
@@ -6954,7 +6996,10 @@ __webpack_require__.r(__webpack_exports__);
       cantidades: [1, 1, 1, 1, 1, 1],
       //variable para campturar el valor de la multiplicacion de cantidad y precio
       //para obtener el iva
-      auxSubtotal: 0
+      auxSubtotal: 0,
+      //datos de la comanda
+      descripcion: '',
+      id_mesa: 0
     };
   },
   computed: {
@@ -7006,6 +7051,16 @@ __webpack_require__.r(__webpack_exports__);
 
   },
   methods: {
+    todosProductos: function todosProductos() {
+      var i = this;
+      var url = '/productos';
+      axios.get(url).then(function (response) {
+        //console.log(response);
+        i.productos = response.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
     getComidas: function getComidas() {
       var i = this;
       var url = '/comidas';
@@ -7026,52 +7081,54 @@ __webpack_require__.r(__webpack_exports__);
         console.log(error);
       });
     },
-    insertProducto: function insertProducto(id) {
-      //capturo id
-      this.id_plato = id; //array que insertara con push
-
-      var listproductos = {};
+    getMesas: function getMesas() {
       var i = this;
-      var id_p = 0;
-      var encontrado = false;
-      axios.get('/insertproduct', {
-        params: {
-          'id_plato': this.id_plato
-        }
-      }).then(function (json) {
-        //en el carrito capturo los datos
-        i.carrito = json.data; // array list dproductos
-
-        listproductos = {
-          id_plato: json.data.id_plato,
-          nombre: json.data.nombre,
-          precio: json.data.precio,
-          cantidad: 1,
-          total: json.data.precio
-        }; //verifico si existe la consulta
-
-        if (i.carrito) {
-          //enviamelo a la vista con push
-          //en una variable de historial almaceno los productos a comandar
-          id_p = i.carrito.id_plato;
-          var k;
-
-          for (k in i.historial) {
-            if (i.historial[k].id_plato == id_p) {
-              encontrado = true;
-              alert('Ya esta insertado');
-            }
-          }
-
-          if (!encontrado) {
-            i.historial.push(listproductos);
-          }
-        } //console.log(response);
-
+      var url = '/mesas';
+      axios.get(url).then(function (response) {
+        //console.log(response);
+        i.mesas = response.data;
       })["catch"](function (error) {
-        // handle error
         console.log(error);
       });
+    },
+    insertProducto: function insertProducto(id) {
+      //capturo id
+      var id = id; //array que insertara con push
+
+      var listproductos = {}; // let i = this;
+
+      var id_p = 0; //me filtraeras los datos que viene del response
+
+      var filter = this.productos.filter(function (response) {
+        if (response.id_plato == id) return response;
+      }); //console.log(filter);
+      //id_p = filter.id_plato;
+      //vereifico si el filter es mayor que 0
+
+      if (filter.length > 0) {
+        //recorro el filer con el for 
+        //let count = 0;
+        listproductos = {
+          id_plato: filter[0].id_plato,
+          nombre: filter[0].nombre,
+          precio: filter[0].precio,
+          cantidad_plato: 1
+        };
+        var encontrado = false;
+        var k;
+
+        for (k in this.historial) {
+          if (this.historial[k].id_plato == id) {
+            encontrado = true;
+            alert('Ya esta insertado');
+          }
+        }
+
+        if (!encontrado) {
+          this.historial.push(listproductos);
+        } //console.log(listproductos);
+
+      }
     },
     eliminarhistorial: function eliminarhistorial(index) {
       this.historial.splice(index, 1);
@@ -7079,9 +7136,19 @@ __webpack_require__.r(__webpack_exports__);
     createcomand: function createcomand() {
       var i = this;
       var array = this.historial;
+      var comanda = {
+        'estado': 'ACEPTADO',
+        'descripcion': this.descripcion,
+        'id_mesa': this.id_mesa
+      }; //console.log(comanda);
+
       var url = '/create_comanda';
-      axios.post(url, this.historial).then(function (response) {
-        console.log(response);
+      axios.post(url, {
+        'producto': array,
+        'comandas': comanda
+      }).then(function (response) {
+        //console.log(response);
+        i.historial = [];
       })["catch"](function (error) {
         console.log(error);
       });
@@ -7090,6 +7157,8 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     this.getComidas();
     this.getRefrescos();
+    this.todosProductos();
+    this.getMesas();
     console.log('Component mounted.');
   }
 });
@@ -53168,7 +53237,7 @@ var render = function () {
     _vm._v(" "),
     _c(
       "div",
-      { staticClass: "row m-5" },
+      { staticClass: "row" },
       _vm._l(_vm.habitaciones, function (habitacion) {
         return _c(
           "div",
@@ -53185,7 +53254,8 @@ var render = function () {
                       "Habitacion " +
                         _vm._s(habitacion.num_habitacion) +
                         " " +
-                        _vm._s(habitacion.tipo_habitaciones.tipo)
+                        _vm._s(habitacion.tipo_habitaciones.tipo) +
+                        "  "
                     ),
                   ]),
                   _vm._v(" "),
@@ -53242,7 +53312,7 @@ var render = function () {
                     _c(
                       "button",
                       {
-                        staticClass: "btn grid-btn mt-0 btn-sm btn-info",
+                        staticClass: "btn grid-btn mt-0 btn-sm btn-primary",
                         attrs: { type: "button" },
                         on: {
                           click: function ($event) {
@@ -53262,8 +53332,7 @@ var render = function () {
                           _c(
                             "button",
                             {
-                              staticClass:
-                                "btn grid-btn mt-0 btn-sm color-primario",
+                              staticClass: "btn grid-btn mt-0 btn-sm btn-info",
                               attrs: { type: "button" },
                               on: {
                                 click: function ($event) {
@@ -53275,11 +53344,7 @@ var render = function () {
                                 },
                               },
                             },
-                            [
-                              _vm._v(
-                                "\n                Reservar\n              "
-                              ),
-                            ]
+                            [_vm._v("Reservar")]
                           ),
                         ]
                       : habitacion.estado == "OCUPADO"
@@ -53317,7 +53382,7 @@ var render = function () {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _c("div", { staticClass: "modal-header color-secundario" }, [
+              _c("div", { staticClass: "modal-header bg-secondary" }, [
                 _c("h5", { staticClass: "modal-title has-icon text-white" }, [
                   _vm._v("Reservar la habitacion"),
                 ]),
@@ -53337,7 +53402,7 @@ var render = function () {
                       },
                     },
                   },
-                  [_c("i", { staticClass: "fas fa-times" })]
+                  [_vm._v("x\n            ")]
                 ),
               ]),
               _vm._v(" "),
@@ -53809,7 +53874,7 @@ var render = function () {
                   _c(
                     "button",
                     {
-                      staticClass: "btn color-primario shadow-none",
+                      staticClass: "btn btn-secondary shadow-none",
                       attrs: { type: "button" },
                       on: {
                         click: function ($event) {
@@ -54059,8 +54124,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "m-5" }, [
-      _c("h3", [_vm._v("Realizar reservación")]),
+    return _c("div", { staticClass: "ms-panel-header" }, [
+      _c("h6", [_vm._v("Realizar reservas\n           ")]),
     ])
   },
 ]
@@ -54143,7 +54208,68 @@ var render = function () {
   return _c("div", [
     _c("div", { staticClass: "col-xl-12 col-md-12" }, [
       _c("div", { staticClass: "ms-panel" }, [
-        _vm._m(0),
+        _c(
+          "div",
+          {
+            staticClass: "ms-panel-header",
+            staticStyle: { display: "flex", "margin-top": "5%" },
+          },
+          [
+            _c("h6", [_vm._v("Comanda")]),
+            _vm._v(" "),
+            _vm._m(0),
+            _vm._v(" "),
+            _c("h6", { staticStyle: { "margin-left": "10px" } }, [
+              _vm._v("Fecha:"),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "ms-form-group" }, [
+              _c("label", [_vm._v("Mesa")]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.id_mesa,
+                      expression: "id_mesa",
+                    },
+                  ],
+                  staticClass: "form-control",
+                  on: {
+                    change: function ($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function (o) {
+                          return o.selected
+                        })
+                        .map(function (o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.id_mesa = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    },
+                  },
+                },
+                [
+                  _c("option", { attrs: { value: "0", disabled: "" } }),
+                  _vm._v(" "),
+                  _vm._l(_vm.mesas, function (mesa) {
+                    return _c(
+                      "option",
+                      { key: mesa.id_mesa, domProps: { value: mesa.id_mesa } },
+                      [_vm._v(_vm._s(mesa.num_mesa))]
+                    )
+                  }),
+                ],
+                2
+              ),
+            ]),
+          ]
+        ),
         _vm._v(" "),
         _c("div", { staticClass: "ms-panel-body" }, [
           _c(
@@ -54403,11 +54529,37 @@ var render = function () {
                               ]
                             ),
                             _vm._v(
-                              "\r\n                                \r\n                            \r\n\r\n                            Total: " +
+                              "\r\n                                \r\n                            Total: " +
                                 _vm._s(_vm.subTotal) +
                                 "\r\n\r\n                            "
                             ),
                             _c("br"),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "ms-form-group" }, [
+                              _c("label", [_vm._v("Comentario")]),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.descripcion,
+                                    expression: "descripcion",
+                                  },
+                                ],
+                                staticClass: "form-control",
+                                attrs: { type: "text" },
+                                domProps: { value: _vm.descripcion },
+                                on: {
+                                  input: function ($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.descripcion = $event.target.value
+                                  },
+                                },
+                              }),
+                            ]),
                             _vm._v(" "),
                             _c(
                               "button",
@@ -54441,27 +54593,10 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "ms-panel-header",
-        staticStyle: { display: "flex", "margin-top": "5%" },
-      },
-      [
-        _c("h6", [_vm._v("Comanda")]),
-        _vm._v(" "),
-        _c("h6", { staticStyle: { "margin-left": "10px" } }, [
-          _vm._v("Realiza : "),
-          _c("i", { staticClass: "fa-solid fa-user" }),
-        ]),
-        _vm._v(" "),
-        _c("h6", { staticStyle: { "margin-left": "10px" } }, [
-          _vm._v("Fecha:"),
-        ]),
-        _vm._v(" "),
-        _c("input", { attrs: { type: "text" } }),
-      ]
-    )
+    return _c("h6", { staticStyle: { "margin-left": "10px" } }, [
+      _vm._v("Realiza : "),
+      _c("i", { staticClass: "fa-solid fa-user" }),
+    ])
   },
   function () {
     var _vm = this
