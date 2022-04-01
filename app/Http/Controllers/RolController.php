@@ -11,6 +11,19 @@ class RolController extends Controller
         $roles = Rol::all();
         return $roles;
     }
+
+    //captura rols activos
+    public function select_rol(){
+        //filtro las roles que su estatus sea 1
+        $roles = Rol::where('condicion','=','1')->select('id_rol', 'nombre')
+        ->orderBy('nombre','asc')->get();
+
+        //retorno objeto
+
+        return ['roles' => $roles];
+  }
+  
+  
     public function index()
     {
         //

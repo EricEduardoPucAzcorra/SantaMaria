@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoriaObjetoController;
 use App\Http\Controllers\ObjetoAlmacenController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\UserController;
 
 //middlewares de usuarios no auteticados
 Route::group(['middleware'=>['guest']], function(){
@@ -49,11 +50,14 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/objetos_almacen/desactivar', [App\Http\Controllers\ObjetoAlmacenController::class, 'desactivar']);
     //fin session almancen
     //Apis-enrutamiento de usuario
-    Route::get('/usuarios',[App\Http\Controllers\UsuarioController::class,'index']);
-    Route::get('/get_usuarios',[App\Http\Controllers\UsuarioController::class,'traerUsuarios']);
-    Route::get('/get_roles',[App\Http\Controllers\RolController::class,'mostrarRoles']);
-    Route::post('/usuarios/registrar', [App\Http\Controllers\UsuarioAlmacenController::class, 'store']);
-    Route::put('/usuario/actualizar', [App\Http\Controllers\UsuarioAlmacenController::class, 'update']);
+    //roles
+    Route::get('/select_rol', [App\Http\Controllers\RolController::class, 'select_rol']);
+    //usuarios
+    Route::get('/users', [UserController::class, 'index']);
+    Route::post('/users/registrar', [UserController::class, 'store']);
+    Route::put('/users/actualizar', [UserController::class, 'update']);
+    Route::put('/users/activar', [UserController::class, 'activar']);
+    Route::put('/users/desactivar', [UserController::class, 'desactivar']);
     //fin de enrutamiento de usuario
 
     //rutas del modulo Mesa
