@@ -1,17 +1,12 @@
 <template>
-
-    <div class="container">
-        <div class="ms-panel-header">
-                <h6>Realizar reservas
-               </h6>          
-        </div>
-
-          <div class="row">
-
-                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6" v-for="habitacion in habitaciones" :key="habitacion.id_habitacion">
-                  <div class="ms-card">
-                   
-                    <div class="ms-card-body">
+  <div class="col-md-12">
+    <div class="m-5">
+      <h4>Realizar reservas</h4>          
+    </div>
+    <div class="m-5">
+      <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6" v-for="habitacion in habitaciones" :key="habitacion.id_habitacion">
+            <div class="ms-card">               
+              <div class="ms-card-body">
 
                       <div class="new">
                         <h6 class="mb-0">Habitacion {{habitacion.num_habitacion}} {{habitacion.tipo_habitaciones.tipo}}  </h6>
@@ -35,10 +30,10 @@
                       <p>Caracteristicas : {{habitacion.caracteristicas}} </p>
                       <p>Cant. Personas : {{habitacion.num_personas}} </p>
                       <div class="new mb-0">
-                        <button type="button" class="btn grid-btn mt-0 btn-sm btn-primary" @click="activarModal('reserva','detalle', habitacion)">Detalles</button>
+                        <button type="button" class="btn grid-btn mt-0 btn-sm btn-info" @click="activarModal('reserva','detalle', habitacion)">Detalles</button>
                         <template v-if="habitacion.estado=='DISPONIBLE'">
 
-                        <button type="button" class="btn grid-btn mt-0 btn-sm btn-info" @click="activarModal('reserva','registro', habitacion)">Reservar</button>
+                        <button type="button" class="btn grid-btn mt-0 btn-sm color-primario" @click="activarModal('reserva','registro', habitacion)">Reservar</button>
 
                         </template>
 
@@ -58,33 +53,34 @@
         <div class="modal fade"  style="display: none;" id="modal_reserva" tabindex="-1" role="dialog" aria-labelledby="reminder-modal">
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-              <div class="modal-header bg-secondary">
+              <div class="modal-header color-secundario">
                 <h5 class="modal-title has-icon text-white" >Reservar la habitacion</h5>
                 <!-- <h5 class="modal-title has-icon text-white">ACTUALIZAR RECURSO</h5> -->
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="cerrarModal()">x
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="cerrarModal()">
+                  <i class="fas fa-times"></i>
                 </button>
               </div>
               <form>
                 <div class="modal-body">
              
                   <div class="ms-form-group" hidden="">
-                    <label hidden="">habitacione</label>
-                    <input type="text" placeholder="Nombre del articulo"  class="form-control" v-model="id_habitacion" >
+                    <label hidden="">Habitación</label>
+                    <input type="text" class="form-control" v-model="id_habitacion" >
                   </div>
 
                    <div class="ms-form-group" hidden="">
-                    <label hidden="">cantperso</label>
-                    <input type="text" placeholder="Nombre del articulo"  class="form-control" v-model="cant_habitacion" >
+                    <label hidden="">Cantidad de personas</label>
+                    <input type="text" class="form-control" v-model="cant_habitacion" >
                   </div>
 
                   <div class="ms-form-group" hidden="">
                     <label hidden="">Precio</label>
-                    <input type="text" placeholder="Nombre del articulo"  class="form-control" v-model="precio" >
+                    <input type="text" class="form-control" v-model="precio" >
                   </div>
 
                   <div class="ms-form-group" hidden="">
                     <label hidden="">Total</label>
-                    <input type="text" placeholder="Nombre del articulo" hidden="" class="form-control" v-model="total" >
+                    <input type="text" hidden="" class="form-control" v-model="total" >
                   </div>
 
                   <div class="ms-form-group">
@@ -101,12 +97,12 @@
                       <input type="text" name="" id="" class="form-control" v-model="nombre">
                       </div>
                       <div class="ms-form-group">
-                        <label>apellidos</label>
+                        <label>Apellidos</label>
                           <input type="text" name="" id="" class="form-control" v-model="apellidos">
                       </div>
 
                       <div class="ms-form-group">
-                        <label>ine</label>
+                        <label>INE</label>
                        <input type="text" name="" id="" class="form-control" v-model="ine">
                       </div>
                       <div class="ms-form-group">
@@ -114,7 +110,7 @@
                        <input type="text" name="" id="" class="form-control" maxlength="10" v-model="telefono">
                       </div>
                       <div class="ms-form-group">
-                        <label>Correo</label>
+                        <label>Correo electronica</label>
                        <input type="email" name="" id="" class="form-control" v-model="correo">
                       </div>
                   </div>
@@ -144,7 +140,7 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-light"  @click="cerrarModal()" >Cerrar</button>
-                  <button type="button" class="btn btn-secondary shadow-none" @click="reservar()">Reservar</button>
+                  <button type="button" class="btn color-primario shadow-none" @click="reservar()">Reservar</button>
                   <!-- <button type="button" class="btn btn-secondary shadow-none"  data-dismiss="modal">Actualizar</button> -->
                 </div>
               </form>
@@ -156,10 +152,11 @@
          <div class="modal fade"  style="display: none;" id="modal_detalle" tabindex="-1" role="dialog" aria-labelledby="reminder-modal">
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-              <div class="modal-header bg-secondary">
-                <h5 class="modal-title has-icon text-white" >Detalles de  la habitacion</h5>
+              <div class="modal-header color-secundario">
+                <h5 class="modal-title has-icon text-white" >Detalles de la habitacion</h5>
                 <!-- <h5 class="modal-title has-icon text-white">ACTUALIZAR RECURSO</h5> -->
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="cerrarModalDetalle()">x
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="cerrarModalDetalle()">
+                  <i class="fas fa-times"></i>
                 </button>
               </div>
               <form>
@@ -167,28 +164,28 @@
 
                       <div class="ms-form-group" >
                       <label >Folio</label>
-                      <input type="text" placeholder="Nombre del articulo"  class="form-control" v-model="folio" disabled>
+                      <input type="text"  class="form-control" v-model="folio" disabled>
                      </div>
 
                       <div class="ms-form-group" >
-                      <label >Num habitacion</label>
-                      <input type="text" placeholder="Nombre del articulo"  class="form-control" v-model="num_habitacion" disabled>
+                      <label >Número de habitación</label>
+                      <input type="text"  class="form-control" v-model="num_habitacion" disabled>
                      </div>
 
                      <div class="ms-form-group" >
-                      <label >Caracteristicas</label>
+                      <label >Características</label>
                       <textarea name="" id="" cols="3" rows="3" class="form-control" v-model="caracteristicas" disabled></textarea>
                      
                      </div>
 
                      <div class="ms-form-group">
-                      <label >Num personas</label>
-                      <input type="text" placeholder="Nombre del articulo"  class="form-control" v-model="num_personas" disabled >
+                      <label >Número de personas</label>
+                      <input type="text"  class="form-control" v-model="num_personas" disabled >
                      </div>
 
                      <div class="ms-form-group" >
                       <label >Estado</label>
-                      <input type="text" placeholder="Nombre del articulo"  class="form-control" v-model="estado" disabled >
+                      <input type="text"  class="form-control" v-model="estado" disabled >
                      </div>
 
                       <span class="badge badge-danger">Precio $ {{precio}}</span>
@@ -374,6 +371,7 @@
               if(this.id_huesped!=0){ 
                 //console.log('ha selecionado una id de huesped');
                   var i = this;
+
                   var estado = 'ACEPTADO';
                   //let  url = '/reservars';
                     axios.post('/reservars',{
