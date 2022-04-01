@@ -9,8 +9,11 @@
 	<!-- Aqui se insertan las rutas de las capetas donde estan las vistas -->
 
 	<template v-if="menu==0">
-		{{-- @include('sistema.GraficaDetalles_CP') --}}
+		@include('sistema.escritorio')
 		{{-- @include('sistema.GraficaDetalles_R') --}}
+
+		
+
 	</template>
 
 	<template v-if="menu==1">

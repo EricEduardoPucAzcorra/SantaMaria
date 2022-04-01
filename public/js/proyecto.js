@@ -7004,7 +7004,7 @@ __webpack_require__.r(__webpack_exports__);
       var cargar = this;
       var url = '/mesa/registrar';
       axios.post(url, {
-        'num_mesa': this.nombre,
+        'num_mesa': this.num_mesa,
         'estado': this.estado
       }).then(function (response) {
         //c3rra modal
@@ -57867,7 +57867,7 @@ var render = function () {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "ms-form-group" }, [
-                    _c("label", [_vm._v("Estado")]),
+                    _c("label", [_vm._v("Categoria")]),
                     _vm._v(" "),
                     _c(
                       "select",

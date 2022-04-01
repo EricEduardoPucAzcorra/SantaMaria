@@ -93,7 +93,7 @@
                 </div>
 
                  <div class="ms-form-group">
-                  <label>Estado</label>
+                  <label>Categoria</label>
                   <select v-model="id_categoriaP" class="form-control">
                       <option value="0" disabled >Eligir categoria</option>
                       <option  v-for="categoria in categorias" :key="categoria.id_categoriaP" v-bind:value="categoria.id_categoriaP">{{categoria.nombre}}</option>
