@@ -5,7 +5,7 @@
     </div>
     <ul class="nav-links">
         <li v-on:click="menu=0">
-            <a href="">
+            <a href="#">
                 <i class="fas fa-home"></i>
                 <span class="link_name">inicio</span>
             </a>
@@ -15,26 +15,27 @@
         </li>
         <li>
             <div class="icon-link">
-                <a href="">
+                <a href="#">
                     <i class="fas fa-hamburger"></i>
                     <span class="link_name">Restaurante</span>
                 </a>
                 <i  class="fas fa-chevron-down arrow"></i>
             </div>
             <ul class="sub-menu">
-                <li ><a href="" class="link_name">Restaurante</a></li>
+                <li ><a href="#" class="link_name">Restaurante</a></li>
                 {{-- en este espaciado se inserta las mesas, por lo tanto se le asignara la id 10 --}}
                 <li  v-on:click="menu=10"><a href="#">Mesas</a></li>
                 <li  v-on:click="menu=2"><a href="#">Categorias</a></li>
                 {{-- <li  v-on:click="menu=2"><a href="#">Categorias</a></li> --}}
                 <li  v-on:click="menu=3"><a href="#">Productos</a></li>
-                <li  v-on:click="menu=4"><a href="#">Comandas historial</a></li>
+                {{-- ´problemas al extraer el historial analizar-- pendiente-- --}}
+                {{-- <li  v-on:click="menu=4"><a href="#">Comandas historial</a></li> --}}
 
             </ul>
         </li>
         <li>
             <div class="icon-link">
-                <a href="">
+                <a href="#">
                     <i class="fas fa-hotel"></i>
                     <span class="link_name">Hotel</span>
                 </a>
@@ -58,7 +59,7 @@
         </li>
         <li>
             <div class="icon-link">
-                <a href="">
+                <a href="#">
                     <i class="fas fa-cubes"></i>
                     <span class="link_name">Almacen</span>
                 </a>

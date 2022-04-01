@@ -6276,6 +6276,87 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Hotel/Reservaciones/Reservas.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Hotel/Reservaciones/Reservas.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      id_mesa: 0,
+      prueba: 'hola mundo cruel',
+      mesas: [],
+      detalles_reservasH: [],
+      bandera: false,
+      selec_selects: [],
+      mostrarError: 0,
+      errormensaje: []
+    };
+  },
+  computed: {},
+  methods: {
+    getReservasH: function getReservasH() {
+      var cap = this;
+      var url = '/reservars/detalles';
+      axios.get(url).then(function (response) {
+        var respuesta = response.data;
+        cap.detalles_reservasH = respuesta;
+      })["catch"](function (error) {
+        // handle error
+        console.log(error);
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.getReservasH();
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Hotel/Reservar/Reservar.vue?vue&type=script&lang=js&":
 /*!******************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Hotel/Reservar/Reservar.vue?vue&type=script&lang=js& ***!
@@ -53112,6 +53193,45 @@ component.options.__file = "resources/js/components/Hotel/Habitaciones/Habitacio
 
 /***/ }),
 
+/***/ "./resources/js/components/Hotel/Reservaciones/Reservas.vue":
+/*!******************************************************************!*\
+  !*** ./resources/js/components/Hotel/Reservaciones/Reservas.vue ***!
+  \******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Reservas_vue_vue_type_template_id_80815d76___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Reservas.vue?vue&type=template&id=80815d76& */ "./resources/js/components/Hotel/Reservaciones/Reservas.vue?vue&type=template&id=80815d76&");
+/* harmony import */ var _Reservas_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Reservas.vue?vue&type=script&lang=js& */ "./resources/js/components/Hotel/Reservaciones/Reservas.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Reservas_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Reservas_vue_vue_type_template_id_80815d76___WEBPACK_IMPORTED_MODULE_0__.render,
+  _Reservas_vue_vue_type_template_id_80815d76___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Hotel/Reservaciones/Reservas.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/Hotel/Reservar/Reservar.vue":
 /*!*************************************************************!*\
   !*** ./resources/js/components/Hotel/Reservar/Reservar.vue ***!
@@ -53451,6 +53571,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Hotel/Reservaciones/Reservas.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************!*\
+  !*** ./resources/js/components/Hotel/Reservaciones/Reservas.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Reservas_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Reservas.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Hotel/Reservaciones/Reservas.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Reservas_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/components/Hotel/Reservar/Reservar.vue?vue&type=script&lang=js&":
 /*!**************************************************************************************!*\
   !*** ./resources/js/components/Hotel/Reservar/Reservar.vue?vue&type=script&lang=js& ***!
@@ -53640,6 +53776,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Habitacion_vue_vue_type_template_id_641b108b___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Habitacion_vue_vue_type_template_id_641b108b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Habitacion.vue?vue&type=template&id=641b108b& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Hotel/Habitaciones/Habitacion.vue?vue&type=template&id=641b108b&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Hotel/Reservaciones/Reservas.vue?vue&type=template&id=80815d76&":
+/*!*************************************************************************************************!*\
+  !*** ./resources/js/components/Hotel/Reservaciones/Reservas.vue?vue&type=template&id=80815d76& ***!
+  \*************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Reservas_vue_vue_type_template_id_80815d76___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Reservas_vue_vue_type_template_id_80815d76___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Reservas_vue_vue_type_template_id_80815d76___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Reservas.vue?vue&type=template&id=80815d76& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Hotel/Reservaciones/Reservas.vue?vue&type=template&id=80815d76&");
 
 
 /***/ }),
@@ -55085,6 +55238,85 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("span", { attrs: { "aria-hidden": "true" } }, [
       _c("i", { staticClass: "fas fa-times" }),
+    ])
+  },
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Hotel/Reservaciones/Reservas.vue?vue&type=template&id=80815d76&":
+/*!****************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Hotel/Reservaciones/Reservas.vue?vue&type=template&id=80815d76& ***!
+  \****************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "col-md-12" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "m-5" }, [
+      _c("table", { staticClass: "table table-hover" }, [
+        _vm._m(1),
+        _vm._v(" "),
+        _c(
+          "tbody",
+          { staticClass: "contenido-tabla" },
+          _vm._l(_vm.detalles_reservasH, function (detalleRH) {
+            return _c("tr", { key: detalleRH.id_detalle_reserva }, [
+              _c("td", [_vm._v(_vm._s(detalleRH.fecha_registro))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(detalleRH.num_habitacion))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(detalleRH.num_folio))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(detalleRH.tipo_h))]),
+              _vm._v(" "),
+              _c("td", [_vm._v("$ " + _vm._s(detalleRH.total))]),
+            ])
+          }),
+          0
+        ),
+      ]),
+    ]),
+  ])
+}
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "m-5" }, [
+      _c("h4", [_vm._v("Detalles de reservas")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "encabezado-tabla" }, [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Fecha")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Numero habitacion")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Folio")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Tipo habitacion")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Total")]),
+      ]),
     ])
   },
 ]
@@ -70846,7 +71078,8 @@ Vue.component('mesa-component', (__webpack_require__(/*! ./components/Mesa/Mesa.
 Vue.component('comanda-component', (__webpack_require__(/*! ./components/Restaurante/Comanda.vue */ "./resources/js/components/Restaurante/Comanda.vue")["default"]));
 Vue.component('historialcomanda-component', (__webpack_require__(/*! ./components/Restaurante/HistorialComanda.vue */ "./resources/js/components/Restaurante/HistorialComanda.vue")["default"]));
 Vue.component('categoriaplatillo-component', (__webpack_require__(/*! ./components/Restaurante/CategoriaPlatillo.vue */ "./resources/js/components/Restaurante/CategoriaPlatillo.vue")["default"]));
-Vue.component('platillos-component', (__webpack_require__(/*! ./components/Restaurante/Platillos.vue */ "./resources/js/components/Restaurante/Platillos.vue")["default"])); //codigo vue js
+Vue.component('platillos-component', (__webpack_require__(/*! ./components/Restaurante/Platillos.vue */ "./resources/js/components/Restaurante/Platillos.vue")["default"]));
+Vue.component('detalles_reservar-component', (__webpack_require__(/*! ./components/Hotel/Reservaciones/Reservas.vue */ "./resources/js/components/Hotel/Reservaciones/Reservas.vue")["default"])); //codigo vue js
 
 var app = new Vue({
   el: '#vue',

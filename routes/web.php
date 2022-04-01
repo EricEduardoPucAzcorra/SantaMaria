@@ -24,6 +24,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/inicio', function () {
         return view('sistema.principal');
     })->name('inicio');
+  
+  Route::get('getDetalles_CP','App\Http\Controllers\graficaDCPController@getDetalles_CP');
+  Route::get('getDetalles_R','App\Http\Controllers\graficaDRController@getDetalles_R');
+  //fin de controladores incio
     //Apis-rutas de habitaciones
     Route::get('/habitaciones', [App\Http\Controllers\HabitacionController::class,'index']);
     Route::post('/habitacion/registrar',[App\Http\Controllers\HabitacionController::class,'store']);
@@ -33,6 +37,7 @@ Route::middleware(['auth'])->group(function () {
     //Apis-rutas reservas
     Route::post('/reservars', [App\Http\Controllers\ReservaController::class,'reservar']);
     Route::put('/cambiarestado', [App\Http\Controllers\ReservaController::class, 'updateestadoh']);
+    Route::get('/reservars/detalles', [App\Http\Controllers\DetalleReservaController::class,'index']);
     //Apis-rutas huespedes
     Route::get('/huespedes', [App\Http\Controllers\HuespedController::class,'index']);
     //Apis-rutas categorias-objetos
@@ -84,6 +89,8 @@ Route::middleware(['auth'])->group(function () {
   Route::put('/platillos/activar', [App\Http\Controllers\PlatilloController::class, 'activar']);
   Route::put('/platillos/desactivar', [App\Http\Controllers\PlatilloController::class, 'desactivar']);
    
+  //detalles reservas
+  Route::get('/detalles_comandas', [App\Http\Controllers\DetalleComandaPlatillloController::class,'index']);
    
     //ruta cerrar sessions
 

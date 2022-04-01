@@ -1,25 +1,36 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Example Component</div>
-
-                    <div class="card-body">
-                        Historial de reservaciones<button v-on:click="oprimir()">Mensaje</button>
-                    </div>
-
-                    <div>
-                        <table>
-                            <tr v-for="objeto in array" :key="objeto.id_objeto">
-                                <td>{{objeto.nombre}}</td>
-                                <td>{{objeto.descripcion}}</td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
+    <div class="col-md-12">
+        <div class="m-5">
+            <h4>Detalles de reservas</h4>
         </div>
+        <div class="m-5">
+            <table class="table table-hover">
+                <thead class="encabezado-tabla">
+                    <tr>
+                        <th scope="col">Fecha</th>
+                        <th>Numero habitacion</th>
+                        <th scope="col">Folio</th>
+                        <th scope="col">Tipo habitacion</th>
+                        <th scope="col">Total</th>
+                        <!-- <th scope="col">Comentario</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Folio del producto</th>
+                        <th scope="col">Total</th> -->
+                    </tr>
+                </thead>
+                <tbody class="contenido-tabla">
+                    <tr v-for="detalleRH in detalles_reservasH" :key="detalleRH.id_detalle_reserva">
+                        <td>{{detalleRH.fecha_registro}}</td>
+                        <td>{{detalleRH.num_habitacion}}</td>
+                        <td>{{detalleRH.num_folio}}</td>
+                        <td>{{detalleRH.tipo_h}}</td>
+                        <td>$ {{detalleRH.total}}</td>
+                    
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
     </div>
 </template>
 
@@ -28,8 +39,14 @@
 
         data(){
             return{
+               id_mesa:0,
                prueba: 'hola mundo cruel', 
-               array:[]
+               mesas:[],
+               detalles_reservasH:[],
+               bandera:false,
+               selec_selects:[],
+               mostrarError: 0,
+               errormensaje:[],
             }
         },
 
@@ -38,17 +55,16 @@
         },
 
         methods: {
-            getObjetos(){
+            getReservasH(){
 
                 let cap = this;
 
-                axios.get('/objetos_almacen').then(function (response) {
-                    // handle success
-                    console.log(response);
+                var url = '/reservars/detalles';
+                axios.get(url).then(function (response) {
 
                     let respuesta = response.data;
 
-                    cap.array = respuesta.objetos.data;
+                    cap.detalles_reservasH = respuesta;
                 })
                 .catch(function (error) {
                     // handle error
@@ -56,32 +72,15 @@
                 });
 
             },
-            oprimir(){
-                Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
-                }).then((result) => {
-                if (result.isConfirmed) {
-                    
-                    console.log('hecho');
-                    // Swal.fire(
-                    // 'Deleted!',
-                    // 'Your file has been deleted.',
-                    // 'success'
-                    // )
-                }
-                });
-            }
+  
         },
 
         mounted() {
-           this.getObjetos();
+           this.getReservasH();
 
         }
     }
 </script>
+
+
+

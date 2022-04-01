@@ -9,7 +9,8 @@
 	<!-- Aqui se insertan las rutas de las capetas donde estan las vistas -->
 
 	<template v-if="menu==0">
-		principal
+		{{-- @include('sistema.GraficaDetalles_CP') --}}
+		{{-- @include('sistema.GraficaDetalles_R') --}}
 	</template>
 
 	<template v-if="menu==1">
@@ -24,9 +25,9 @@
 		@include('sistema.admin.restaurante.productos.platillos')
 	</template>
 
-	<template v-if="menu==4">
-		
-	</template>
+	{{-- <template v-if="menu==4">
+		@include('SistemaComanda.comandas.detallesComanda')
+	</template> --}}
 
 	<template v-if="menu==5">
 		@include('sistema.almacen.almacen')

@@ -33,6 +33,9 @@ class DetalleComandaPlatillloController extends Controller
         return $historialComandas;
     }
 
+
+   
+
     /**
      * Show the form for creating a new resource.
      *

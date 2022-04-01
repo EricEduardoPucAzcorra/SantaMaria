@@ -14,7 +14,13 @@ class DetalleReservaController extends Controller
      */
     public function index()
     {
-        //
+        $detalles = Detalle_Reserva::join('habitaciones', 'detalle_reservaciones.id_habitacion', '=', 'habitaciones.id_habitacion')
+        ->join('tipos_habitaciones', 'habitaciones.id_tipo', '=', 'tipos_habitaciones.id_tipo')
+        ->select('detalle_reservaciones.id_detalle_reserva','detalle_reservaciones.fecha_registro','detalle_reservaciones.id_reserva','habitaciones.folio as num_folio','habitaciones.num_habitacion','tipos_habitaciones.tipo as tipo_h','detalle_reservaciones.total')
+        ->orderBy('id_detalle_reserva', 'desc')->get();
+
+        return $detalles;
+
     }
 
     /**
