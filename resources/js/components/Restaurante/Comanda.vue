@@ -5,7 +5,7 @@
             <h4>Comanda</h4>
             <div class="row">
                 <div class="col-md-4">
-                    <h6>Realiza : <i class="fas fa-user"></i>{{user.usuario}}</h6>
+                    <h6>Realiza : <i class="fas fa-user"></i> {{user.usuario}}</h6>
                 </div>
                 <div class="col-md-5">
                     <div class="form-group row">

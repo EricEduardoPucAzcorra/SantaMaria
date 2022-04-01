@@ -1,7 +1,7 @@
 <template>
     <div class="col-md-12">
         <div class="m-5">
-            <h3>Categorias objetos</h3>
+            <h3>Categorías objetos</h3>
             <button type="button" class="btn color-primario" v-on:click="activarModal('categoria','registrar')" >
                 <i class="fas fa-plus"></i> Nuevo
             </button>
@@ -10,9 +10,9 @@
             <table class="table table-hover">
                 <thead class="encabezado-tabla">
                     <tr>
-                      <th scope="col">#</th>
+                      <th scope="col">ID</th>
                       <th scope="col">Nombre</th>
-                      <th scope="col">Descripcion</th>
+                      <th scope="col">Descripción</th>
                       <th>Estado</th>
                        <th>Acciones</th>
                     </tr>
@@ -49,50 +49,43 @@
                 </tbody>
             </table>
         </div>
-
         <!-- Notes Modal -->
-         <div class="modal fade"  style="display: none;" id="modal_categoria" tabindex="-1" role="dialog" aria-labelledby="reminder-modal">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header color-secundario">
-              <h5 class="modal-title" v-if="bandera==true">REGISTRAR CATEGORIA</h5>
-              <h5 class="modal-title" v-if="bandera==false">ACTUALIZAR CATEGORIA</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="cerrarmodal()">
-                  <span aria-hidden="true"><i class="fas fa-times"></i></span>
-              </button>
-            </div>
-            <form>
-              <div class="modal-body">
-                <div class="ms-form-group">
-                  <label>Nombre</label>
-                  <input type="text" placeholder="Nombre del articulo" class="form-control" v-model="nombre">
-                </div>
-
-                <div class="ms-form-group">
-                  <label>Descripcion</label>
-                  <textarea name="" id="" class="form-control" v-model="descripcion" placeholder="Escriba la descripcion"></textarea>
-                </div>
-              </div>
-
-              <!-- validacion de campos -->
-               <div v-show="mostrarError" class="form-group row div-error">
-                        <div class="text-center text-error">
-                            <div v-for="error in errormensaje" :key="error" v-text="error">
-
+        <div class="modal fade"  style="display: none;" id="modal_categoria" tabindex="-1" role="dialog" aria-labelledby="reminder-modal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header color-secundario">
+                        <h5 class="modal-title" v-if="bandera==true">REGISTRAR CATEGORÍA</h5>
+                        <h5 class="modal-title" v-if="bandera==false">ACTUALIZAR CATEGORÍA</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="cerrarmodal()">
+                            <span aria-hidden="true"><i class="fas fa-times"></i></span>
+                        </button>
+                    </div>
+                    <form>
+                        <div class="modal-body">
+                            <div class="ms-form-group">
+                                <label>Nombre</label>
+                                <input type="text" class="form-control" v-model="nombre">
+                            </div>
+                            <div class="ms-form-group">
+                                <label>Descripcion</label>
+                                <textarea name="" id="" class="form-control" v-model="descripcion"></textarea>
                             </div>
                         </div>
+                        <!-- validacion de campos -->
+                        <div v-show="mostrarError" class="form-group row div-error">
+                            <div class="text-center text-error">
+                                <div v-for="error in errormensaje" :key="error" v-text="error"></div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-light" @click="cerrarmodal()">Cerrar</button>
+                            <button type="button" class="btn color-primario shadow-none" v-if="bandera==true" @click="registrarCategoria()" >Registrar</button>
+                            <button type="button" class="btn color-primario shadow-none" v-if="bandera==false" @click="actualizarCategoria()" data-dismiss="modal">Actualizar</button>
+                        </div>
+                    </form>
                 </div>
-
-              <div class="modal-footer">
-                <button type="button" class="btn btn-light" @click="cerrarmodal()">Cerrar</button>
-                <button type="button" class="btn color-primario shadow-none" v-if="bandera==true" @click="registrarCategoria()" >Registrar</button>
-                 <button type="button" class="btn color-primario shadow-none" v-if="bandera==false" @click="actualizarCategoria()" data-dismiss="modal">Actualizar</button>
-              </div>
-            </form>
-          </div>
+            </div>
         </div>
-      </div>
-
     </div>
 </template>
 

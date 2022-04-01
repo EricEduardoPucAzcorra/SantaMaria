@@ -10,12 +10,12 @@
       <table class="table table-hover">
         <thead class="encabezado-tabla">
           <tr>
-            <th scope="col">#</th>
+            <th scope="col">ID</th>
             <th scope="col">Nombre</th>
-            <th scope="col">Descripcion</th>
+            <th scope="col">Descripción</th>
             <th scope="col">Cantidad</th>
             <th scope="col">Stock</th>
-            <th scope="col">Categoria</th>
+            <th scope="col">Categoría</th>
             <th>Estado</th>
             <th>Acciones</th>
           </tr>
@@ -61,25 +61,23 @@
             <div class="modal-body">
               <div class="ms-form-group">
                 <label>Nombre</label>
-                <input type="text" placeholder="Nombre del articulo" class="form-control" v-model="nombre">
+                <input type="text" class="form-control" v-model="nombre">
               </div>
               <div class="ms-form-group">
-                <label>Descripcion</label>
-                <textarea name="" id="" class="form-control" v-model="descripcion" placeholder="Escriba la descripcion"></textarea>
+                <label>Descripción</label>
+                <textarea name="" id="" class="form-control" v-model="descripcion"></textarea>
               </div>
               <div class="ms-form-group">
                 <label>Cantidad</label>
-                <input type="number" placeholder="cantidad" class="form-control" v-model="cantidad">
+                <input type="number" class="form-control" v-model="cantidad">
               </div>
               <div class="ms-form-group">
-                <label for="">Categoria</label>
+                <label for="">Categoría</label>
                 <select v-model="id_categoria_obj" class="form-control">
                   <option value="0" disabled>Selecione</option>
                   <option  v-for="cat in cat_selects" :key="cat.id_categoria_obj" v-bind:value="cat.id_categoria_obj">{{cat.nombre}}</option>
                 </select>
               </div>
-
-              
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-light" @click="cerrarmodal()">Cerrar</button>
