@@ -21,13 +21,9 @@
         </li>
         <li>
             <div class="icon-link">
-<<<<<<< HEAD
-                <a href="">
-                    <i class="fas fa-utensils"></i>
-=======
                 <a href="#">
                     <i class="fas fa-hamburger"></i>
->>>>>>> 1d28a0872d4a1921adb2e1c3fa393748c298fedd
+
                     <span class="link_name">Restaurante</span>
                 </a>
                 <i  class="fas fa-chevron-down arrow"></i>
