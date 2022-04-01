@@ -16,6 +16,8 @@ class Platillo extends Model
     public $incrementing = true;
     public $timestamps = true;
 
+    public $with=['categorias'];
+
     protected $fillable=[
         'folio',
         'nombre',
@@ -30,5 +32,9 @@ class Platillo extends Model
 
        return $this->belongsTo(Comanda::class);
         
+    }
+
+    public function categorias(){
+        return $this->belongsTo(Categoria_Platillo::class, 'id_categoriaP', 'id_categoriaP');
     }
 }

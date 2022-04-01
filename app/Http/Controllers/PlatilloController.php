@@ -7,24 +7,14 @@ use Illuminate\Http\Request;
 
 class PlatilloController extends Controller
 {
-    /**
+      /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return $platillos=Platillo::all();
     }
 
     /**
@@ -35,51 +25,63 @@ class PlatilloController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $platillos=new Platillo();
+
+        $platillos->folio=$request->get('folio');
+        $platillos->nombre=$request->get('nombre');
+        $platillos->descripcion=$request->get('descripcion');
+        $platillos->id_categoriaP=$request->get('id_categoriaP');
+        $platillos->precio=$request->get('precio');
+        $platillos->estado=1;
+
+        $platillos->save();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Platillo  $platillo
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Platillo $platillo)
+    public function show($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Platillo  $platillo
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Platillo $platillo)
-    {
-        //
+        return $platillos=Platillo::find($id);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Platillo  $platillo
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Platillo $platillo)
+    public function update(Request $request)
     {
-        //
+        $platillos=Platillo::findOrFail($request->id_plato);
+
+        $platillos->folio=$request->get('folio');
+        $platillos->nombre=$request->get('nombre');
+        $platillos->descripcion=$request->get('descripcion');
+        $platillos->id_categoriaP=$request->get('id_categoriaP');
+        $platillos->precio=$request->get('precio');
+        $platillos->estado=1;
+
+        $platillos->update();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Platillo  $platillo
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Platillo $platillo)
+    public  function activar(Request $request)
     {
-        //
+        //if(!$request->ajax()) return redirect('/');
+        $platillos = Platillo::findOrFail($request->id_plato);
+        $platillos->estado = 1;
+        $platillos->update();
+    }
+
+    public function desactivar(Request $request)
+    {
+        if(!$request->ajax()) return redirect('/');
+        $platillos = Platillo::findOrFail($request->id_plato);
+        $platillos->estado = 0;
+        $platillos->update();
     }
 }

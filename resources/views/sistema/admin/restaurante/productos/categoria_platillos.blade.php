@@ -1,0 +1,1 @@
+<categoriaplatillo-component></categoriaplatillo-component>

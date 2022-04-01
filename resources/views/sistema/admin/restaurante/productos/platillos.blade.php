@@ -1,0 +1,1 @@
+<platillos-component></platillos-component>

@@ -63,6 +63,24 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/mesa/actualizar', [App\Http\Controllers\MesaController::class, 'update']);
     // Route::put('/mesa/activar', [App\Http\Controllers\MesaController::class, 'activar']);
     // Route::put('/mesa/desactivar', [App\Http\Controllers\MesaController::class, 'desactivar']);
+
+    //ruta de las categorias de los producto 
+    Route::get('/categoria_platillos', [App\Http\Controllers\Categoria_platillosController::class, 'index']);
+    Route::post('/categoria_platillos/registrar', [App\Http\Controllers\Categoria_platillosController::class, 'store']);
+    Route::put('/categoria_platillos/actualizar', [App\Http\Controllers\Categoria_platillosController::class, 'update']);
+    Route::put('/categoria_platillos/activar', [App\Http\Controllers\Categoria_platillosController::class, 'activar']);
+    Route::put('/categoria_platillos/desactivar', [App\Http\Controllers\Categoria_platillosController::class, 'desactivar']);
+    Route::get('/select_catp', [App\Http\Controllers\Categoria_platillosController::class, 'select_catp']);
+   //ruta de los productos o platillos 
+   
+  Route::get('/platillos',[App\Http\Controllers\PlatilloController::class,'index']);
+  Route::post('/platillos/registrar',[App\Http\Controllers\PlatilloController::class,'store']);
+  // Route::get('/platillos',[App\Http\Controllers\PlatilloController::class,'show']);
+  Route::put('/platillos/actualizar',[App\Http\Controllers\PlatilloController::class,'update']);
+  Route::put('/platillos/activar', [App\Http\Controllers\PlatilloController::class, 'activar']);
+  Route::put('/platillos/desactivar', [App\Http\Controllers\PlatilloController::class, 'desactivar']);
+   
+   
     //ruta cerrar sessions
 
     Route::post('/salir', [App\Http\Controllers\Auth\LoginController::class, 'salir'])->name('salir');

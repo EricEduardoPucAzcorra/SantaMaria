@@ -17,11 +17,11 @@
 	</template>
 
 	<template v-if="menu==2">
-		@include('sistema.admin.restaurante.mesas.mesas')
+		@include('sistema.admin.restaurante.productos.categoria_platillos')
 	</template>
 
 	<template v-if="menu==3">
-		
+		@include('sistema.admin.restaurante.productos.platillos')
 	</template>
 
 	<template v-if="menu==4">

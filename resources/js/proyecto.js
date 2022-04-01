@@ -13,6 +13,8 @@
  Vue.component('mesa-component', require('./components/Mesa/Mesa.vue').default);
  Vue.component('comanda-component', require('./components/Restaurante/Comanda.vue').default);
  Vue.component('historialcomanda-component', require('./components/Restaurante/HistorialComanda.vue').default);
+ Vue.component('categoriaplatillo-component', require('./components/Restaurante/CategoriaPlatillo.vue').default);
+ Vue.component('platillos-component', require('./components/Restaurante/Platillos.vue').default);
 
 
  //codigo vue js

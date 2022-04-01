@@ -7047,6 +7047,308 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Restaurante/CategoriaPlatillo.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Restaurante/CategoriaPlatillo.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      id_categoria: 0,
+      prueba: 'hola mundo cruel 7.7',
+      cat_platillos: [],
+      nombre: '',
+      descripcion: '',
+      bandera: false,
+      cat_selects: [],
+      mostrarError: 0,
+      errormensaje: []
+    };
+  },
+  computed: {},
+  methods: {
+    getCategoriasPlatillos: function getCategoriasPlatillos() {
+      var cap = this;
+      axios.get('/categoria_platillos').then(function (response) {
+        var respuesta = response.data;
+        cap.cat_platillos = respuesta.categorias.data;
+      })["catch"](function (error) {
+        // handle error
+        console.log(error);
+      });
+    },
+    activarModal: function activarModal(modelo, accion) {
+      var data = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+
+      switch (modelo) {
+        case 'categoria':
+          {
+            switch (accion) {
+              case 'registrar':
+                {
+                  //mostrar modal
+                  $('#modal_categoria').modal('show');
+                  this.nombre = '';
+                  this.descripcion = '';
+                  this.bandera = true;
+                  break;
+                }
+
+              case 'actualizar':
+                {
+                  $('#modal_categoria').modal('show');
+                  this.bandera = false;
+                  this.id_categoria = data['id_categoriaP'];
+                  this.nombre = data['nombre'];
+                  this.descripcion = data['descripcion'];
+                  break;
+                }
+            }
+          }
+      }
+    },
+    validarinput: function validarinput() {
+      //iniciañlizo variables
+      this.mostrarError = 0;
+      this.errormensaje = []; //analixo o pcmprbo si tiene valor el campo nombre
+
+      if (!this.nombre) this.errormensaje.push("El nombre es requerido"); //muestro error
+
+      if (this.errormensaje.length) this.mostrarError = 1; //retorno el rror 
+
+      return this.mostrarError;
+    },
+    cerrarmodal: function cerrarmodal() {
+      $('#modal_categoria').modal('hide');
+      this.nombre = '';
+      this.descripcion = '';
+      this.errormensaje = 0;
+    },
+    registrarCategoria: function registrarCategoria() {
+      if (this.validarinput()) {
+        return;
+      }
+
+      var cargar = this;
+      var url = '/categoria_platillos/registrar';
+      axios.post(url, {
+        'nombre': this.nombre,
+        'descripcion': this.descripcion // 'id_categoriaP' : this.id_categoria
+
+      }).then(function (response) {
+        //c3rra modal
+        $('#modal_categoria').modal('hide'); //actualizatabla
+
+        cargar.getCategoriasPlatillos();
+      })["catch"](function (error) {
+        // handle error
+        console.log(error);
+      });
+      this.errormensaje = 0;
+    },
+    actualizarCategoria: function actualizarCategoria() {
+      if (this.validarinput()) {
+        return;
+      }
+
+      var cargar = this;
+      var url = '/categoria_platillos/actualizar';
+      axios.put(url, {
+        'nombre': this.nombre,
+        'descripcion': this.descripcion,
+        'id_categoriaP': this.id_categoria
+      }).then(function (response) {
+        //c3rra modal
+        $('#modal_categoria').modal('hide'); //actualizatabla
+
+        cargar.getCategoriasPlatillos();
+      })["catch"](function (error) {
+        // handle error
+        console.log(error);
+      });
+      this.errormensaje = 0;
+    },
+    activar: function activar(id) {
+      var _this = this;
+
+      var cargar = this;
+      var url = '/categoria_platillos/activar';
+      Swal.fire({
+        title: '¿Quieres activar la categoria?',
+        text: "",
+        icon: 'success',
+        showCancelButton: true,
+        confirmButtonColor: '#f31809',
+        cancelButtonColor: '#6c757d',
+        confirmButtonText: 'Activar',
+        cancelButtonText: 'Cancelar'
+      }).then(function (result) {
+        if (result.isConfirmed) {
+          var me = _this;
+          var estado = 1; //realizo peticion
+
+          axios.put('/categoria_platillos/activar', {
+            'condicion': estado,
+            'id_categoriaP': id
+          }).then(function (json) {
+            cargar.getCategoriasPlatillos();
+            Swal.fire({
+              title: 'Se activó',
+              text: "La categoria fue activada con exito",
+              icon: 'success',
+              confirmButtonColor: '#f31809'
+            });
+          });
+        }
+      });
+    },
+    desactivar: function desactivar(id) {
+      var _this2 = this;
+
+      var cargar = this;
+      var url = '/categoria_platillos/desactivar';
+      Swal.fire({
+        title: '¿Quieres desactivar la categoria?',
+        text: "",
+        icon: 'success',
+        showCancelButton: true,
+        confirmButtonColor: '#f31809',
+        cancelButtonColor: '#6c757d',
+        confirmButtonText: 'Desactivar',
+        cancelButtonText: 'Cancelar'
+      }).then(function (result) {
+        if (result.isConfirmed) {
+          var me = _this2;
+          var estado = 0; //realizo peticion
+
+          axios.put('/categoria_platillos/desactivar', {
+            'condicion': estado,
+            'id_categoriaP': id
+          }).then(function (json) {
+            cargar.getCategoriasPlatillos();
+            Swal.fire({
+              title: "Se desactivó",
+              text: "la categoria fue desactivada",
+              icon: 'success',
+              confirmButtonColor: '#f31809'
+            });
+          });
+        }
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.getCategoriasPlatillos();
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Restaurante/Comanda.vue?vue&type=script&lang=js&":
 /*!**************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Restaurante/Comanda.vue?vue&type=script&lang=js& ***!
@@ -7462,6 +7764,370 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.getDetallesComanda();
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Restaurante/Platillos.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Restaurante/Platillos.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      id_plato: 0,
+      platillos: [],
+      categorias: [],
+      prueba: 'hola mundo cruel',
+      nombre: '',
+      folio: '',
+      descripcion: '',
+      id_categoriaP: 0,
+      precio: '',
+      //    estado:0,
+      bandera: false,
+      cat_selects: [],
+      mostrarError: 0,
+      errormensaje: []
+    };
+  },
+  computed: {},
+  methods: {
+    getPlatillos: function getPlatillos() {
+      var cap = this;
+      axios.get('/platillos').then(function (response) {
+        var respuesta = response.data;
+        cap.platillos = respuesta;
+      })["catch"](function (error) {
+        // handle error
+        console.log(error);
+      });
+    },
+    getCategoriaP: function getCategoriaP() {
+      var cap = this;
+      axios.get('/categoria_platillos').then(function (response) {
+        var respuesta = response.data;
+        cap.categorias = respuesta.categorias.data;
+      })["catch"](function (error) {
+        // handle error
+        console.log(error);
+      });
+    },
+    activarModal: function activarModal(modelo, accion) {
+      var data = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+
+      switch (modelo) {
+        case 'platillo':
+          {
+            this.getCategoriaP();
+
+            switch (accion) {
+              case 'registrar':
+                {
+                  //mostrar modal
+                  $('#modal_platillo').modal('show');
+                  this.nombre = '';
+                  this.descripcion = '';
+                  this.precio = '';
+                  this.estado = 1;
+                  this.folio = '';
+                  this.id_categoriaP = 0;
+                  this.bandera = true;
+                  break;
+                }
+
+              case 'actualizar':
+                {
+                  $('#modal_platillo').modal('show');
+                  this.bandera = false;
+                  this.id_plato = data['id_plato'];
+                  this.id_categoriaP = data['id_categoriaP'];
+                  this.nombre = data['nombre'];
+                  this.descripcion = data['descripcion'];
+                  this.precio = data['precio'];
+                  this.folio = data['folio'];
+                  break;
+                }
+            }
+          }
+      }
+    },
+    validarinput: function validarinput() {
+      //iniciañlizo variables
+      this.mostrarError = 0;
+      this.errormensaje = []; //analixo o pcmprbo si tiene valor el campo nombre
+
+      if (!this.nombre) this.errormensaje.push("El nombre es requerido"); //muestro error
+
+      if (this.errormensaje.length) this.mostrarError = 1; //retorno el rror 
+
+      return this.mostrarError;
+    },
+    cerrarmodal: function cerrarmodal() {
+      $('#modal_platillo').modal('hide');
+      this.nombre = '';
+      this.descripcion = '';
+      this.precio = '';
+      this.errormensaje = 0;
+    },
+    registrarPlatillo: function registrarPlatillo() {
+      if (this.validarinput()) {
+        return;
+      }
+
+      var cargar = this;
+      var url = '/platillos/registrar';
+      axios.post(url, {
+        'nombre': this.nombre,
+        'descripcion': this.descripcion,
+        'precio': this.precio,
+        'folio': this.folio,
+        'id_categoriaP': this.id_categoriaP // 'estado' : this.estado
+
+      }).then(function (response) {
+        //c3rra modal
+        $('#modal_platillo').modal('hide'); //actualizatabla
+
+        cargar.getPlatillos();
+      })["catch"](function (error) {
+        // handle error
+        console.log(error);
+      });
+      this.errormensaje = 0;
+    },
+    actualizarPlatillo: function actualizarPlatillo() {
+      if (this.validarinput()) {
+        return;
+      }
+
+      var cargar = this;
+      var url = '/platillos/actualizar';
+      axios.put(url, {
+        'nombre': this.nombre,
+        'descripcion': this.descripcion,
+        'precio': this.precio,
+        'folio': this.folio,
+        'id_categoriaP': this.id_categoriaP,
+        // 'estado' : this.estado,
+        'id_plato': this.id_plato
+      }).then(function (response) {
+        //c3rra modal
+        $('#modal_platillo').modal('hide'); //actualizatabla
+
+        cargar.getPlatillos();
+      })["catch"](function (error) {
+        // handle error
+        console.log(error);
+      });
+      this.errormensaje = 0;
+    },
+    activar: function activar(id) {
+      var _this = this;
+
+      var cargar = this;
+      var url = '/platillos/activar';
+      var id = id;
+      Swal.fire({
+        title: '¿Quieres activar el producto?',
+        text: "",
+        icon: 'success',
+        showCancelButton: true,
+        confirmButtonColor: '#f31809',
+        cancelButtonColor: '#6c757d',
+        confirmButtonText: 'Activar',
+        cancelButtonText: 'Cancelar'
+      }).then(function (result) {
+        if (result.isConfirmed) {
+          var me = _this;
+          var estado = 1; //realizo peticion
+
+          axios.put('/platillos/activar', {
+            'estado': estado,
+            'id_plato': id
+          }).then(function (json) {
+            cargar.getPlatillos();
+            Swal.fire({
+              title: 'Se activó',
+              text: "El producto fue activada con exito",
+              icon: 'success',
+              confirmButtonColor: '#f31809'
+            });
+          });
+        }
+      });
+    },
+    desactivar: function desactivar(id) {
+      var _this2 = this;
+
+      var cargar = this;
+      var url = '/platillos/desactivar';
+      var id = id;
+      Swal.fire({
+        title: '¿Quieres desactivar el producto?',
+        text: "",
+        icon: 'success',
+        showCancelButton: true,
+        confirmButtonColor: '#f31809',
+        cancelButtonColor: '#6c757d',
+        confirmButtonText: 'Desactivar',
+        cancelButtonText: 'Cancelar'
+      }).then(function (result) {
+        if (result.isConfirmed) {
+          var me = _this2;
+          var estado = 0; //realizo peticion
+
+          axios.put('/platillos/desactivar', {
+            'estado': estado,
+            'id_plato': id
+          }).then(function (json) {
+            cargar.getPlatillos();
+            Swal.fire({
+              title: "Se desactivó",
+              text: "El producto fue desactivada",
+              icon: 'success',
+              confirmButtonColor: '#f31809'
+            });
+          });
+        }
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.getPlatillos();
   }
 });
 
@@ -51825,6 +52491,45 @@ component.options.__file = "resources/js/components/Mesa/Mesa.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/Restaurante/CategoriaPlatillo.vue":
+/*!*******************************************************************!*\
+  !*** ./resources/js/components/Restaurante/CategoriaPlatillo.vue ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _CategoriaPlatillo_vue_vue_type_template_id_10009934___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CategoriaPlatillo.vue?vue&type=template&id=10009934& */ "./resources/js/components/Restaurante/CategoriaPlatillo.vue?vue&type=template&id=10009934&");
+/* harmony import */ var _CategoriaPlatillo_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CategoriaPlatillo.vue?vue&type=script&lang=js& */ "./resources/js/components/Restaurante/CategoriaPlatillo.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _CategoriaPlatillo_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CategoriaPlatillo_vue_vue_type_template_id_10009934___WEBPACK_IMPORTED_MODULE_0__.render,
+  _CategoriaPlatillo_vue_vue_type_template_id_10009934___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Restaurante/CategoriaPlatillo.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/Restaurante/Comanda.vue":
 /*!*********************************************************!*\
   !*** ./resources/js/components/Restaurante/Comanda.vue ***!
@@ -51899,6 +52604,45 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
 /* hot reload */
 if (false) { var api; }
 component.options.__file = "resources/js/components/Restaurante/HistorialComanda.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Restaurante/Platillos.vue":
+/*!***********************************************************!*\
+  !*** ./resources/js/components/Restaurante/Platillos.vue ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Platillos_vue_vue_type_template_id_4c069bfc___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Platillos.vue?vue&type=template&id=4c069bfc& */ "./resources/js/components/Restaurante/Platillos.vue?vue&type=template&id=4c069bfc&");
+/* harmony import */ var _Platillos_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Platillos.vue?vue&type=script&lang=js& */ "./resources/js/components/Restaurante/Platillos.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Platillos_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Platillos_vue_vue_type_template_id_4c069bfc___WEBPACK_IMPORTED_MODULE_0__.render,
+  _Platillos_vue_vue_type_template_id_4c069bfc___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Restaurante/Platillos.vue"
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
 
 /***/ }),
@@ -52038,6 +52782,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Restaurante/CategoriaPlatillo.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************!*\
+  !*** ./resources/js/components/Restaurante/CategoriaPlatillo.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CategoriaPlatillo_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./CategoriaPlatillo.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Restaurante/CategoriaPlatillo.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CategoriaPlatillo_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/components/Restaurante/Comanda.vue?vue&type=script&lang=js&":
 /*!**********************************************************************************!*\
   !*** ./resources/js/components/Restaurante/Comanda.vue?vue&type=script&lang=js& ***!
@@ -52067,6 +52827,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_HistorialComanda_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./HistorialComanda.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Restaurante/HistorialComanda.vue?vue&type=script&lang=js&");
  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_HistorialComanda_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Restaurante/Platillos.vue?vue&type=script&lang=js&":
+/*!************************************************************************************!*\
+  !*** ./resources/js/components/Restaurante/Platillos.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Platillos_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Platillos.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Restaurante/Platillos.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Platillos_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -52188,6 +52964,23 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Restaurante/CategoriaPlatillo.vue?vue&type=template&id=10009934&":
+/*!**************************************************************************************************!*\
+  !*** ./resources/js/components/Restaurante/CategoriaPlatillo.vue?vue&type=template&id=10009934& ***!
+  \**************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CategoriaPlatillo_vue_vue_type_template_id_10009934___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CategoriaPlatillo_vue_vue_type_template_id_10009934___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CategoriaPlatillo_vue_vue_type_template_id_10009934___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./CategoriaPlatillo.vue?vue&type=template&id=10009934& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Restaurante/CategoriaPlatillo.vue?vue&type=template&id=10009934&");
+
+
+/***/ }),
+
 /***/ "./resources/js/components/Restaurante/Comanda.vue?vue&type=template&id=7dc0ffe9&":
 /*!****************************************************************************************!*\
   !*** ./resources/js/components/Restaurante/Comanda.vue?vue&type=template&id=7dc0ffe9& ***!
@@ -52218,6 +53011,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_HistorialComanda_vue_vue_type_template_id_3549c6ae___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_HistorialComanda_vue_vue_type_template_id_3549c6ae___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./HistorialComanda.vue?vue&type=template&id=3549c6ae& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Restaurante/HistorialComanda.vue?vue&type=template&id=3549c6ae&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Restaurante/Platillos.vue?vue&type=template&id=4c069bfc&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/components/Restaurante/Platillos.vue?vue&type=template&id=4c069bfc& ***!
+  \******************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Platillos_vue_vue_type_template_id_4c069bfc___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Platillos_vue_vue_type_template_id_4c069bfc___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Platillos_vue_vue_type_template_id_4c069bfc___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Platillos.vue?vue&type=template&id=4c069bfc& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Restaurante/Platillos.vue?vue&type=template&id=4c069bfc&");
 
 
 /***/ }),
@@ -54820,6 +55630,374 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Restaurante/CategoriaPlatillo.vue?vue&type=template&id=10009934&":
+/*!*****************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Restaurante/CategoriaPlatillo.vue?vue&type=template&id=10009934& ***!
+  \*****************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "col-md-12" }, [
+    _c("div", { staticClass: "m-5" }, [
+      _c("h3", [_vm._v("Categorias")]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn color-primario",
+          attrs: { type: "button" },
+          on: {
+            click: function ($event) {
+              return _vm.activarModal("categoria", "registrar")
+            },
+          },
+        },
+        [_c("i", { staticClass: "fas fa-plus" }), _vm._v(" Nuevo\n        ")]
+      ),
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "m-5" }, [
+      _c("table", { staticClass: "table table-hover" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "tbody",
+          { staticClass: "contenido-tabla" },
+          _vm._l(_vm.cat_platillos, function (categoria) {
+            return _c("tr", { key: categoria.id_categoriaP }, [
+              _c("td", [_vm._v(_vm._s(categoria.id_categoriaP))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(categoria.nombre))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(categoria.descripcion))]),
+              _vm._v(" "),
+              _c(
+                "td",
+                [
+                  categoria.estado
+                    ? [
+                        _vm._v(
+                          "\n                            Activo  \n                        "
+                        ),
+                      ]
+                    : [
+                        _vm._v(
+                          "      \n                            Inactivo \n                        "
+                        ),
+                      ],
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _c(
+                "td",
+                [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-sm btn-outline-success",
+                      attrs: { type: "button" },
+                      on: {
+                        click: function ($event) {
+                          return _vm.activarModal(
+                            "categoria",
+                            "actualizar",
+                            categoria
+                          )
+                        },
+                      },
+                    },
+                    [
+                      _c("i", { staticClass: "fas fa-pen" }),
+                      _vm._v(" Editar\n                        "),
+                    ]
+                  ),
+                  _vm._v(" "),
+                  categoria.estado
+                    ? [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-outline-light",
+                            attrs: { type: "button" },
+                            on: {
+                              click: function ($event) {
+                                return _vm.desactivar(categoria.id_categoriaP)
+                              },
+                            },
+                          },
+                          [
+                            _c("i", { staticClass: "fas fa-arrow-down" }),
+                            _vm._v(" Desactivar\n                            "),
+                          ]
+                        ),
+                      ]
+                    : [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-outline-warning",
+                            attrs: { type: "button" },
+                            on: {
+                              click: function ($event) {
+                                return _vm.activar(categoria.id_categoriaP)
+                              },
+                            },
+                          },
+                          [
+                            _c("i", { staticClass: "fas fa-arrow-up" }),
+                            _vm._v(" Activar\n                            "),
+                          ]
+                        ),
+                      ],
+                ],
+                2
+              ),
+            ])
+          }),
+          0
+        ),
+      ]),
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        staticStyle: { display: "none" },
+        attrs: {
+          id: "modal_categoria",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "reminder-modal",
+        },
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "modal-dialog", attrs: { role: "document" } },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _c("div", { staticClass: "modal-header color-secundario" }, [
+                _vm.bandera == true
+                  ? _c("h5", { staticClass: "modal-title" }, [
+                      _vm._v("REGISTRAR CATEGORIA"),
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.bandera == false
+                  ? _c("h5", { staticClass: "modal-title" }, [
+                      _vm._v("ACTUALIZAR CATEGORIA"),
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "close",
+                    attrs: {
+                      type: "button",
+                      "data-dismiss": "modal",
+                      "aria-label": "Close",
+                    },
+                    on: {
+                      click: function ($event) {
+                        return _vm.cerrarmodal()
+                      },
+                    },
+                  },
+                  [_vm._m(1)]
+                ),
+              ]),
+              _vm._v(" "),
+              _c("form", [
+                _c("div", { staticClass: "modal-body" }, [
+                  _c("div", { staticClass: "ms-form-group" }, [
+                    _c("label", [_vm._v("Nombre")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.nombre,
+                          expression: "nombre",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "text",
+                        placeholder: "Nombre de la categoria",
+                      },
+                      domProps: { value: _vm.nombre },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.nombre = $event.target.value
+                        },
+                      },
+                    }),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "ms-form-group" }, [
+                    _c("label", [_vm._v("Descripcion")]),
+                    _vm._v(" "),
+                    _c("textarea", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.descripcion,
+                          expression: "descripcion",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        name: "",
+                        id: "",
+                        placeholder: "Escriba la descripción",
+                      },
+                      domProps: { value: _vm.descripcion },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.descripcion = $event.target.value
+                        },
+                      },
+                    }),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.mostrarError,
+                        expression: "mostrarError",
+                      },
+                    ],
+                    staticClass: "form-group row div-error",
+                  },
+                  [
+                    _c(
+                      "div",
+                      { staticClass: "text-center text-error" },
+                      _vm._l(_vm.errormensaje, function (error) {
+                        return _c("div", {
+                          key: error,
+                          domProps: { textContent: _vm._s(error) },
+                        })
+                      }),
+                      0
+                    ),
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "modal-footer" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-light",
+                      attrs: { type: "button" },
+                      on: {
+                        click: function ($event) {
+                          return _vm.cerrarmodal()
+                        },
+                      },
+                    },
+                    [_vm._v("Cerrar")]
+                  ),
+                  _vm._v(" "),
+                  _vm.bandera == true
+                    ? _c(
+                        "button",
+                        {
+                          staticClass: "btn color-primario shadow-none",
+                          attrs: { type: "button" },
+                          on: {
+                            click: function ($event) {
+                              return _vm.registrarCategoria()
+                            },
+                          },
+                        },
+                        [_vm._v("Registrar")]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.bandera == false
+                    ? _c(
+                        "button",
+                        {
+                          staticClass: "btn color-primario shadow-none",
+                          attrs: { type: "button", "data-dismiss": "modal" },
+                          on: {
+                            click: function ($event) {
+                              return _vm.actualizarCategoria()
+                            },
+                          },
+                        },
+                        [_vm._v("Actualizar")]
+                      )
+                    : _vm._e(),
+                ]),
+              ]),
+            ]),
+          ]
+        ),
+      ]
+    ),
+  ])
+}
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "encabezado-tabla" }, [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Nombre")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Descripcion")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Estado")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Acciones")]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { attrs: { "aria-hidden": "true" } }, [
+      _c("i", { staticClass: "fas fa-times" }),
+    ])
+  },
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Restaurante/Comanda.vue?vue&type=template&id=7dc0ffe9&":
 /*!*******************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Restaurante/Comanda.vue?vue&type=template&id=7dc0ffe9& ***!
@@ -55355,6 +56533,488 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Total")]),
       ]),
+    ])
+  },
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Restaurante/Platillos.vue?vue&type=template&id=4c069bfc&":
+/*!*********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Restaurante/Platillos.vue?vue&type=template&id=4c069bfc& ***!
+  \*********************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "col-md-12" }, [
+    _c("div", { staticClass: "m-5" }, [
+      _c("h3", [_vm._v("Productos")]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn color-primario",
+          attrs: { type: "button" },
+          on: {
+            click: function ($event) {
+              return _vm.activarModal("platillo", "registrar")
+            },
+          },
+        },
+        [
+          _c("i", { staticClass: "fas fa-plus" }),
+          _vm._v(" Nuevo\n            "),
+        ]
+      ),
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "m-5" }, [
+      _c("table", { staticClass: "table table-hover" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "tbody",
+          { staticClass: "contenido-tabla" },
+          _vm._l(_vm.platillos, function (platillos) {
+            return _c("tr", { key: platillos.id_plato }, [
+              _c("td", [_vm._v(_vm._s(platillos.folio))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(platillos.nombre))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(platillos.descripcion))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(platillos.categorias.nombre))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(platillos.precio))]),
+              _vm._v(" "),
+              _c(
+                "td",
+                [
+                  platillos.estado
+                    ? [
+                        _vm._v(
+                          "\n                                Activo  \n                            "
+                        ),
+                      ]
+                    : [
+                        _vm._v(
+                          "      \n                                Inactivo \n                            "
+                        ),
+                      ],
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _c(
+                "td",
+                [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-sm btn-outline-success",
+                      attrs: { type: "button" },
+                      on: {
+                        click: function ($event) {
+                          return _vm.activarModal(
+                            "platillo",
+                            "actualizar",
+                            platillos
+                          )
+                        },
+                      },
+                    },
+                    [
+                      _c("i", { staticClass: "fas fa-pen" }),
+                      _vm._v(" Editar\n                            "),
+                    ]
+                  ),
+                  _vm._v(" "),
+                  platillos.estado
+                    ? [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-outline-light",
+                            attrs: { type: "button" },
+                            on: {
+                              click: function ($event) {
+                                return _vm.desactivar(platillos.id_plato)
+                              },
+                            },
+                          },
+                          [
+                            _c("i", { staticClass: "fas fa-arrow-down" }),
+                            _vm._v(
+                              " Desactivar\n                                "
+                            ),
+                          ]
+                        ),
+                      ]
+                    : [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-outline-warning",
+                            attrs: { type: "button" },
+                            on: {
+                              click: function ($event) {
+                                return _vm.activar(platillos.id_plato)
+                              },
+                            },
+                          },
+                          [
+                            _c("i", { staticClass: "fas fa-arrow-up" }),
+                            _vm._v(
+                              " Activar\n                                "
+                            ),
+                          ]
+                        ),
+                      ],
+                ],
+                2
+              ),
+            ])
+          }),
+          0
+        ),
+      ]),
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        staticStyle: { display: "none" },
+        attrs: {
+          id: "modal_platillo",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "reminder-modal",
+        },
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "modal-dialog", attrs: { role: "document" } },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _c("div", { staticClass: "modal-header color-secundario" }, [
+                _vm.bandera == true
+                  ? _c("h5", { staticClass: "modal-title" }, [
+                      _vm._v("REGISTRAR PLATILLO"),
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.bandera == false
+                  ? _c("h5", { staticClass: "modal-title" }, [
+                      _vm._v("ACTUALIZAR PLATILLO"),
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "close",
+                    attrs: {
+                      type: "button",
+                      "data-dismiss": "modal",
+                      "aria-label": "Close",
+                    },
+                    on: {
+                      click: function ($event) {
+                        return _vm.cerrarmodal()
+                      },
+                    },
+                  },
+                  [_vm._m(1)]
+                ),
+              ]),
+              _vm._v(" "),
+              _c("form", [
+                _c("div", { staticClass: "modal-body" }, [
+                  _c("div", { staticClass: "ms-form-group" }, [
+                    _c("label", [_vm._v("Nombre")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.nombre,
+                          expression: "nombre",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "text",
+                        placeholder: "Nombre del articulo",
+                      },
+                      domProps: { value: _vm.nombre },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.nombre = $event.target.value
+                        },
+                      },
+                    }),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "ms-form-group" }, [
+                    _c("label", [_vm._v("Folio")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.folio,
+                          expression: "folio",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "text", placeholder: "folio" },
+                      domProps: { value: _vm.folio },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.folio = $event.target.value
+                        },
+                      },
+                    }),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "ms-form-group" }, [
+                    _c("label", [_vm._v("Descripcion")]),
+                    _vm._v(" "),
+                    _c("textarea", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.descripcion,
+                          expression: "descripcion",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: { name: "", id: "", placeholder: "Descripcion" },
+                      domProps: { value: _vm.descripcion },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.descripcion = $event.target.value
+                        },
+                      },
+                    }),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "ms-form-group" }, [
+                    _c("label", [_vm._v("Precio")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.precio,
+                          expression: "precio",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "number", placeholder: "precio" },
+                      domProps: { value: _vm.precio },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.precio = $event.target.value
+                        },
+                      },
+                    }),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "ms-form-group" }, [
+                    _c("label", [_vm._v("Estado")]),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.id_categoriaP,
+                            expression: "id_categoriaP",
+                          },
+                        ],
+                        staticClass: "form-control",
+                        on: {
+                          change: function ($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function (o) {
+                                return o.selected
+                              })
+                              .map(function (o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.id_categoriaP = $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          },
+                        },
+                      },
+                      [
+                        _c("option", { attrs: { value: "0", disabled: "" } }, [
+                          _vm._v("Eligir categoria"),
+                        ]),
+                        _vm._v(" "),
+                        _vm._l(_vm.categorias, function (categoria) {
+                          return _c(
+                            "option",
+                            {
+                              key: categoria.id_categoriaP,
+                              domProps: { value: categoria.id_categoriaP },
+                            },
+                            [_vm._v(_vm._s(categoria.nombre))]
+                          )
+                        }),
+                      ],
+                      2
+                    ),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.mostrarError,
+                        expression: "mostrarError",
+                      },
+                    ],
+                    staticClass: "form-group row div-error",
+                  },
+                  [
+                    _c(
+                      "div",
+                      { staticClass: "text-center text-error" },
+                      _vm._l(_vm.errormensaje, function (error) {
+                        return _c("div", {
+                          key: error,
+                          domProps: { textContent: _vm._s(error) },
+                        })
+                      }),
+                      0
+                    ),
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "modal-footer" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-light",
+                      attrs: { type: "button" },
+                      on: {
+                        click: function ($event) {
+                          return _vm.cerrarmodal()
+                        },
+                      },
+                    },
+                    [_vm._v("Cerrar")]
+                  ),
+                  _vm._v(" "),
+                  _vm.bandera == true
+                    ? _c(
+                        "button",
+                        {
+                          staticClass: "btn color-primario shadow-none",
+                          attrs: { type: "button" },
+                          on: {
+                            click: function ($event) {
+                              return _vm.registrarPlatillo()
+                            },
+                          },
+                        },
+                        [_vm._v("Registrar")]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.bandera == false
+                    ? _c(
+                        "button",
+                        {
+                          staticClass: "btn color-primario shadow-none",
+                          attrs: { type: "button", "data-dismiss": "modal" },
+                          on: {
+                            click: function ($event) {
+                              return _vm.actualizarPlatillo()
+                            },
+                          },
+                        },
+                        [_vm._v("Actualizar")]
+                      )
+                    : _vm._e(),
+                ]),
+              ]),
+            ]),
+          ]
+        ),
+      ]
+    ),
+  ])
+}
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "encabezado-tabla" }, [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Folio")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Nombre")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Descripción")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Categoria")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Precio")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Estado")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Acciones")]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { attrs: { "aria-hidden": "true" } }, [
+      _c("i", { staticClass: "fas fa-times" }),
     ])
   },
 ]
@@ -67918,7 +69578,9 @@ Vue.component('reservar-component', (__webpack_require__(/*! ./components/Hotel/
 Vue.component('usuarios-component', (__webpack_require__(/*! ./components/Usuario/Usuarios.vue */ "./resources/js/components/Usuario/Usuarios.vue")["default"]));
 Vue.component('mesa-component', (__webpack_require__(/*! ./components/Mesa/Mesa.vue */ "./resources/js/components/Mesa/Mesa.vue")["default"]));
 Vue.component('comanda-component', (__webpack_require__(/*! ./components/Restaurante/Comanda.vue */ "./resources/js/components/Restaurante/Comanda.vue")["default"]));
-Vue.component('historialcomanda-component', (__webpack_require__(/*! ./components/Restaurante/HistorialComanda.vue */ "./resources/js/components/Restaurante/HistorialComanda.vue")["default"])); //codigo vue js
+Vue.component('historialcomanda-component', (__webpack_require__(/*! ./components/Restaurante/HistorialComanda.vue */ "./resources/js/components/Restaurante/HistorialComanda.vue")["default"]));
+Vue.component('categoriaplatillo-component', (__webpack_require__(/*! ./components/Restaurante/CategoriaPlatillo.vue */ "./resources/js/components/Restaurante/CategoriaPlatillo.vue")["default"]));
+Vue.component('platillos-component', (__webpack_require__(/*! ./components/Restaurante/Platillos.vue */ "./resources/js/components/Restaurante/Platillos.vue")["default"])); //codigo vue js
 
 var app = new Vue({
   el: '#vue',
