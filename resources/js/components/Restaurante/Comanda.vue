@@ -1,147 +1,178 @@
 <template>
- 
 <div>  
-     <div class="col-xl-12 col-md-12" >
-          <div class="ms-panel">
-            <div class="ms-panel-header" style="display: flex; margin-top:5%;">
-              <h6>Comanda</h6> <h6 style="margin-left: 10px;">Realiza : <i class="fa-solid fa-user"></i></h6>
-              <h6 style="margin-left: 10px;">Fecha:</h6>
-              <div class="ms-form-group">
-                    <label>Mesa</label>
-                    <select class="form-control" v-model="id_mesa">
-                        <option value="0" disabled></option>
-                        <option v-for="mesa in mesas" :key="mesa.id_mesa" v-bind:value="mesa.id_mesa">{{mesa.num_mesa}}</option>
-                    </select>
-             </div>
-            </div>
-            <div class="ms-panel-body">
-              <form class="needs-validation" novalidate>
-               
-                <div class="form-row" style="display: flex; margin-top:5%; border-color:red;">
-                  <div class="col-md-4 mb-3">
-                    <label for="validationCustom03">Eligir producto</label>
-                    <div class="input-group">
-                       <div class="col-xl-10 col-md-10">
-                                     
-                     <div class="needs-validation clearfix">
-                        
-                            <table class="table  thead-default">
-                                <thead>
-                            
-                                <th>Nombre</th>
-                                <th>Precio</th>
-                                <th>Opciones</th>
-                                </thead>
-                                <tbody>
-                                   <tr v-for="comida in comidas" :key="comida.id_plato">
-                                       <td hidden="">{{comida.id_plato}}</td>
-                                       <td>{{comida.nombre}}</td>
-                                       <td>{{comida.precio}}</td>
-                                       <td>
-                                           <button type="button" class="btn btn-success btn-sm btn-sm" @click="insertProducto(comida.id_plato)">+</button>
-                                       </td>
-                                   </tr>   
-                                </tbody>
-                            </table>
-
-                     </div>
-                   </div>
-                    </div>
-                  </div>
-
-                  <div class="col-md-4 mb-3" style="border-color:red;">
-                    <label for="validationCustom03">Eligir producto</label>
-                    <div class="input-group">
-                       <div class="col-xl-10 col-md-10">
-                                     
-                     <div class="needs-validation clearfix">
-                        
-                            <table class="table  table-default">
-                            <thead>
-                              <th>Nombre</th>
-                              <th>Precio</th>
-                              <th>Opciones</th>
-                            </thead>
-                            <tbody>
-                                <tr v-for="refresco in refrescos" :key="refresco.id_plato">
-                                       <td hidden="">{{refresco.id_plato}}</td>
-                                       <td>{{refresco.nombre}}</td>
-                                       <td>{{refresco.precio}}</td>
-                                       <td>
-                                           <button type="button" class="btn btn-success btn-sm btn-sm" @click="insertProducto(refresco.id_plato)">+</button>
-                                       </td>
-                                </tr> 
-                            </tbody>
-                        </table>
-
-                      </div>
-                   </div>
-                    </div>
-                  </div>
-
-                  <div class="col-md-4 mb-3" style="border-color:red;">
-                    <label for="validationCustom03">Eligir producto</label>
-                    <div class="input-group">
-                       <div class="col-xl-10 col-md-10">
-                                     
-                        <div class="table-responsive">
-                        
-                           <table class="table  table-default">
-                                    <thead>
-                                        <th>Nombre</th>
-                                        <th>Precio</th>
-                                        <th>Cantidad</th>
-                                        <th>Opciones</th>
-                                    </thead>
-                                    <tbody>
-                                    
-
-                                    <tr v-for="(producto,index) in historial" :key="producto.id_plato">
-                                       <td >{{producto.nombre}}</td>
-                                       <td>{{producto.precio}}</td>
-                                       <td><input class="form-control" type="number" name="" v-model.number="cantidades[index]" placeholder="Cantidad"></td>
-                                       <td>
-                                           <button type="button" class="btn btn-success btn-sm btn-sm" @click="eliminarhistorial(index)">+</button>
-                                       </td>
-                                       <td>{{ totalProducto(index) }}</td>
-                                    </tr> 
-
-                                   </tbody>
-                            </table>
-                                
-                            Total: {{subTotal}}
-
-                            <br>
-
-                            <div class="ms-form-group">
-                                    <label>Comentario</label>
-                                    <input type="text" class="form-control" v-model="descripcion">
-                            </div>
-                            
-                            
-                            <button  type="button" class="btn btn-success" @click="createcomand()">Realizar comanda</button>
-                        </div>
-                   </div>
-                    </div>
-                  </div>
-                 
+    <div class="col-md-12" >
+        <div class="m-5">
+            <h4>Comanda</h4>
+            <div class="row">
+                <div class="col-md-4">
+                    <h6>Realiza : <i class="fas fa-user"></i> {{user.usuario}}</h6>
                 </div>
-                
-              </form>
-       
+                <div class="col-md-5">
+                    <div class="form-group row">
+                        <label class="col-sm-2">Mesa</label>
+                        <div class="col-sm-8">
+                            <select class="form-control" v-model="id_mesa">
+                                <option value="0" disabled></option>
+                                <option v-for="mesa in mesas" :key="mesa.id_mesa" v-bind:value="mesa.id_mesa">{{mesa.num_mesa}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <h6>Fecha:</h6> <p>{{fecha}}</p>
+                </div>
             </div>
-          </div>
-    </div>
 
+            <div class="ms-panel-body">
+               <div class="col-md-12">
+                    <form class="needs-validation" novalidate>
+                        <div class="form-row" style="display: flex; margin-top:5%;">
+                            <div class="card col-md-6 m-2 p-2">
+                                <div class="mb-3">
+                                    <label for="validationCustom03">Eligir platillo</label>
+                                    <div class="input-group">
+                                        <div class="col-xl-12 col-md-12"> 
+                                            <div class="needs-validation clearfix">
+                                                <table class="table table-hover">
+                                                    <thead class="encabezado-tabla">                            
+                                                        <tr>
+                                                            <th>Nombre</th>
+                                                            <th>Precio</th>
+                                                            <th>Opciones</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="contenido-tabla">
+                                                        <tr v-for="comida in comidas" :key="comida.id_plato">
+                                                            <td hidden="">{{comida.id_plato}}</td>
+                                                            <td>{{comida.nombre}}</td>
+                                                            <td>{{comida.precio}}</td>
+                                                            <td class="col-2 text-center">
+                                                                <button type="button" class="btn btn-outline-success btn-sm btn-sm" @click="insertProducto(comida.id_plato)"><i class="fas fa-plus"></i></button>
+                                                            </td>
+                                                        </tr>
+                                                            
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3" style="">
+                                    <label for="validationCustom03">Eligir bebida</label>
+                                    <div class="input-group">
+                                        <div class="col-xl-12 col-md-12"> 
+                                            <div class="needs-validation clearfix">
+                                                <table class="table  table-hover">
+                                                    <thead class="encabezado-tabla">
+                                                        <tr>
+                                                            <th>Nombre</th>
+                                                            <th>Precio</th>
+                                                            <th>Opciones</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="contenido-tabla">
+                                                        <tr v-for="refresco in refrescos" :key="refresco.id_plato">
+                                                            <td hidden="">{{refresco.id_plato}}</td>
+                                                            <td>{{refresco.nombre}}</td>
+                                                            <td>{{refresco.precio}}</td>
+                                                            <td class="col-2 text-center">
+                                                                <button type="button" class="btn btn-outline-success btn-sm" @click="insertProducto(refresco.id_plato)"><i class="fas fa-plus"></i></button>
+                                                            </td>
+                                                        </tr> 
+                                                        
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card col-md-6 m-2 p-2">
+                                <div class="col-md-12" style="border-color:red;">
+                                    <label for="validationCustom03">Comanda</label>
+                                    <div class="input-group">
+                                        <div class="col-xl-12 col-md-12">
+                                            <div class="table-responsive">
+                                                <table class="table table-hover">
+                                                    <thead class="encabezado-tabla">
+                                                        <tr>
+                                                            <th>Nombre</th>
+                                                            <th>Precio</th>
+                                                            <th>Cantidad</th>
+                                                            <th>Opciones</th>
+                                                            <th>Total</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="contenido-tabla">
+                                                        <tr v-for="(producto,index) in historial" :key="producto.id_plato">
+                                                            <td >{{producto.nombre}}</td>
+                                                            <td>{{producto.precio}}</td>
+                                                            <td class="col-3">
+                                                                <input class="form-control" type="number" name="" v-model.number="cantidades[index]" placeholder="Cantidad">
+                                                            </td>
+                                                            <td class="col-2 text-center">
+                                                                <button type="button" class="btn btn-outline-danger btn-sm" @click="eliminarhistorial(index)"><i class="fas fa-times"></i></button>
+                                                            </td>
+                                                            <td>{{ totalProducto(index) }}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>          
+                                                <h6>Total: <strong>{{subTotal}}</strong></h6>
+                                                <br>
+                                                <div class="ms-form-group">
+                                                    <label>Comentario</label>
+                                                    <input type="text" class="form-control" v-model="descripcion">
+                                                </div>
+                                                <button  type="button" class="btn color-primario mt-3" @click="createcomand()">Realizar comanda</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 
 </template>
 
 <script>
+    let fecha=new Date();
+    let dia_semana=[
+        'Domingo',
+        'Lunes',
+        'Martes',
+        'Miercoles',
+        'Jueves',
+        'Viernes',
+        'Sabado'
+    ];
+    let mes=[
+        'Enero',
+        'Febrero',
+        'Marzo',
+        'Abril',
+        'Mayo',
+        'Junio',
+        'Julio',
+        'Agosto',
+        'Septiembre',
+        'Octubre',
+        'Noviembre',
+        'Diciembre'
+
+    ];
+    let traer_fecha = dia_semana[fecha.getDay()] + ", " + fecha.getDate() + " de " + mes[fecha.getMonth()] + " del " + fecha.getFullYear();
+    let user = document.head.querySelector('meta[name="usuario_log"]');
+
     export default {
         data(){
             return{
+                fecha:'',
                 //arrays
                 productos:[],
                 comidas:[],
@@ -165,6 +196,9 @@
             }
         }, 
         computed:{
+            user(){
+                return JSON.parse(user.content);
+            },
             //metodo para calcular el total de cantidad de productos
             totalProducto(){
                 //recibe un parametro id , para recibir parametros es la sig manera
@@ -354,6 +388,8 @@
             this.todosProductos();
             this.getMesas();
             console.log('Component mounted.')
+            this.fecha=traer_fecha;
         }
     }
 </script>
+

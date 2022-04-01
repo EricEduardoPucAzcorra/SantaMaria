@@ -15,7 +15,7 @@
         </li>
         <li v-on:click="menu=1">
             <a href="#">
-                <i class="fas fa-user"></i>
+                <i class="fas fa-concierge-bell"></i>
                 <span class="link_name">Comandas</span>
             </a>
             <ul class="sub-menu blank">

@@ -1,29 +1,28 @@
 <template>
     <div class="col-md-12">
         <div class="m-5">
-            <h6>Mesas</h6>
-            <button type="button" class="btn btn-secondary" v-on:click="activarModal('mesa','registrar')" >
-                <i class="icon-plus"></i>&nbsp;Nuevo
+            <h4>Mesas</h4>
+            <button type="button" class="btn color-primario" v-on:click="activarModal('mesa','registrar')" >
+                <i class="fas fa-plus"></i> Nuevo
             </button>
         </div>
         <div class="m-5">
-            <table class="table table-hover table-dark">
-                <thead>
+            <table class="table table-hover">
+                <thead class="encabezado-tabla">
                     <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">Numero de Mesa</th>
+                      <th scope="col">ID</th>
+                      <th scope="col">Número de Mesa</th>
                       <th>Estado</th>
                        <th>Acciones</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="contenido-tabla">
                     <tr v-for="mesa in mesas" :key="mesa.id_mesa">
                         <td>{{mesa.id_mesa}}</td>
                         <td>{{mesa.num_mesa}}</td>
                         <td>{{mesa.estado}}</td>
-                        
                         <td>
-                            <button  class="btn btn-info" type="button" @click="activarModal('mesa','actualizar', mesa)">Editar</button>
+                            <button  class="btn btn-outline-success" type="button" @click="activarModal('mesa','actualizar', mesa)"> <i class="fas fa-pen"></i> Editar</button>
                             <!-- <template v-if="mesa.condicion">    
                                 <button type="button"  @click="desactivar(mesa.id_mesa)" class="btn btn-danger">Desactivar</button>
                             </template>
@@ -35,53 +34,47 @@
                 </tbody>
             </table>
         </div>
-
         <!-- Notes Modal -->
-    <div class="modal fade"  style="display: none;" id="modal_mesa" tabindex="-1" role="dialog" aria-labelledby="reminder-modal">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header bg-secondary">
-              <h5 class="modal-title has-icon text-white" v-if="bandera==true">REGISTRAR mesa</h5>
-              <h5 class="modal-title has-icon text-white" v-if="bandera==false">ACTUALIZAR mesa</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="cerrarmodal()"><span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <form>
-              <div class="modal-body">
-                    <div class="ms-form-group">
-                    <label>Mesa</label>
-                    <input type="text" placeholder="Numero de Mesa" class="form-control" v-model="num_mesa">
+        <div class="modal fade"  style="display: none;" id="modal_mesa" tabindex="-1" role="dialog" aria-labelledby="reminder-modal">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header color-secundario">
+                        <h5 class="modal-title has-icon text-white" v-if="bandera==true">REGISTRO MESA</h5>
+                        <h5 class="modal-title has-icon text-white" v-if="bandera==false">ACTUALIZAR MESA</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="cerrarmodal()">
+                            <span aria-hidden="true"><i class="fas fa-times"></i></span>
+                        </button>
                     </div>
-
-                    <div class="ms-form-group">
-                    <label>Estado</label>
-                    <select class="form-control" v-model="estado">
-                        <option value="DISPONIBLE">DISPONIBLE</option>
-                        <option value="NO DISPONIBLE">NO DISPONIBLE</option>
-                    </select>
-                    </div>
-
-
-                <!-- validacion de campos -->
-                <div v-show="mostrarError" class="form-group row div-error">
-                            <div class="text-center text-error">
-                                <div v-for="error in errormensaje" :key="error" v-text="error">
-
+                    <form>
+                        <div class="modal-body">
+                            <div class="ms-form-group">
+                                <label>Mesa</label>
+                                <input type="text" class="form-control" v-model="num_mesa">
+                            </div>
+                            <div class="ms-form-group">
+                                <label>Estado</label>
+                                <select class="form-control" v-model="estado">
+                                    <option value="DISPONIBLE">DISPONIBLE</option>
+                                    <option value="NO DISPONIBLE">NO DISPONIBLE</option>
+                                </select>
+                            </div>
+                            <!-- validacion de campos -->
+                            <div v-show="mostrarError" class="form-group row div-error">
+                                <div class="text-center text-error">
+                                    <div v-for="error in errormensaje" :key="error" v-text="error">
+                                    </div>
                                 </div>
                             </div>
-                    </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-light" @click="cerrarmodal()">Cerrar</button>
-                    <button type="button" class="btn btn-secondary shadow-none" v-if="bandera==true" @click="registrarmesa()" >Registrar</button>
-                    <button type="button" class="btn btn-secondary shadow-none" v-if="bandera==false" @click="actualizarmesa()" data-dismiss="modal">Actualizar</button>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-light" @click="cerrarmodal()">Cerrar</button>
+                                <button type="button" class="btn color-primario shadow-none" v-if="bandera==true" @click="registrarmesa()" >Registrar</button>
+                                <button type="button" class="btn color-primario shadow-none" v-if="bandera==false" @click="actualizarmesa()" data-dismiss="modal">Actualizar</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-              </div>
-            </form>
-          </div>
+            </div>
         </div>
-      </div>
-
     </div>
 </template>
 

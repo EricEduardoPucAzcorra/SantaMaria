@@ -10,14 +10,14 @@
             <table class="table table-hover">
                 <thead class="encabezado-tabla">
                     <tr>
-                      <th scope="col">#</th>
+                      <th scope="col">ID</th>
                       <th scope="col">Folio</th>
                       <th scope="col">Tipo</th>
-                      <th>Num hab</th>
+                      <th>Número de habitación</th>
                       <th>Precio</th>
-                      <th>Caracteristicas</th>
-                      <th>Num piso</th>
-                      <th>Num personas</th>
+                      <th>Características</th>
+                      <th>Número de piso</th>
+                      <th>Número de personas</th>
                       <th>Estado</th>
                       <th>Acciones</th>
                     </tr>
@@ -43,82 +43,75 @@
                 </tbody>
             </table>
         </div>
-
         <!-- Notes Modal -->
-         <div class="modal fade"  style="display: none;" id="modal_habitacion" tabindex="-1" role="dialog" aria-labelledby="reminder-modal">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header color-secundario">
-              <h5 class="modal-title" v-if="bandera==true">Nueva habitacion</h5>
-              <h5 class="modal-title" v-if="bandera==false">Detalles y actualziacion</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="cerrarmodal()">
-                  <span aria-hidden="true"><i class="fas fa-times"></i></span>
-              </button>
-            </div>
-            <form>
-              <div class="modal-body">
-                    <div class="ms-form-group">
-                    <label>Folio</label>
-                    <input type="text" placeholder="Asignar folio" class="form-control" v-model="folio">
+        <div class="modal fade"  style="display: none;" id="modal_habitacion" tabindex="-1" role="dialog" aria-labelledby="reminder-modal">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header color-secundario">
+                        <h5 class="modal-title" v-if="bandera==true">REGISTRAR HABITACIÓN</h5>
+                        <h5 class="modal-title" v-if="bandera==false">ACTUALIZAR HABITACIÓN</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="cerrarmodal()">
+                            <span aria-hidden="true"><i class="fas fa-times"></i></span>
+                        </button>
                     </div>
-            
-                    <div class="ms-form-group">
-                        <label>Tipo de habitacion</label>
-                        <select class="form-control" v-model="id_tipo">
-                               <option value="0" disabled>Selecione un un tipo</option>
-                               <option v-for="tipo in tiposH" :key="tipo.id_tipo" v-bind:value="tipo.id_tipo">{{tipo.tipo}}</option>
-                        </select>
-                    </div>
-                    <div class="ms-form-group" id="estado">
-                          <label>Estado</label>
-                        <select class="form-control" v-model="estado">
-                            <option value="0" disabled>Selecione un estado</option>
-                            <option value="DISPONIBLE">DISPONIBLE</option>
-                            <option value="OCUPADO">OCUPADO</option>
-                            <option value="MANTENIMIENTO">MANTENIMIENTO</option>
-                        </select>
-                    </div>
-                    <div class="ms-form-group">
-                        <label>Num habitacion</label>
-                            <input type="number" placeholder="Numero de la habitacion" class="form-control" v-model="num_habitacion">
-                    </div>          
-                    <div class="ms-form-group">
-                        <label>Precio</label>
-                            <input type="text" placeholder="Precio del cuarto" class="form-control" v-model="precio">
-                    </div>
-                    <div class="ms-form-group">
-                            <label>Caracteristicas</label>
-                            <textarea name="" id="" cols="3" rows="3" class="form-control" v-model="caracteristicas"></textarea>
-                    </div>
-                    <div class="ms-form-group">
-                        <label>Num piso</label>
-                            <input type="number" placeholder="Numero de piso" class="form-control" v-model="num_piso">
-                    </div>
-                    <div class="ms-form-group">
-                        <label>Num personas</label>
-                            <input type="number" placeholder="Cantidad de personas" class="form-control" v-model="num_personas">
-                        </div>
-                    </div>
-
-                    <!-- validacion de campos -->
-                    <div v-show="mostrarError" class="form-group row div-error">
-                                <div class="text-center text-error">
-                                    <div v-for="error in errormensaje" :key="error" v-text="error">
-
-                                    </div>
+                    <form>
+                        <div class="modal-body">
+                            <div class="ms-form-group">
+                                <label>Folio</label>
+                                <input type="text" class="form-control" v-model="folio">
+                            </div>
+                            <div class="ms-form-group">
+                                <label>Tipo de habitación</label>
+                                <select class="form-control" v-model="id_tipo">
+                                    <option value="0" disabled>Selecione un un tipo</option>
+                                    <option v-for="tipo in tiposH" :key="tipo.id_tipo" v-bind:value="tipo.id_tipo">{{tipo.tipo}}</option>
+                                </select>
+                            </div>
+                            <div class="ms-form-group" id="estado">
+                                <label>Estado</label>
+                                <select class="form-control" v-model="estado">
+                                    <option value="0" disabled>Selecione un estado</option>
+                                    <option value="DISPONIBLE">DISPONIBLE</option>
+                                    <option value="OCUPADO">OCUPADO</option>
+                                    <option value="MANTENIMIENTO">MANTENIMIENTO</option>
+                                </select>
+                            </div>
+                            <div class="ms-form-group">
+                                <label>Número de habitación</label>
+                                <input type="number" class="form-control" v-model="num_habitacion">
+                            </div>          
+                            <div class="ms-form-group">
+                                <label>Precio</label>
+                                <input type="text" class="form-control" v-model="precio">
+                            </div>
+                            <div class="ms-form-group">
+                                    <label>Características</label>
+                                    <textarea name="" id="" cols="3" rows="3" class="form-control" v-model="caracteristicas"></textarea>
+                            </div>
+                            <div class="ms-form-group">
+                                <label>Número de piso</label>
+                                <input type="number" class="form-control" v-model="num_piso">
+                            </div>
+                            <div class="ms-form-group">
+                                <label>Número de personas</label>
+                                    <input type="number" class="form-control" v-model="num_personas">
                                 </div>
-                    </div>
-
-              <div class="modal-footer">
-                <button type="button" class="btn btn-light" @click="cerrarmodal()">Cerrar</button>
-                <button type="button" class="btn color-primario" v-if="bandera==true" @click="registrarHabitacion()" >Registrar</button>
-                 <button type="button" class="btn color-primario" v-if="bandera==false" @click="actualizarHabitacion()" data-dismiss="modal">Actualizar</button>
-              </div>
-            </form>
-          </div>
+                            </div>
+                            <!-- validacion de campos -->
+                            <div v-show="mostrarError" class="form-group row div-error">
+                                <div class="text-center text-error">
+                                    <div v-for="error in errormensaje" :key="error" v-text="error"></div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-light" @click="cerrarmodal()">Cerrar</button>
+                                <button type="button" class="btn color-primario" v-if="bandera==true" @click="registrarHabitacion()" >Registrar</button>
+                                <button type="button" class="btn color-primario" v-if="bandera==false" @click="actualizarHabitacion()" data-dismiss="modal">Actualizar</button>
+                            </div>
+                    </form>
+                </div>
+            </div>
         </div>
-      </div>
-
     </div>
 </template>
 
