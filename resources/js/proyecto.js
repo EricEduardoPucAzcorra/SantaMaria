@@ -15,7 +15,7 @@
  Vue.component('historialcomanda-component', require('./components/Restaurante/HistorialComanda.vue').default);
  Vue.component('categoriaplatillo-component', require('./components/Restaurante/CategoriaPlatillo.vue').default);
  Vue.component('platillos-component', require('./components/Restaurante/Platillos.vue').default);
-
+ Vue.component('detalles_reservar-component', require('./components/Hotel/Reservaciones/Reservas.vue').default);
 
  //codigo vue js
  const app = new Vue({

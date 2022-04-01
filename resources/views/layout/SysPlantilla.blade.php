@@ -15,10 +15,11 @@
     <link rel="stylesheet" href="{{asset('css/santamaria.css')}}">
     <link rel="stylesheet" href="{{asset('fontawesome/css/all.css')}}">
     <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.min.css')}}">
+    <script type="text/javascript" src="{{asset('graficos/vue.js')}}"></script>
 
     @yield('style')
 
-    @livewireStyles   
+ 
 </head>
 <body>
     <div id="vue">
@@ -63,7 +64,8 @@
         </section>
     </div>
 
-    @livewireScripts
+
+    
     <script src="{{asset('js/proyecto.js')}}"></script>
     <script src="{{asset('js/sweetalert.js')}}"></script>
     <script src="{{asset('bootstrap/js/bootstrap.min.js')}}"></script>
