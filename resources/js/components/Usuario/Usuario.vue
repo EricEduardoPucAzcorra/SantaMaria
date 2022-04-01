@@ -1,109 +1,87 @@
 <template>
-<main class="main">
-  
-    <div class="container-fluid">
-        <!-- Ejemplo de tabla Listado -->
-        <div class="card">
-            <div class="card-header">
-                <i class="fa fa-align-justify"></i> Usuarios
-                <!-- en el metodo abrir modal envio 2 elementos -->
-                <button type="button" class="btn btn-secondary" v-on:click="abrirModal('usuario','registrar')">
-                    <i class="icon-plus"></i>&nbsp;Nuevo
-                </button>
-            </div>
-           
-            <div class="card-body">
-               
-                <table class="table table-bordered table-striped table-sm">
-                    <thead>
-                        <tr>
-                            <th>Opciones</th>
-                            <th>Nombre</th>
-                            <th>Tipo doc</th>
-                            <th>Num doc</th>
-                            <th>Direccion</th>
-                            <th>Telefono</th>
-                            <th>Email</th>
-                            <th>Usuario</th>
-                            <th>Rol</th>
-                            <th>Estado</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- cnsidrar la :key  para identificar la id de la table-->
-                        <tr v-for="usuario in usuarios" :key="usuario.id_persona">
-                            <td>
-                                <button type="button" class="btn btn-warning btn-sm" v-on:click="abrirModal('usuario','actualizar',usuario)" >
-                                  editar
-                                </button> &nbsp;
-
-                                 <!-- //si la categoria.condicion es 1 -->
-                                <template v-if="usuario.condicion">
-                                    <button type="button" class="btn btn-danger btn-sm" v-on:click="desactivarUsuario(usuario.id_persona)">
-                                        desactivar
-                                    </button>
-                                </template>
-                                <template v-else>
-                                    <button type="button" class="btn btn-info btn-sm" v-on:click="activarUsuario(usuario.id_persona)">
-                                        activar
-                                    </button>
-                                </template>
-                               
-                            </td>
-                            <td v-text="usuario.nombre"></td>
-                            <td v-text="usuario.tipo_documento"></td>
-                            <td v-text="usuario.num_documento"></td>
-                            <td v-text="usuario.direccion"></td>
-                            <td v-text="usuario.telefono"></td>
-                            <td v-text="usuario.email"></td>
-                            <td v-text="usuario.usuario"></td>
-                            <!-- <td v-text="usuario.id_rol"></td> -->
-                            <td v-text="usuario.nombre_rol"></td>
-                             <td>
-                                <div v-if="usuario.condicion">
-                                    <span class="badge badge-success">Activo</span>
-                                </div>
-                                <div v-else>
-                                    <span class="badge badge-danger">Inactivo</span>
-                                </div>
-                            </td>
-                        </tr>
-                      
-                    </tbody>
-                </table>
-               
-            </div>
-        </div>
-        <!-- Fin ejemplo de tabla Listado -->
+<div class="col-md 12">
+    <div class="m-5">
+        <h4>Usuarios</h4>
+        <button type="button" class="btn color-primario" v-on:click="abrirModal('usuario','registrar')">
+            <i class="fas fa-plus"></i> Nuevo
+        </button>
+    </div>
+    <div class="m-5">
+        <table class="table table-hover">
+            <thead class="encabezado-tabla">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Telefono</th>
+                    <th>Dirección</th>
+                    <th>Email</th>
+                    <th>Usuario</th>
+                    <th>Rol</th>
+                    <th>Estado</th>
+                    <th>Opciones</th>    
+                </tr>
+            </thead>
+            <tbody class="contenid-tabla">
+                <!-- cnsidrar la :key  para identificar la id de la table-->
+                <tr v-for="usuario in usuarios" :key="usuario.id_persona">
+                    <td v-text="usuario.nombre"></td>
+                    <td v-text="usuario.telefono"></td>
+                    <td v-text="usuario.direccion"></td>
+                    <td v-text="usuario.email"></td>
+                    <td v-text="usuario.usuario"></td>
+                    <!-- <td v-text="usuario.id_rol"></td> -->
+                    <td v-text="usuario.nombre_rol"></td>
+                    <td>
+                        <div v-if="usuario.condicion">
+                            <span class="badge badge-success">Activo</span>
+                        </div>
+                        <div v-else>
+                            <span class="badge badge-danger">Inactivo</span>
+                        </div>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-outline-success" v-on:click="abrirModal('usuario','actualizar',usuario)" >
+                            <i class="fas fa-pen"></i> Editar
+                        </button>
+                        <!-- //si la categoria.condicion es 1 -->
+                        <template v-if="usuario.condicion">
+                            <button type="button" class="btn btn-outline-light" v-on:click="desactivarUsuario(usuario.id_persona)">
+                               <i class="fas fa-arrow-down"></i> Desactivar
+                            </button>
+                        </template>
+                        <template v-else>
+                            <button type="button" class="btn btn-outline-warning" v-on:click="activarUsuario(usuario.id_persona)">
+                                <i class="fas fa-arrow-up"></i> Activar
+                            </button>
+                        </template>       
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
-
-    <!--Inicio del modal agregar/actualizar-->
-    <!-- :class="{'mostrar':modal}" con esto se le inyecta la clase -->
-    <div class="modal fade" tabindex="-1" :class="{'mostrar':modal}" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
-        <div class="modal-dialog modal-primary modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" v-text="tituloModal">{{tituloModal}}</h4>
-                    <button type="button" class="close"  v-on:click="cerrarModal()">
-                      <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
-                        
-                        <input type="text" v-model="id_usuario" hidden="">
-                        
-                        <div class="form-group row">
-                            <label class="col-md-3 form-control-label" for="text-input">Nombre</label>
-                            <div class="col-md-9">
+    <div class="modal fade"  style="display: none;" id="modal_usuario" tabindex="-1" role="dialog" aria-labelledby="reminder-modal">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header color-secundario">
+              <h5 class="modal-title" v-if="bandera==true">REGISTRAR CATEGORIA</h5>
+              <h5 class="modal-title" v-if="bandera==false">ACTUALIZAR CATEGORIA</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" v-on:click="cerrarModal()">
+                  <span aria-hidden="true"><i class="fas fa-times"></i></span>
+              </button>
+            </div>
+            <div>
+                <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">   
+                    <div class="modal-body">
+                         <input type="text" v-model="id_usuario" hidden="">    
+                        <div class="ms-form-group">
+                            <label class=" form-control-label" for="text-input">Nombre</label>
+                            <div>
                                 <input type="text" v-model="nombre" class="form-control" placeholder="Nombre del cliente">
-                              
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label class="col-md-3 form-control-label" for="email-input">Tipo docuemtno</label>
-                            <div class="col-md-9">
+                        <div class="ms-form-group">
+                            <label class=" form-control-label" for="email-input">Tipo docuemtno</label>
+                            <div>
                                 <select  v-model="tipo_documento" class="form-control" >
                                     <option value="0" disabled>Elige un tipo documento</option>
                                     <option value="DNI">DNI</option>
@@ -112,37 +90,33 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label class="col-md-3 form-control-label" for="">Numero documento</label>
-                            <div class="col-md-9">
+                        <div class="ms-form-group">
+                            <label class=" form-control-label" for="">Numero documento</label>
+                            <div>
                                 <input type="text" v-model="num_documento" class="form-control" placeholder="N° documento">
                             </div>
                         </div>
-
-                     
-
-                        <div class="form-group row">
-                            <label class="col-md-3 form-control-label" for="email-input">Direccion</label>
-                            <div class="col-md-9">
+                        <div class="ms-form-group">
+                            <label class=" form-control-label" for="email-input">Direccion</label>
+                            <div>
                                 <input type="text" v-model="direccion" class="form-control" placeholder="Direccio">
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label class="col-md-3 form-control-label" for="email-input">Telefono</label>
-                            <div class="col-md-9">
+                        <div class="ms-form-group">
+                            <label class="form-control-label" for="email-input">Telefono</label>
+                            <div>
                                 <input type="text" v-model="telefono" class="form-control" placeholder="Telefono">
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label class="col-md-3 form-control-label" for="email-input">Email</label>
-                            <div class="col-md-9">
+                        <div class="ms-form-group">
+                            <label class=" form-control-label" for="email-input">Email</label>
+                            <div>
                                 <input type="text" v-model="email" class="form-control" placeholder="example@gmail.com">
                             </div>
                         </div>
-
-                        <div class="form-group row">
-                            <label class="col-md-3 form-control-label" for="email-input">Rol (*)</label>
-                            <div class="col-md-9">
+                        <div class="ms-form-group">
+                            <label class=" form-control-label" for="email-input">Rol (*)</label>
+                            <div>
                                 <select class="form-control" v-model="id_rol">
                                     <option value="0">Elige rol</option>
                                     <option v-for="rol in roles" :key="rol.id_rol" v-bind:value="rol.id_rol" >
@@ -151,60 +125,51 @@
                                 </select>
                             </div>
                         </div>
-
-                        <div class="form-group row">
-                            <label class="col-md-3 form-control-label" for="email-input">Usuario (*)</label>
-                            <div class="col-md-9">
+                        <div class="ms-form-group">
+                            <label class="form-control-label" for="email-input">Usuario (*)</label>
+                            <div>
                                 <input type="text" v-model="usuario" class="form-control" placeholder="Nombre de usuario">
                             </div>
                         </div>
-
-                        <div class="form-group row">
-                            <label class="col-md-3 form-control-label" for="email-input">Password (*)</label>
-                            <div class="col-md-9">
+                        <div class="ms-form-group">
+                            <label class=" form-control-label" for="email-input">Password (*)</label>
+                            <div>
                                 <input type="password" v-model="password" class="form-control" placeholder="Password">
                             </div>
                         </div>
-
                         <!-- mensaje de validacion -->
-                        <div v-show="errorUsuario" class="form-group row div-error">
+                        <div v-show="errorUsuario" class="form-group div-error">
                             <div class="text-center text-error">
                                 <div v-for="error in errormensaje" :key="error" >
                                     {{error}}
                                 </div>
                             </div>
-                        </div>
-
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" v-on:click="cerrarModal()">Cerrar</button>
-                    <button type="button" v-if="tipoAccion==1" class="btn btn-primary" v-on:click="registrarUsuario()">Guardar</button>
-                     <button type="button" v-if="tipoAccion==2" class="btn btn-primary" v-on:click="actualizarUsuario()">Actualizar</button>
-                </div>
-
+                        </div>    
+                    </div>    
+                </form>
             </div>
-            <!-- /.modal-content -->
+            <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" v-on:click="cerrarModal()">Cerrar</button>
+                    <button type="button"  class="btn btn-primary"  v-if="bandera==true" v-on:click="registrarUsuario()">Guardar</button>
+                    <button type="button"  class="btn btn-primary"  v-if="bandera==false" v-on:click="actualizarUsuario()">Actualizar</button>
+            </div>
+          </div>
         </div>
-        <!-- /.modal-dialog -->
     </div>
-    <!--Fin del modal-->
-    
-</main>  
+</div>
 </template>
-
 <script>
     export default {
         data(){
             return{
-                 id_usuario:0,
-                 prueba: 'hola mundo',
-                 nombre:'',
-                 tipo_documento:'',
-                 num_documento:'',
-                 direccion:'',
-                 telefono:'',
-                 email:'',
+                id_usuario:0,
+                prueba: 'hola mundo',
+                nombre:'',
+                tipo_documento:'',
+                num_documento:'',
+                direccion:'',
+                telefono:'',
+                email:'',
                 //  contacto:'',
                 //  telefono_contacto:'',
                  usuario:'',
@@ -233,7 +198,8 @@
                  offset:3,
                  //variables busqueda
                  criterio:'nombre',
-                 buscar:''
+                 buscar:'',
+                 bandera:false
 
             } 
         },
@@ -340,8 +306,8 @@
                            //si es registrar logica implementada
                            case 'registrar':
                                {
-                                   this.modal = 1;
-                                   this.tituloModal='REGISTRAR USUARIO';
+                                   $('#modal_usuario').modal('show');
+                                   this.bandera=true,
                                    this.nombre = '';
                                    this.tipo_documento = '';
                                    this.id_usuario='';
@@ -358,8 +324,8 @@
                                //si es actualizar logica implementada
                             case 'actualizar':
                                 {
-                                   this.modal = 1;
-                                   this.tituloModal='ACTUALIZAR USUARIO';
+                                   $('#modal_usuario').modal('show');
+                                   this.bandera=false,
                                    this.id_usuario = data['id_persona'];
                                    this.nombre = data['nombre'];
                                    this.tipo_documento = data['tipo_documento'];
@@ -382,10 +348,9 @@
 
             cerrarModal(){
                 //desactivar el modal
-                this.modal = 0;
-                this.tituloModal='';
+                $('#modal_usuario').modal('hide');
                 this.nombre = '';
-                this.tipo_documento = 'RUC';
+                this.tipo_documento = '';
                 this.num_documento='';
                 this.direccion='';
                 this.telefono='';
@@ -438,7 +403,7 @@
                 }).then(function (json) {
                     //atrapar.categorias = json.data;
                     //console.log(json);
-                    me.modal = 0;
+                     $('#modal_usuario').modal('hide');
                     //agregar valores de page, criterio, buscar
                     me.listarUsuarios(1,'nombre','');
                 })
@@ -470,7 +435,7 @@
                 }).then(function (json) {
                    
                     //console.log(json);
-                    me.modal = 0;
+                     $('#modal_usuario').modal('hide');
                     me.listarUsuarios(1,'nombre','');
 
                     console.log('hecho');
@@ -487,8 +452,8 @@
                 text: "",
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
+                confirmButtonColor: '#f31809',
+                cancelButtonColor: '#6c757d',
                 confirmButtonText: 'Desactivar',
                 cancelButtonText: 'Cancelar'
                 }).then((result) => {
@@ -502,9 +467,12 @@
                     }).then(function (json) {
                         me.listarUsuarios(1,'nombre','');
                         Swal.fire(
-                        'Se desactivo',
-                        'El usuario fue desactivada con exito',
-                        'success'
+                        {
+                            title:'Se activó',
+                            text:"La categoria fue activada con exito",
+                            icon:'success',
+                            confirmButtonColor:'#f31809'
+                        }
                         )
                     }); 
                     
@@ -517,8 +485,8 @@
                 text: "",
                 icon: 'success',
                 showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
+                confirmButtonColor: '#f31809',
+                cancelButtonColor: '#6c757d',
                 confirmButtonText: 'Activar',
                 cancelButtonText: 'Cancelar'
                 }).then((result) => {
@@ -532,9 +500,12 @@
                     }).then(function (json) {
                         me.listarUsuarios(1,'nombre','');
                         Swal.fire(
-                        'Se activo',
-                        'El usuario fue activada con exito',
-                        'success'
+                        {
+                            title:'Se activó',
+                            text:"La categoria fue activada con exito",
+                            icon:'success',
+                            confirmButtonColor:'#f31809'
+                        }
                         )
                     });  
                 }

@@ -30,10 +30,10 @@
                         <!-- <td>{{platillos.estado}}</td>     -->
                         <td>
                             <template v-if="platillos.estado">
-                                Activo  
+                               <span class="badge badge-success">Activo</span>  
                             </template>
                             <template v-else>      
-                                Inactivo 
+                               <span class="badge badge-light">Inactivo</span>
                             </template>
                         </td>
                         <td>

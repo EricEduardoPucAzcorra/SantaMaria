@@ -24,10 +24,10 @@
                         <td>{{categoria.descripcion}}</td>    
                         <td>
                             <template v-if="categoria.condicion">
-                                Activo  
+                                <span class="badge badge-success">Activo</span> 
                             </template>
                             <template v-else>      
-                                Inactivo 
+                                <span class="badge badge-light">Inactivo</span> 
                             </template>
                         </td>
                         <td>

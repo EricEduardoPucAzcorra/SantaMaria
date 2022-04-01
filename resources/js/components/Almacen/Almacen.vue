@@ -31,10 +31,10 @@
             <td>{{recurso.nombre_categoria}}</td>
             <td>
               <template v-if="recurso.condicion">
-                Activo
+                <span class="badge badge-success">Activo</span>
               </template>
               <template v-else>                              
-                Inactivo
+               <span class="badge badge-secondary">Inactivo</span>
               </template>
             </td>
             <td>

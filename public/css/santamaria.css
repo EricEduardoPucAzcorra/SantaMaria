@@ -6,18 +6,22 @@
 /* body::-webkit-scrollbar{
     display: none;
 } */
+@font-face {
+    font-family: 'font1';
+    src: url(../fonts/cream-DEMO.ttf);
+}
 body::-webkit-scrollbar {
     width: 10px;               /* width of the entire scrollbar */
   }
   
   body::-webkit-scrollbar-track {
-    background: orange;        /* color of the tracking area */
+    background: #f39702;        /* color of the tracking area */
   }
   
   body::-webkit-scrollbar-thumb {
     background-color: rgb(242, 242, 243);    /* color of the scroll thumb */
     border-radius: 20px;       /* roundness of the scroll thumb */
-    border: 3px solid orange;  /* creates padding around scroll thumb */
+    border: 3px solid #f39702;  /* creates padding around scroll thumb */
   }
 .sidebar{
     position: fixed;
@@ -37,6 +41,15 @@ body::-webkit-scrollbar {
     width: 100%;
     display: flex;
     align-items: center; 
+}
+.sidebar .logo-details img{
+    height: 52px;
+    width: 52px;
+    object-fit: cover;
+    border-radius: 16px;
+    margin: 0 14px 0px 12px;
+    background: #db8904;
+    transition: all 0.5s ease;
 }
 .sidebar .logo-details i{
     font-size: 30px;
@@ -356,47 +369,27 @@ table.table tbody tr:last-of-type{
     justify-content: center;
 
 }
-.contenedor-validar .form-sesion label{
-    color: #000;
-    font-weight: 600;
-    font-size: 20px;
+label.fuente1{
+    font-family:'font1';
+    font-size:22px;
+    font-weight: 400;
 }
 .contenedor-validar .form-sesion input{
     background: #f1f1f1;
     height:45px;
     width:280px;
     border-radius:6px;
-    border: 1px solid #D03B07;
     margin-top: 7px;
     margin-bottom: 7px;
     padding:10px;
+    font-family:'font1';
     font-size:18px;
-    font-weight: 600;
-    color: #D03B07;
 
 }
 .contenedor-validar .form-sesion input:focus{
-    outline:2px solid #d32134;
+    outline:2px solid #f31809;
 }
-.contenedor-validar .boton-validar{
-    margin-top: 10px;
-}
-.contenedor-validar .boton-validar button{
-    display: flex;
-    align-content: center;
-    float:right;
-    background: #D03B07;
-    height:35px;
-    padding:5px;
-    color: #f1f1f1;
-    border: none;
-    border-radius: 4px;
-    font-size:18px;
-}
-.contenedor-validar .boton-validar button:hover{
-    background: #d32134;
 
-}
 /*ESTILOS DE COLORES*/
 .color-secundario{
     color: #f1f1f1;
@@ -407,7 +400,9 @@ button.color-primario{
     background: #f31809;
     color: #FFF;
 }
-
+.fr .btn{
+    float: right;
+}
 
 
 /*ESTILOS DEL MODAL*/

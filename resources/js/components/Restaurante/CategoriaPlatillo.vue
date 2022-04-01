@@ -24,10 +24,10 @@
                         <td>{{categoria.descripcion}}</td>    
                         <td>
                             <template v-if="categoria.estado">
-                                Activo  
+                                <span class="badge badge-success">Activo</span>  
                             </template>
                             <template v-else>      
-                                Inactivo 
+                                <span class="badge badge-light">Inactivo</span> 
                             </template>
                         </td>
                         <td>
@@ -51,7 +51,7 @@
         </div>
 
         <!-- Notes Modal -->
-         <div class="modal fade"  style="display: none;" id="modal_categoria" tabindex="-1" role="dialog" aria-labelledby="reminder-modal">
+        <div class="modal fade"  style="display: none;" id="modal_categoria" tabindex="-1" role="dialog" aria-labelledby="reminder-modal">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header color-secundario">

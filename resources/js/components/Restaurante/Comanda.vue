@@ -12,7 +12,7 @@
                         <label class="col-sm-2">Mesa</label>
                         <div class="col-sm-8">
                             <select class="form-control" v-model="id_mesa">
-                                <option value="0" disabled></option>
+                                <option value="0" disabled>Seleccione una mesa</option>
                                 <option v-for="mesa in mesas" :key="mesa.id_mesa" v-bind:value="mesa.id_mesa">{{mesa.num_mesa}}</option>
                             </select>
                         </div>
