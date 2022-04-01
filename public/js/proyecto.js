@@ -7727,24 +7727,47 @@ var _user = document.head.querySelector('meta[name="usuario_log"]');
       this.historial.splice(index, 1);
     },
     createcomand: function createcomand() {
+      var _this2 = this;
+
       var i = this;
       var array = this.historial;
       var comanda = {
         'estado': 'ACEPTADO',
         'descripcion': this.descripcion,
         'id_mesa': this.id_mesa
-      }; //console.log(comanda);
+      };
+      Swal.fire({
+        title: '¿Estas seguro de dar de alta a la comanda?',
+        text: "",
+        icon: 'danger',
+        showCancelButton: true,
+        confirmButtonColor: '#f31809',
+        cancelButtonColor: '#6c757d',
+        confirmButtonText: 'OK',
+        cancelButtonText: 'Cancelar'
+      }).then(function (result) {
+        if (result.isConfirmed) {
+          var me = _this2;
+          var estado = 0; //realizo peticion
 
-      var url = '/create_comanda';
-      axios.post(url, {
-        'producto': array,
-        'comandas': comanda
-      }).then(function (response) {
-        //console.log(response);
-        i.historial = [];
-      })["catch"](function (error) {
-        console.log(error);
-      });
+          var url = '/create_comanda';
+          axios.post(url, {
+            'producto': array,
+            'comandas': comanda
+          }).then(function (response) {
+            //console.log(response);
+            i.historial = [];
+            Swal.fire({
+              title: "Se realizo la comanda",
+              text: "La  comanda fue realizada",
+              icon: 'success',
+              confirmButtonColor: '#f31809'
+            });
+          })["catch"](function (error) {
+            console.log(error);
+          });
+        }
+      }); //console.log(comanda);
     }
   },
   mounted: function mounted() {

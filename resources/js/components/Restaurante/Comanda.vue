@@ -364,22 +364,49 @@
                 };
 
 
+                Swal.fire({
+                title: '¿Estas seguro de dar de alta a la comanda?',
+                text: "",
+                icon: 'danger',
+                showCancelButton: true,
+                confirmButtonColor: '#f31809',
+                cancelButtonColor: '#6c757d',
+                confirmButtonText: 'OK',
+                cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    let me = this;
+                    let estado = 0;
+                    //realizo peticion
+                   let  url = '/create_comanda';
+                    axios.post(url, 
+                        { 
+                        
+                        'producto':array, 
+                        'comandas':comanda 
+                            
+                        }
+                        ).then(function (response) {
+                            //console.log(response);
+                            i.historial = [];
+
+                            Swal.fire({
+                                title:"Se realizo la comanda",
+                                text:"La  comanda fue realizada",
+                                icon:'success',
+                                confirmButtonColor:'#f31809'
+                            })
+                        }).catch(function (error) {
+                            console.log(error);
+                    });  
+                   
+
+                }
+                });
+
                 //console.log(comanda);
 
-                let  url = '/create_comanda';
-                axios.post(url, 
-                    { 
-                       
-                      'producto':array, 
-                      'comandas':comanda 
-                          
-                    }
-                    ).then(function (response) {
-                        //console.log(response);
-                        i.historial = [];
-                    }).catch(function (error) {
-                        console.log(error);
-                });   
+                 
             }
         },
         mounted() {
