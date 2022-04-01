@@ -1,7 +1,7 @@
 <template>
     <div class="col-md-12">
         <div class="m-5">
-            <h3>Habitaciones</h3>
+            <h3 class="texto-principal">Habitaciones</h3>
             <button type="button" class="btn color-primario" v-on:click="activarModal('habitacion','registrar')" >
                 <i class="fas fa-plus"></i> Nuevo
             </button>
@@ -45,7 +45,7 @@
         </div>
         <!-- Notes Modal -->
         <div class="modal fade"  style="display: none;" id="modal_habitacion" tabindex="-1" role="dialog" aria-labelledby="reminder-modal">
-            <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-dialog modal-dialog-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header color-secundario">
                         <h5 class="modal-title" v-if="bandera==true">REGISTRAR HABITACIÓN</h5>

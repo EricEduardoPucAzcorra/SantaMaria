@@ -1,13 +1,19 @@
 <div class="sidebar">
     <div class="logo-details">
-        <i class="fas fa-search"></i>
-        <span class="logo_name">Santa María</span>
+        <img src="assets/img/SOFTICPRO.png" alt="profile">
+        {{-- <div class="profile-details">
+            <div class="profile-content">
+                <img src="assets/img/people/people-1.png" alt="profile">
+            </div>
+        </div> --}}
+        {{-- <i class="fas fa-search"></i> --}}
+        <span class="logo_name">SANTA MARÍA</span>
     </div>
     <ul class="nav-links">
         <li v-on:click="menu=0">
             <a href="#">
                 <i class="fas fa-home"></i>
-                <span class="link_name">inicio</span>
+                <span class="link_name texto-principal">inicio</span>
             </a>
             <ul class="sub-menu blank">
                 <li v-on:click="menu=0"><a href="#" class="link_name" >Inicio</a></li>
@@ -27,7 +33,7 @@
         <li>
             <div class="profile-details">
                 <div class="profile-content">
-                    <img src="assets/img/people/people-3.jpg" alt="profile">
+                    <img src="assets/img/people/people-1.png" alt="profile">
                 </div>
                 <div class="name-job">
                     <div class="profile_name">{{Auth::User()->usuario}}</div>

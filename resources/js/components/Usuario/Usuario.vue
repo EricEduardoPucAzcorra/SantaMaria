@@ -1,7 +1,7 @@
 <template>
 <div class="col-md 12">
     <div class="m-5">
-        <h4>Usuarios</h4>
+        <h3 class="texto-principal">Usuarios</h3>
         <button type="button" class="btn color-primario" v-on:click="abrirModal('usuario','registrar')">
             <i class="fas fa-plus"></i> Nuevo
         </button>
@@ -63,8 +63,8 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header color-secundario">
-              <h5 class="modal-title" v-if="bandera==true">REGISTRAR CATEGORIA</h5>
-              <h5 class="modal-title" v-if="bandera==false">ACTUALIZAR CATEGORIA</h5>
+              <h5 class="modal-title" v-if="bandera==true">REGISTRAR USUARIO</h5>
+              <h5 class="modal-title" v-if="bandera==false">ACTUALIZAR USUARIO</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close" v-on:click="cerrarModal()">
                   <span aria-hidden="true"><i class="fas fa-times"></i></span>
               </button>
@@ -76,7 +76,7 @@
                         <div class="ms-form-group">
                             <label class=" form-control-label" for="text-input">Nombre</label>
                             <div>
-                                <input type="text" v-model="nombre" class="form-control" placeholder="Nombre del cliente">
+                                <input type="text" v-model="nombre" class="form-control">
                             </div>
                         </div>
                         <div class="ms-form-group">
@@ -93,25 +93,25 @@
                         <div class="ms-form-group">
                             <label class=" form-control-label" for="">Numero documento</label>
                             <div>
-                                <input type="text" v-model="num_documento" class="form-control" placeholder="N° documento">
+                                <input type="text" v-model="num_documento" class="form-control">
                             </div>
                         </div>
                         <div class="ms-form-group">
-                            <label class=" form-control-label" for="email-input">Direccion</label>
+                            <label class=" form-control-label" for="email-input">Dirección</label>
                             <div>
-                                <input type="text" v-model="direccion" class="form-control" placeholder="Direccio">
+                                <input type="text" v-model="direccion" class="form-control">
                             </div>
                         </div>
                         <div class="ms-form-group">
                             <label class="form-control-label" for="email-input">Telefono</label>
                             <div>
-                                <input type="text" v-model="telefono" class="form-control" placeholder="Telefono">
+                                <input type="text" v-model="telefono" class="form-control">
                             </div>
                         </div>
                         <div class="ms-form-group">
                             <label class=" form-control-label" for="email-input">Email</label>
                             <div>
-                                <input type="text" v-model="email" class="form-control" placeholder="example@gmail.com">
+                                <input type="text" v-model="email" class="form-control">
                             </div>
                         </div>
                         <div class="ms-form-group">
@@ -128,13 +128,13 @@
                         <div class="ms-form-group">
                             <label class="form-control-label" for="email-input">Usuario (*)</label>
                             <div>
-                                <input type="text" v-model="usuario" class="form-control" placeholder="Nombre de usuario">
+                                <input type="text" v-model="usuario" class="form-control">
                             </div>
                         </div>
                         <div class="ms-form-group">
                             <label class=" form-control-label" for="email-input">Password (*)</label>
                             <div>
-                                <input type="password" v-model="password" class="form-control" placeholder="Password">
+                                <input type="password" v-model="password" class="form-control">
                             </div>
                         </div>
                         <!-- mensaje de validacion -->
@@ -149,9 +149,9 @@
                 </form>
             </div>
             <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" v-on:click="cerrarModal()">Cerrar</button>
-                    <button type="button"  class="btn btn-primary"  v-if="bandera==true" v-on:click="registrarUsuario()">Guardar</button>
-                    <button type="button"  class="btn btn-primary"  v-if="bandera==false" v-on:click="actualizarUsuario()">Actualizar</button>
+                    <button type="button" class="btn btn-light" v-on:click="cerrarModal()">Cerrar</button>
+                    <button type="button"  class="btn color-primario"  v-if="bandera==true" v-on:click="registrarUsuario()">Guardar</button>
+                    <button type="button"  class="btn color-primario"  v-if="bandera==false" v-on:click="actualizarUsuario()">Actualizar</button>
             </div>
           </div>
         </div>

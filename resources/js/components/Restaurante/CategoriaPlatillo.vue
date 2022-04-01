@@ -1,7 +1,7 @@
 <template>
     <div class="col-md-12">
         <div class="m-5">
-            <h3>Categorias</h3>
+            <h3 class="texto-principal">Categorías</h3>
             <button type="button" class="btn color-primario" v-on:click="activarModal('categoria','registrar')" >
                 <i class="fas fa-plus"></i> Nuevo
             </button>
@@ -10,9 +10,9 @@
             <table class="table table-hover">
                 <thead class="encabezado-tabla">
                     <tr>
-                      <th scope="col">#</th>
+                      <th scope="col">ID</th>
                       <th scope="col">Nombre</th>
-                      <th scope="col">Descripcion</th>
+                      <th scope="col">Descripción</th>
                       <th>Estado</th>
                        <th>Acciones</th>
                     </tr>
@@ -55,8 +55,8 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header color-secundario">
-              <h5 class="modal-title" v-if="bandera==true">REGISTRAR CATEGORIA</h5>
-              <h5 class="modal-title" v-if="bandera==false">ACTUALIZAR CATEGORIA</h5>
+              <h5 class="modal-title" v-if="bandera==true">REGISTRAR CATEGORÍA</h5>
+              <h5 class="modal-title" v-if="bandera==false">ACTUALIZAR CATEGORÍA</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="cerrarmodal()">
                   <span aria-hidden="true"><i class="fas fa-times"></i></span>
               </button>
@@ -65,12 +65,12 @@
               <div class="modal-body">
                 <div class="ms-form-group">
                   <label>Nombre</label>
-                  <input type="text" placeholder="Nombre de la categoria" class="form-control" v-model="nombre">
+                  <input type="text" class="form-control" v-model="nombre">
                 </div>
 
                 <div class="ms-form-group">
-                  <label>Descripcion</label>
-                  <textarea name="" id="" class="form-control" v-model="descripcion" placeholder="Escriba la descripción"></textarea>
+                  <label>DescripciÓn</label>
+                  <textarea name="" id="" class="form-control" v-model="descripcion"></textarea>
                 </div>
               </div>
 

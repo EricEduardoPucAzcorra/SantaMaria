@@ -1,7 +1,7 @@
 <template>
     <div class="col-md-12">
         <div class="m-5">
-            <h4>Mesas</h4>
+            <h3 class="texto-principal">Mesas</h3>
             <button type="button" class="btn color-primario" v-on:click="activarModal('mesa','registrar')" >
                 <i class="fas fa-plus"></i> Nuevo
             </button>

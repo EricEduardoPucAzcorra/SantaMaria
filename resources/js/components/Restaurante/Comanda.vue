@@ -2,7 +2,7 @@
 <div>  
     <div class="col-md-12" >
         <div class="m-5">
-            <h4>Comanda</h4>
+            <h3 class="texto-principal">Comanda</h3>
             <div class="row">
                 <div class="col-md-4">
                     <h6>Realiza : <i class="fas fa-user"></i> {{user.usuario}}</h6>

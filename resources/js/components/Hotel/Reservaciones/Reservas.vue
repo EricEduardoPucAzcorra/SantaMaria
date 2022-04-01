@@ -1,16 +1,16 @@
 <template>
     <div class="col-md-12">
         <div class="m-5">
-            <h4>Detalles de reservas</h4>
+            <h3 class="texto-principal">Detalles de reservas</h3>
         </div>
         <div class="m-5">
             <table class="table table-hover">
                 <thead class="encabezado-tabla">
                     <tr>
                         <th scope="col">Fecha</th>
-                        <th>Numero habitacion</th>
+                        <th>Número habitacion</th>
                         <th scope="col">Folio</th>
-                        <th scope="col">Tipo habitacion</th>
+                        <th scope="col">Tipo habitación</th>
                         <th scope="col">Total</th>
                         <!-- <th scope="col">Comentario</th>
                         <th scope="col">Fecha</th>

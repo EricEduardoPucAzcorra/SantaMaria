@@ -1,7 +1,7 @@
 <template>
     <div class="col-md-12">
         <div class="m-5">
-            <h3>Productos</h3>
+            <h3 class="texto-principal">Productos</h3>
             <button type="button" class="btn color-primario" v-on:click="activarModal('platillo','registrar')" >
                 <i class="fas fa-plus"></i> Nuevo
             </button>
@@ -13,7 +13,7 @@
                       <th scope="col">Folio</th>
                       <th scope="col">Nombre</th>
                       <th scope="col">Descripción</th>
-                      <th scope="col">Categoria</th>
+                      <th scope="col">CategorÍa</th>
                       <th scope="col">Precio</th>
                       <th>Estado</th>
                        <th>Acciones</th>
@@ -71,7 +71,7 @@
               <div class="modal-body">
                 <div class="ms-form-group">
                   <label>Nombre</label>
-                  <input type="text" placeholder="Nombre del articulo" class="form-control" v-model="nombre">
+                  <input type="text" class="form-control" v-model="nombre">
                 </div>
 
                 <div class="ms-form-group">
@@ -81,7 +81,7 @@
 
                 <div class="ms-form-group">
                   <label>Descripcion</label>
-                  <textarea name="" id="" class="form-control" v-model="descripcion" placeholder="Descripcion"></textarea>
+                  <textarea name="" id="" class="form-control" v-model="descripcion"></textarea>
                   
                 </div>
 <!-- <input type="number" placeholder="precio" class="form-control" v-model="id_plato"> -->
@@ -89,7 +89,7 @@
 
                 <div class="ms-form-group">
                   <label>Precio</label>
-                      <input type="number" placeholder="precio" class="form-control" v-model="precio">
+                      <input type="number" class="form-control" v-model="precio">
                 </div>
 
                  <div class="ms-form-group">
@@ -365,7 +365,7 @@
                         cargar.getPlatillos();
                         Swal.fire({
                         title:"Se desactivó",
-                        text:"El producto fue desactivada",
+                        text:"El producto fue desactivado",
                         icon:'success',
                         confirmButtonColor:'#f31809'
                         })

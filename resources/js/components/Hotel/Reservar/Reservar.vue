@@ -1,11 +1,11 @@
 <template>
   <div class="col-md-12">
     <div class="m-5">
-      <h4>Realizar reservas</h4>          
+      <h3 class="texto-principal">Realizar reservas</h3>          
     </div>
-    <div class="m-5">
+    <div class="m-5" style="display:flex;">
       <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6" v-for="habitacion in habitaciones" :key="habitacion.id_habitacion">
-            <div class="ms-card">               
+            <div class="ms-card m-2">               
               <div class="ms-card-body">
 
                       <div class="new">

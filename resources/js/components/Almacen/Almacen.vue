@@ -1,7 +1,7 @@
 <template>
   <div class="col-md-12">
     <div class="m-5">
-      <h3>Recursos materiales</h3>
+      <h3 class="texto-principal">Recursos materiales</h3>
       <button type="button" class="btn color-primario" v-on:click="activarModal('recurso','registrar')" >
         <i class="fas fa-plus"></i> Nuevo
       </button>

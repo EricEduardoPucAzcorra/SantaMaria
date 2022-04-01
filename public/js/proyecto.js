@@ -8208,7 +8208,7 @@ __webpack_require__.r(__webpack_exports__);
             cargar.getPlatillos();
             Swal.fire({
               title: "Se desactivó",
-              text: "El producto fue desactivada",
+              text: "El producto fue desactivado",
               icon: 'success',
               confirmButtonColor: '#f31809'
             });
@@ -53927,7 +53927,9 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "col-md-12" }, [
     _c("div", { staticClass: "m-5" }, [
-      _c("h3", [_vm._v("Recursos materiales")]),
+      _c("h3", { staticClass: "texto-principal" }, [
+        _vm._v("Recursos materiales"),
+      ]),
       _vm._v(" "),
       _c(
         "button",
@@ -54314,7 +54316,9 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "col-md-12" }, [
     _c("div", { staticClass: "m-5" }, [
-      _c("h3", [_vm._v("Categorías objetos")]),
+      _c("h3", { staticClass: "texto-principal" }, [
+        _vm._v("Categorías objetos"),
+      ]),
       _vm._v(" "),
       _c(
         "button",
@@ -54725,7 +54729,7 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "col-md-12" }, [
     _c("div", { staticClass: "m-5" }, [
-      _c("h3", [_vm._v("Habitaciones")]),
+      _c("h3", { staticClass: "texto-principal" }, [_vm._v("Habitaciones")]),
       _vm._v(" "),
       _c(
         "button",
@@ -54813,7 +54817,7 @@ var render = function () {
         _c(
           "div",
           {
-            staticClass: "modal-dialog modal-dialog-centered",
+            staticClass: "modal-dialog modal-dialog-lg",
             attrs: { role: "document" },
           },
           [
@@ -55295,7 +55299,9 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "m-5" }, [
-      _c("h4", [_vm._v("Detalles de reservas")]),
+      _c("h3", { staticClass: "texto-principal" }, [
+        _vm._v("Detalles de reservas"),
+      ]),
     ])
   },
   function () {
@@ -55306,11 +55312,11 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Fecha")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Numero habitacion")]),
+        _c("th", [_vm._v("Número habitacion")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Folio")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Tipo habitacion")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Tipo habitación")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Total")]),
       ]),
@@ -55344,7 +55350,7 @@ var render = function () {
     _vm._v(" "),
     _c(
       "div",
-      { staticClass: "m-5" },
+      { staticClass: "m-5", staticStyle: { display: "flex" } },
       _vm._l(_vm.habitaciones, function (habitacion) {
         return _c(
           "div",
@@ -55353,7 +55359,7 @@ var render = function () {
             staticClass: "col-xl-3 col-lg-4 col-md-6 col-sm-6",
           },
           [
-            _c("div", { staticClass: "ms-card" }, [
+            _c("div", { staticClass: "ms-card m-2" }, [
               _c("div", { staticClass: "ms-card-body" }, [
                 _c("div", { staticClass: "new" }, [
                   _c("h6", { staticClass: "mb-0" }, [
@@ -56204,7 +56210,9 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "m-5" }, [
-      _c("h4", [_vm._v("Realizar reservas")]),
+      _c("h3", { staticClass: "texto-principal" }, [
+        _vm._v("Realizar reservas"),
+      ]),
     ])
   },
 ]
@@ -56232,7 +56240,7 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "col-md-12" }, [
     _c("div", { staticClass: "m-5" }, [
-      _c("h4", [_vm._v("Mesas")]),
+      _c("h3", { staticClass: "texto-principal" }, [_vm._v("Mesas")]),
       _vm._v(" "),
       _c(
         "button",
@@ -56548,7 +56556,7 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "col-md-12" }, [
     _c("div", { staticClass: "m-5" }, [
-      _c("h3", [_vm._v("Categorias")]),
+      _c("h3", { staticClass: "texto-principal" }, [_vm._v("Categorías")]),
       _vm._v(" "),
       _c(
         "button",
@@ -56690,13 +56698,13 @@ var render = function () {
               _c("div", { staticClass: "modal-header color-secundario" }, [
                 _vm.bandera == true
                   ? _c("h5", { staticClass: "modal-title" }, [
-                      _vm._v("REGISTRAR CATEGORIA"),
+                      _vm._v("REGISTRAR CATEGORÍA"),
                     ])
                   : _vm._e(),
                 _vm._v(" "),
                 _vm.bandera == false
                   ? _c("h5", { staticClass: "modal-title" }, [
-                      _vm._v("ACTUALIZAR CATEGORIA"),
+                      _vm._v("ACTUALIZAR CATEGORÍA"),
                     ])
                   : _vm._e(),
                 _vm._v(" "),
@@ -56734,10 +56742,7 @@ var render = function () {
                         },
                       ],
                       staticClass: "form-control",
-                      attrs: {
-                        type: "text",
-                        placeholder: "Nombre de la categoria",
-                      },
+                      attrs: { type: "text" },
                       domProps: { value: _vm.nombre },
                       on: {
                         input: function ($event) {
@@ -56751,7 +56756,7 @@ var render = function () {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "ms-form-group" }, [
-                    _c("label", [_vm._v("Descripcion")]),
+                    _c("label", [_vm._v("DescripciÓn")]),
                     _vm._v(" "),
                     _c("textarea", {
                       directives: [
@@ -56763,11 +56768,7 @@ var render = function () {
                         },
                       ],
                       staticClass: "form-control",
-                      attrs: {
-                        name: "",
-                        id: "",
-                        placeholder: "Escriba la descripción",
-                      },
+                      attrs: { name: "", id: "" },
                       domProps: { value: _vm.descripcion },
                       on: {
                         input: function ($event) {
@@ -56871,11 +56872,11 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", { staticClass: "encabezado-tabla" }, [
       _c("tr", [
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("ID")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Nombre")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Descripcion")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Descripción")]),
         _vm._v(" "),
         _c("th", [_vm._v("Estado")]),
         _vm._v(" "),
@@ -56917,7 +56918,7 @@ var render = function () {
   return _c("div", [
     _c("div", { staticClass: "col-md-12" }, [
       _c("div", { staticClass: "m-5" }, [
-        _c("h4", [_vm._v("Comanda")]),
+        _c("h3", { staticClass: "texto-principal" }, [_vm._v("Comanda")]),
         _vm._v(" "),
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col-md-4" }, [
@@ -57494,7 +57495,9 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "m-5" }, [
-      _c("h4", [_vm._v("Detalles de comandas")]),
+      _c("h3", { staticClass: "texto-principal" }, [
+        _vm._v("Detalles de comandas"),
+      ]),
     ])
   },
   function () {
@@ -57546,7 +57549,7 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "col-md-12" }, [
     _c("div", { staticClass: "m-5" }, [
-      _c("h3", [_vm._v("Productos")]),
+      _c("h3", { staticClass: "texto-principal" }, [_vm._v("Productos")]),
       _vm._v(" "),
       _c(
         "button",
@@ -57743,10 +57746,7 @@ var render = function () {
                         },
                       ],
                       staticClass: "form-control",
-                      attrs: {
-                        type: "text",
-                        placeholder: "Nombre del articulo",
-                      },
+                      attrs: { type: "text" },
                       domProps: { value: _vm.nombre },
                       on: {
                         input: function ($event) {
@@ -57798,7 +57798,7 @@ var render = function () {
                         },
                       ],
                       staticClass: "form-control",
-                      attrs: { name: "", id: "", placeholder: "Descripcion" },
+                      attrs: { name: "", id: "" },
                       domProps: { value: _vm.descripcion },
                       on: {
                         input: function ($event) {
@@ -57824,7 +57824,7 @@ var render = function () {
                         },
                       ],
                       staticClass: "form-control",
-                      attrs: { type: "number", placeholder: "precio" },
+                      attrs: { type: "number" },
                       domProps: { value: _vm.precio },
                       on: {
                         input: function ($event) {
@@ -57985,7 +57985,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Descripción")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Categoria")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("CategorÍa")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Precio")]),
         _vm._v(" "),
@@ -58028,7 +58028,7 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "col-md 12" }, [
     _c("div", { staticClass: "m-5" }, [
-      _c("h4", [_vm._v("Usuarios")]),
+      _c("h3", { staticClass: "texto-principal" }, [_vm._v("Usuarios")]),
       _vm._v(" "),
       _c(
         "button",
@@ -58178,13 +58178,13 @@ var render = function () {
               _c("div", { staticClass: "modal-header color-secundario" }, [
                 _vm.bandera == true
                   ? _c("h5", { staticClass: "modal-title" }, [
-                      _vm._v("REGISTRAR CATEGORIA"),
+                      _vm._v("REGISTRAR USUARIO"),
                     ])
                   : _vm._e(),
                 _vm._v(" "),
                 _vm.bandera == false
                   ? _c("h5", { staticClass: "modal-title" }, [
-                      _vm._v("ACTUALIZAR CATEGORIA"),
+                      _vm._v("ACTUALIZAR USUARIO"),
                     ])
                   : _vm._e(),
                 _vm._v(" "),
@@ -58262,10 +58262,7 @@ var render = function () {
                               },
                             ],
                             staticClass: "form-control",
-                            attrs: {
-                              type: "text",
-                              placeholder: "Nombre del cliente",
-                            },
+                            attrs: { type: "text" },
                             domProps: { value: _vm.nombre },
                             on: {
                               input: function ($event) {
@@ -58363,10 +58360,7 @@ var render = function () {
                               },
                             ],
                             staticClass: "form-control",
-                            attrs: {
-                              type: "text",
-                              placeholder: "N° documento",
-                            },
+                            attrs: { type: "text" },
                             domProps: { value: _vm.num_documento },
                             on: {
                               input: function ($event) {
@@ -58387,7 +58381,7 @@ var render = function () {
                             staticClass: " form-control-label",
                             attrs: { for: "email-input" },
                           },
-                          [_vm._v("Direccion")]
+                          [_vm._v("Dirección")]
                         ),
                         _vm._v(" "),
                         _c("div", [
@@ -58401,7 +58395,7 @@ var render = function () {
                               },
                             ],
                             staticClass: "form-control",
-                            attrs: { type: "text", placeholder: "Direccio" },
+                            attrs: { type: "text" },
                             domProps: { value: _vm.direccion },
                             on: {
                               input: function ($event) {
@@ -58436,7 +58430,7 @@ var render = function () {
                               },
                             ],
                             staticClass: "form-control",
-                            attrs: { type: "text", placeholder: "Telefono" },
+                            attrs: { type: "text" },
                             domProps: { value: _vm.telefono },
                             on: {
                               input: function ($event) {
@@ -58471,10 +58465,7 @@ var render = function () {
                               },
                             ],
                             staticClass: "form-control",
-                            attrs: {
-                              type: "text",
-                              placeholder: "example@gmail.com",
-                            },
+                            attrs: { type: "text" },
                             domProps: { value: _vm.email },
                             on: {
                               input: function ($event) {
@@ -58576,10 +58567,7 @@ var render = function () {
                               },
                             ],
                             staticClass: "form-control",
-                            attrs: {
-                              type: "text",
-                              placeholder: "Nombre de usuario",
-                            },
+                            attrs: { type: "text" },
                             domProps: { value: _vm.usuario },
                             on: {
                               input: function ($event) {
@@ -58614,10 +58602,7 @@ var render = function () {
                               },
                             ],
                             staticClass: "form-control",
-                            attrs: {
-                              type: "password",
-                              placeholder: "Password",
-                            },
+                            attrs: { type: "password" },
                             domProps: { value: _vm.password },
                             on: {
                               input: function ($event) {
@@ -58670,7 +58655,7 @@ var render = function () {
                 _c(
                   "button",
                   {
-                    staticClass: "btn btn-secondary",
+                    staticClass: "btn btn-light",
                     attrs: { type: "button" },
                     on: {
                       click: function ($event) {
@@ -58685,7 +58670,7 @@ var render = function () {
                   ? _c(
                       "button",
                       {
-                        staticClass: "btn btn-primary",
+                        staticClass: "btn color-primario",
                         attrs: { type: "button" },
                         on: {
                           click: function ($event) {
@@ -58701,7 +58686,7 @@ var render = function () {
                   ? _c(
                       "button",
                       {
-                        staticClass: "btn btn-primary",
+                        staticClass: "btn color-primario",
                         attrs: { type: "button" },
                         on: {
                           click: function ($event) {

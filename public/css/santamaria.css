@@ -121,7 +121,8 @@ body::-webkit-scrollbar {
 
 }
 .sidebar .nav-links li a .link_name{
-    font-size: 18px;
+    font-size: 20px;
+    font-family: 'font1';
     font-weight: 400;
     color:#FFF;
     transition: all 0.4s ease;
@@ -141,7 +142,8 @@ body::-webkit-scrollbar {
 }
 .sidebar .nav-links li .sub-menu a{
     color: #FFF;
-    font-size: 15px;
+    font-size: 16px;
+    font-family: 'font1';
     padding: 5px 0;
     white-space: nowrap;
     opacity: 0.6;
@@ -372,6 +374,10 @@ table.table tbody tr:last-of-type{
 label.fuente1{
     font-family:'font1';
     font-size:22px;
+    font-weight: 400;
+}
+.texto-principal{
+    font-family: 'font1';
     font-weight: 400;
 }
 .contenedor-validar .form-sesion input{

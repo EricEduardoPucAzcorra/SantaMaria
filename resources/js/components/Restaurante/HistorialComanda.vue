@@ -1,7 +1,7 @@
 <template>
     <div class="col-md-12">
         <div class="m-5">
-            <h4>Detalles de comandas</h4>
+            <h3 class="texto-principal">Detalles de comandas</h3>
         </div>
         <div class="m-5">
             <table class="table table-hover">
