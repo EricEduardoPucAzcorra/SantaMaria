@@ -55816,7 +55816,7 @@ var render = function () {
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "ms-form-group" }, [
-                        _c("label", [_vm._v("Correo electronica")]),
+                        _c("label", [_vm._v("Correo electronico")]),
                         _vm._v(" "),
                         _c("input", {
                           directives: [

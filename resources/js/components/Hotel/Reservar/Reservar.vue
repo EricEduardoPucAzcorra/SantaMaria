@@ -110,7 +110,7 @@
                        <input type="text" name="" id="" class="form-control" maxlength="10" v-model="telefono">
                       </div>
                       <div class="ms-form-group">
-                        <label>Correo electronica</label>
+                        <label>Correo electronico</label>
                        <input type="email" name="" id="" class="form-control" v-model="correo">
                       </div>
                   </div>
