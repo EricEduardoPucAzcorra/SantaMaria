@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class PlatilloController extends Controller
 {
+
+    public function platillos(){
+        
+        $platillos=Platillo::all();
+
+        return response()->json($platillos,200);
+    }
       /**
      * Display a listing of the resource.
      *

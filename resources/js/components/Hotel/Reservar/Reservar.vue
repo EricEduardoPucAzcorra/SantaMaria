@@ -130,6 +130,8 @@
                       <input type="date" name="" id="" class="form-control" v-model="fecha_salida">
                   </div>
 
+
+
                    <div class="ms-form-group">
                     <label>Comentario</label>
                      <textarea name="" id="" cols="3" rows="3" class="form-control" v-model="comentario"></textarea>
@@ -237,7 +239,9 @@
                caracteristicas:'',
                num_personas:'',
                estado:'',
-               precio:''              
+               precio:'',
+               estadoR:'',
+               estadoh:''              
 
             }
         },
@@ -247,16 +251,14 @@
         },
 
         methods: {
-          // obtener_fecha_hoy(){
-
-          // var  data = moment(new Date()).format('YYYY-MM-D');
-          // console.info(data);//2021-03-12
-
-          // },
+          
           //traer las habitaciones
             getHabitaciones(){
             var i = this;
-            let  url = '/habitaciones';
+
+            
+            let  url = '/habitaciones';          
+
             axios.get(url).then(function (response) {
               //console.log(response);
               i.habitaciones = response.data;
@@ -344,7 +346,7 @@
             
             },
             //permite cerar el modal
-              cerrarModal(){
+            cerrarModal(){
               $('#modal_reserva').modal('hide');
               this.nombre='';
               this.apellidos='';
@@ -368,11 +370,35 @@
             },
             //metodo que permite reallizar la reserva
             reservar(){
+              
+              let fechaA = new Date();
+
+              let date = fechaA.toISOString().split('T')[0];
+
+                
+
               if(this.id_huesped!=0){ 
                 //console.log('ha selecionado una id de huesped');
-                  var i = this;
 
-                  var estado = 'ACEPTADO';
+                if(this.fecha_entrada > date | this.fecha_salida > date){
+
+                        this.estadoR = 'PENDIENTE';
+
+                        this.estadoh = 'DISPONIBLE';
+
+                  }else{
+                          
+                      if(this.fecha_entrada==date | this.fecha_salida == date |this.fecha_salida>=date ){
+
+                              this.estadoR = 'ACEPTADO';
+
+                              this.estadoh = 'OCUPADO';
+                            
+                      }
+                }
+
+                  var i = this;
+                  
                   //let  url = '/reservars';
                     axios.post('/reservars',{
                       'fecha_entrada':this.fecha_entrada,
@@ -381,7 +407,7 @@
                       'id_huesped':this.id_huesped,
                       'id_habitacion':this.id_habitacion,
                       'cant_habitacion':this.cant_habitacion,
-                      'estado':estado,
+                      'estado':this.estadoR,
                       'precio':this.precio,
                       'total':this.total
                     }).then(function (response) {
@@ -426,7 +452,7 @@
                       // 'id_huesped':this.id_huesped,
                       'id_habitacion':this.id_habitacion,
                       'cant_habitacion':this.cant_habitacion,
-                      'estado':estado,
+                      'estado':this.estadoR,
                       'precio':this.precio,
                       'total':this.total
                     }).then(function (response) {
@@ -460,11 +486,12 @@
               }
 
             },
-             updateestadoH(){
+            updateestadoH(){
+
               let i = this;
-              let est = 'OCUPADO';
+              
                axios.put('/cambiarestado',{
-                      'estado':est,
+                      'estado':this.estadoh,
                       'id_habitacion':this.id_habitacion,
                     }).then(function (response) {
                      i.getHabitaciones();

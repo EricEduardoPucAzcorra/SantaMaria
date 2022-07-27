@@ -61,7 +61,8 @@ class ComandaController extends Controller
                 'cantidad_plato' => $array[$i]['cantidad_plato'],
                 'importe' => $array[$i]['total'],
                 'subtotal' => $array[$i]['total'],
-                'total'=>$array[$i]['total']
+                'total'=>$array[$i]['total'],
+                'nota'=>'null'
             ];
 
             //dd($d);

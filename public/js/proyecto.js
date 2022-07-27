@@ -6579,10 +6579,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
-    return _defineProperty({
+    var _ref;
+
+    return _ref = {
       prueba: 'hola mundo cruel',
       habitaciones: [],
       huespedes: [],
@@ -6608,14 +6612,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       caracteristicas: '',
       num_personas: '',
       estado: ''
-    }, "precio", '');
+    }, _defineProperty(_ref, "precio", ''), _defineProperty(_ref, "estadoR", ''), _defineProperty(_ref, "estadoh", ''), _ref;
   },
   computed: {},
   methods: {
-    // obtener_fecha_hoy(){
-    // var  data = moment(new Date()).format('YYYY-MM-D');
-    // console.info(data);//2021-03-12
-    // },
     //traer las habitaciones
     getHabitaciones: function getHabitaciones() {
       var i = this;
@@ -6726,10 +6726,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     validarCampos: function validarCampos() {},
     //metodo que permite reallizar la reserva
     reservar: function reservar() {
+      var fechaA = new Date();
+      var date = fechaA.toISOString().split('T')[0];
+
       if (this.id_huesped != 0) {
         //console.log('ha selecionado una id de huesped');
-        var i = this;
-        var estado = 'ACEPTADO'; //let  url = '/reservars';
+        if (this.fecha_entrada > date | this.fecha_salida > date) {
+          this.estadoR = 'PENDIENTE';
+          this.estadoh = 'DISPONIBLE';
+        } else {
+          if (this.fecha_entrada == date | this.fecha_salida == date | this.fecha_salida >= date) {
+            this.estadoR = 'ACEPTADO';
+            this.estadoh = 'OCUPADO';
+          }
+        }
+
+        var i = this; //let  url = '/reservars';
 
         axios.post('/reservars', {
           'fecha_entrada': this.fecha_entrada,
@@ -6738,7 +6750,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           'id_huesped': this.id_huesped,
           'id_habitacion': this.id_habitacion,
           'cant_habitacion': this.cant_habitacion,
-          'estado': estado,
+          'estado': this.estadoR,
           'precio': this.precio,
           'total': this.total
         }).then(function (response) {
@@ -6780,7 +6792,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           // 'id_huesped':this.id_huesped,
           'id_habitacion': this.id_habitacion,
           'cant_habitacion': this.cant_habitacion,
-          'estado': estado,
+          'estado': this.estadoR,
           'precio': this.precio,
           'total': this.total
         }).then(function (response) {
@@ -6811,9 +6823,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     updateestadoH: function updateestadoH() {
       var i = this;
-      var est = 'OCUPADO';
       axios.put('/cambiarestado', {
-        'estado': est,
+        'estado': this.estadoh,
         'id_habitacion': this.id_habitacion
       }).then(function (response) {
         i.getHabitaciones();
@@ -7754,12 +7765,6 @@ var _user = document.head.querySelector('meta[name="usuario_log"]');
           }).then(function (response) {
             //console.log(response);
             i.historial = [];
-            Swal.fire({
-              title: "Se realizo la comanda",
-              text: "La  comanda fue realizada",
-              icon: 'success',
-              confirmButtonColor: '#f31809'
-            });
           })["catch"](function (error) {
             console.log(error);
           });

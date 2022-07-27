@@ -9,9 +9,14 @@ use App\Models\Detalle_Reserva;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Exception;
+use Carbon\Carbon;
 
 class ReservaController extends Controller
 {
+    private $estadoh;
+
+
+
     public function huespedes(){
         $huespedes = Huesped::all();
         return $huespedes;
@@ -23,6 +28,10 @@ class ReservaController extends Controller
             DB::beginTransaction();
              //valido si campo es diferente de cero
 
+            $date = Carbon::now();
+
+            $date = $date->format('Y-m-d');
+
 
             if($request->input('id_huesped')!=0){
 
@@ -33,7 +42,7 @@ class ReservaController extends Controller
                 $reserva->comentario = $request['comentario'];//viene de vista null
                 $reserva->id_habitacion = $request['id_habitacion'];  //viene de vista
                 $reserva->cant_habitacion = $request['cant_habitacion']; //viene de codigo js
-                $reserva->estado = 'ACEPTADO'; //viene de controller 
+                $reserva->estado = $request['estado']; //viene de controller 
                 $reserva->id_huesped = $request['id_huesped'];
                 //viene de vista
                 $reserva->precio = $request['precio'];//viene de vista
@@ -47,7 +56,7 @@ class ReservaController extends Controller
 
                 $data = array('fecha_registro' => $fecha_entrada, 'id_habitacion' => $id_habitacion, 'id_reserva' => $id_reserva, 'total' => $total);
 
-                //DB::insert("INSERT INTO detalle_reservaciones(fecha_registro, id_habitacion, id_reserva, total) VALUES('$f_i','$hab','$res', '$total')");
+
                 DB::table('detalle_reservaciones')->insert($data);
                 
             }else{
@@ -66,7 +75,7 @@ class ReservaController extends Controller
                 $reserva->comentario = $request['comentario'];//viene de vista null
                 $reserva->id_habitacion = $request['id_habitacion'];  //viene de vista
                 $reserva->cant_habitacion = $request['cant_habitacion']; //viene de codigo js
-                $reserva->estado = 'ACEPTADO'; //viene de controller 
+                $reserva->estado = $request['estado'];//viene de controller 
                 $reserva->id_huesped = $huesped->id_huesped;
                 //viene de vista
                 $reserva->precio = $request['precio'];//viene de vista
@@ -80,7 +89,6 @@ class ReservaController extends Controller
 
                 $data = array('fecha_registro' => $fecha_entrada, 'id_habitacion' => $id_habitacion, 'id_reserva' => $id_reserva, 'total' => $total);
 
-                //DB::insert("INSERT INTO detalle_reservaciones(fecha_registro, id_habitacion, id_reserva, total) VALUES('$f_i','$hab','$res', '$total')");
                 DB::table('detalle_reservaciones')->insert($data);
             }
 
@@ -99,46 +107,10 @@ class ReservaController extends Controller
     public function updateestadoh(Request $request)
     {
         $habitacion = Habitacion::findOrFail($request->id_habitacion);
-        $habitacion->estado = 'OCUPADO';
+        $habitacion->estado = $request['estado'];
         $habitacion->update();
     }
     
-    public function index()
-    {
-        //
-    }
+  
 
-    public function create()
-    {
-        //
-    }
-
-   
-    public function store(Request $request)
-    {
-        
-    }
-
-    public function show(Reserva $reserva)
-    {
-        //
-    }
-
- 
-    public function edit(Reserva $reserva)
-    {
-        //
-    }
-
-   
-    public function update(Request $request, Reserva $reserva)
-    {
-        //
-    }
-
-   
-    public function destroy(Reserva $reserva)
-    {
-        //
-    }
 }

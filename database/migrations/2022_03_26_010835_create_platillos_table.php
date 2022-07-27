@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('folio',7)->unique();
             $table->string('nombre')->unique();
             $table->string('descripcion');
+            $table->string('imagen')->nulable();
             $table->integer('id_categoriaP')->unsigned();
             $table->foreign('id_categoriaP')->references('id_categoriaP')->on('categoria_platillos');
             $table->float('precio');

@@ -28,6 +28,7 @@ class LoginController extends Controller
         return back()->withErrors(['usuario' => trans('auth.failed')])->withInput(request(['usuario']));
     }
 
+
     protected function validar(Request $request){
         $this->validate($request,[
             'usuario' => 'required|string',

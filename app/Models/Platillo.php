@@ -22,6 +22,7 @@ class Platillo extends Model
         'folio',
         'nombre',
         'descripcion',
+        'imagen',
         'id_categoriaP',
         'precio',
         'estado'

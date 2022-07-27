@@ -390,12 +390,7 @@
                             //console.log(response);
                             i.historial = [];
 
-                            Swal.fire({
-                                title:"Se realizo la comanda",
-                                text:"La  comanda fue realizada",
-                                icon:'success',
-                                confirmButtonColor:'#f31809'
-                            })
+                            
                         }).catch(function (error) {
                             console.log(error);
                     });  

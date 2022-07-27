@@ -21,6 +21,9 @@ return new class extends Migration
             $table->string('usuario')->unique();
             //$table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+
+            $table->string('imagen')->nulable();
+
             $table->boolean('condicion')->default(1);
             //relacion con rol
             $table->integer('id_rol')->unsigned(1);
