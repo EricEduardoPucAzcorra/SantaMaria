@@ -7,6 +7,13 @@ use App\Models\Categoria_Platillo;
 
 class Categoria_platillosController extends Controller
 {
+    public function categorias(){
+        
+        $categoriasp=Categoria_Platillo::all();
+
+        return response()->json($categoriasp,200);
+    }
+
     public function vista_catPlatillo(){
         return view('sistema.almacen.categorias_platillos');
     }

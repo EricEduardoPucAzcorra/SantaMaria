@@ -10,10 +10,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/acceso', 'App\Http\Controllers\Apilogin@acceso');
 
-Route::get('/habitaciones', 'App\Http\Controllers\HabitacionController@index');
+Route::get('/us', 'App\Http\Controllers\UsuarioAController@index');
 
 Route::get('platillos','App\Http\Controllers\PlatilloController@platillos');
-
+Route::get('getCategorias','App\Http\Controllers\Categoria_PlatillosController@categorias');
 
 Route::apiResource('/actUser', UsuarioAController::class);
 // Route::post('/validar',[UsuarioAController::class, 'validar']);
